@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],
         'inter': ['Inter', 'sans-serif'],
+      },
+      colors: {
+        'bluemike': '#1A23F1'
       }
     },
   },

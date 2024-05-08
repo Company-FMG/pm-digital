@@ -1,3 +1,5 @@
+import NavbarMike from "../components/NavbarMike";
+
 export default function Home() {
     return (
         <>
@@ -6,6 +8,8 @@ export default function Home() {
             <h1 className="text-xl font-poppins underline text-center">Hello world!</h1> 
         */
         }
+
+        <NavbarMike />
         </>
     )
 }
