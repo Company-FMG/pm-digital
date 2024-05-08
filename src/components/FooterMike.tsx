@@ -1,14 +1,7 @@
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-
-function FooterMike() {
+export default function FooterMike() {
   return (
-    <ButtonGroup aria-label="Basic example">
-      <Button variant="secondary">Left</Button>
-      <Button variant="secondary">Middle</Button>
-      <Button variant="secondary">Right</Button>
-    </ButtonGroup>
-  );
+    <>
+      <h1>Hello</h1>
+    </>
+  )
 }
-
-export default FooterMike;

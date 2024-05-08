@@ -1,16 +1,12 @@
-import { Outlet } from 'react-router-dom';
-import NavbarMike from './components/NavbarMike';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './AppRoutes';
 
-import FooterMike from './components/FooterMike';
-
-function App() {
+export default function App() {
   return (    
     <>
-      <NavbarMike/>
-      <Outlet/>
-      <FooterMike/>
+     <BrowserRouter>
+        <AppRoutes/>
+     </BrowserRouter>
     </>
   );
-}
-
-export default App;
+};
