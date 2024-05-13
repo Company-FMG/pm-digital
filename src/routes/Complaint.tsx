@@ -1,49 +1,27 @@
-import NavbarMike from "../components/NavbarMike";
+import ComplaintData from "../components/complaint/ComplaintData";
+import ComplaintMap from "../components/complaint/ComplaintMap";
+import ComplaintTitle from "../components/complaint/ComplaintTitle";
+import SceneData from "../components/complaint/SceneData";
+import NavbarMike from "../components/global/NavbarMike";
+import ComplaintCTA from "../components/complaint/ComplaintCTA";
 
-export default function Complaint () {
-    const endereco = 'Rua General Viriato de Medeiros'
-
-    return (
-        <>
-            <NavbarMike/>
-                       
-            <div className="font-inter">
-                <div className="container flex justify-start mx-auto gap-4 px-56 mt-24">
-                    <div className="bg-red w-12 h-12 rounded-full"></div>
-                    <h1 className="font-bold text-5xl">VBG</h1> 
-                </div>
-            
-            <div className="container flex justify-start mx-auto gap-16 px-56 mt-12 text-lg">
-                <div className="flex-col">
-                    <h1 className="font-bold">Localização: {endereco}</h1>
-                    <iframe className="w-mapW h-mapH rounded border-4 mt-4" src="https://www.openstreetmap.org/export/embed.html?bbox=-34.88803982734681%2C-8.055325701983197%2C-34.8861113190651%2C-8.05380661342411&amp;layer=mapnik"/>
-                </div>
-                <div className="flex-col">
-                    <div className="grid gap-4">
-                        <h1 className="font-bold">Ocorrência N°: </h1>
-                        <p>Nome da vítima: </p>
-                        <p>Sexo: </p>
-                        <p>Idade: </p>
-                        <p>Situação informada: </p>
-                        <p>Tipo de caso: </p>
-                    </div>
-                    <div className="grid gap-4 mt-16">
-                        <h1 className="font-bold">Informações da cena</h1>
-                        <p>Pessoa suspeita: </p>
-                        <p>Sexo: </p>
-                        <p>Idade: </p>
-                        <p>Descrição: </p>
-                    </div>
-                </div>
-                </div>
-                <div className="container flex justify-start mx-auto gap-16 px-56 mt-12 mb-32">
-                    <div className="flex-col">
-                    <button className="object-fill bg-bluemike w-custom h-16 text-white text-xl font-bold font-poppins rounded ">Encaminhar para viatura</button>
-                </div>
-                </div>
+export default function Test() {
+  return (
+    <>
+      <NavbarMike />
+      <section>
+        <div className="container max-w-xl py-20 mx-auto space-y-8 px-25 ml-32 lg:px-2 lg:ml-32 xl:ml-56 lg:max-w-6xl 2xl:ml-custom">
+          <ComplaintTitle />
+          <div className="grid gap-8 sm:gap-2 md:gap-4 lg:gap-16 xl:gap-8 2xl:gap-0 lg:grid-cols-2 lg:items-start">
+            <ComplaintMap />
+            <div className="flex-col">
+              <ComplaintData />
+              <SceneData />
             </div>
-        
-            
-        </>
-    )
+          </div>
+          <ComplaintCTA />
+        </div>
+      </section>
+    </>
+  );
 }

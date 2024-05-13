@@ -15,11 +15,14 @@ export default {
         'red': '#FC9697',
       },
       width: {
-        'map-mdW': '34rem',
+        'map-mdW': '29rem',
         'custom': '52rem'
       },
       height: {
         'map-mdH': '30rem',
+      },
+      margin: {
+        'custom' : '30rem',
       }
     },
   },

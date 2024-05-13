@@ -1,4 +1,4 @@
-import logomike from '../assets/mikelogo.svg'
+import logomike from '../../assets/mikelogo.svg';
 
 export default function NavbarMike(){
  return(

@@ -3,7 +3,6 @@ import App from "./App";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
 import Complaint from "./routes/Complaint";
-import Test from "./routes/Test";
 
 export default function AppRoutes() {
     return(
@@ -12,7 +11,6 @@ export default function AppRoutes() {
             <Route index element={<Home />} />
             <Route path="login" element={<Login/>}/>
             <Route path="denuncia" element={<Complaint/>}/>
-            <Route path="test" element={<Test/>}/>
         </Routes>
     )
 }
