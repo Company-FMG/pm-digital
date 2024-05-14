@@ -10,9 +10,9 @@ export default function Test() {
     <>
       <NavbarMike />
       <section>
-        <div className="container max-w-xl py-20 mx-auto space-y-8 px-25 ml-32 lg:px-2 lg:ml-32 xl:ml-56 lg:max-w-6xl 2xl:ml-custom">
+        <div className="container max-w-sm sm:max-w-lg md:max-w-xl py-20 mx-auto space-y-8 px-25 ml-16 sm:ml-24 md:ml-30 lg:px-2 lg:ml-32 xl:ml-56 lg:max-w-4xl 2xl:ml-custom">
           <ComplaintTitle />
-          <div className="grid gap-8 sm:gap-2 md:gap-4 lg:gap-16 xl:gap-8 2xl:gap-0 lg:grid-cols-2 lg:items-start">
+          <div className="grid gap-8 sm:gap-2 md:gap-4 lg:gap-32 xl:gap-72 2xl:gap-64 lg:grid-cols-2 lg:items-start">
             <ComplaintMap />
             <div className="flex-col">
               <ComplaintData />
