@@ -1,30 +1,49 @@
-# React + TypeScript + Vite
+# Mike - Um sistema inteligente para a segurança pública (Front-end)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Repositório de Front-end do Mike, um sistema que conecta o cidadão com a Polícia Militar e Civil na resolução dos casos de violência, contribuindo para a segurança no Estado de Pernambuco. O projeto está sendo desenvolvido nas disciplinas de Projeto Integrador IV e V do curso de Sistemas para Internet, em parceria com o empreendedor social Daniel Paixão e sob supervisão do professor Iago Rodrigues.
 
-Currently, two official plugins are available:
+Tecnologias utilizadas:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Vite](https://vitejs.dev) (Compilador local/Configurações de desenvolvimento)
+- [React](https://react.dev) (Framework de UI. Configurado no Vite para utilizar TypeScript)
+- [TailwindCSS](https://tailwindcss.com) (Framework de estilização)
+- [MambaUI](https://mambaui.com) (Biblioteca de componentes)
 
-## Expanding the ESLint configuration
+## Como colaborar no projeto?
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+No VS Code, inicie um terminal `git` e realize os comandos abaixo antes de clonar o repositório.
 
-- Configure the top-level `parserOptions` property like this:
+```git
+git config --global user.email "seu email do github"
+```
+```git
+git config --global user.name "seu username do github"
+```
+Na sequência, clone o repositório por meio do comando:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```git
+git clone https://github.com/Company-FMG/mike-front-end.git
+```
+Se for necessário acessar alguma branch, utilize:
+```git
+git checkout nome-da-branch
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Para rodar o projeto, é necessário ter o [node](https://nodejs.org/en) e o npm instalados em sua máquina. 
+Com isso feito, inicie um terminal powershell no VS Code e realize os comandos:
+
+```npm
+npm install
+```
+```npm
+npm run dev
+```
+
+## Autores
+
+- Ana Carolyne Costa
+- Iale Almeida
+- Luís Silvestre
+- Lorenzo Leão
+- Nicholas Bergqvist
+- Rafael Martins

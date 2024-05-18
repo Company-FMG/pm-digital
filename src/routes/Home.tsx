@@ -1,4 +1,4 @@
-import NavbarMike from "../components/NavbarMike";
+import NavbarMike from "../components/global/NavbarMike";
 
 export default function Home() {
     return (

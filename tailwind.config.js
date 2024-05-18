@@ -11,7 +11,18 @@ export default {
         'inter': ['Inter', 'sans-serif'],
       },
       colors: {
-        'bluemike': '#1A23F1'
+        'bluemike': '#1A23F1',
+        'red': '#FC9697',
+      },
+      width: {
+        'map-mdW': '29rem',
+        'custom': '52rem'
+      },
+      height: {
+        'map-mdH': '30rem',
+      },
+      margin: {
+        'custom' : '30rem',
       }
     },
   },

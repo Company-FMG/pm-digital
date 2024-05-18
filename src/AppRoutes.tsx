@@ -3,6 +3,9 @@ import App from "./App";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
 import ComplaintRegister from "./routes/ComplaintRegister";
+import Complaint from "./routes/Complaint";
+
+        
 
 export default function AppRoutes() {
     return(
@@ -11,6 +14,7 @@ export default function AppRoutes() {
             <Route index element={<Home />} />
             <Route path="login" element={<Login/>}/>
             <Route path="newcomplaint" element={<ComplaintRegister/>}/>
+            <Route path="denuncia" element={<Complaint/>}/>
         </Routes>
     )
 }
