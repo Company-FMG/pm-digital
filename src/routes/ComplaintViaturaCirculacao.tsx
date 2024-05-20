@@ -1,4 +1,4 @@
-import NavbarMike from "../components/NavbarMike";
+import NavbarMike from "../components/global/NavbarMike";
 import Viatura from "../components/Viatura";
 export default function ComplaintViaturaCirculacao() {
   return (
