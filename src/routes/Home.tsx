@@ -1,5 +1,6 @@
 import NavbarMike from "../components/global/NavbarMike";
 
+
 export default function Home() {
     return (
         <>
