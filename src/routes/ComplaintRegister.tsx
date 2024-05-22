@@ -20,11 +20,11 @@ export default function ComplaintRegister(){
                         </div>
                     </div>
                     <div className="flex">
-                        <div className="w-2/4">
+                        <div className="w-3/5">
                             <label htmlFor="">Nome da vítima</label>
                             <input type="text" placeholder="Ex: Joana Bezerra da Silva" className="border border-black border-2 rounded-lg px-7 py-3 w-full"/>
                         </div>
-                        <div className="w-1/4">
+                        <div className="w-2/5">
                             <label htmlFor="">Sexo</label>
                             <select name="" id="" className="border border-black border-2 rounded-lg px-7 py-3 appearance-none bg-dropdown-icon bg-right bg-no-repeat bg-[length:1em_1em] w-full">
                                 <option value="">Feminino</option>
@@ -33,7 +33,7 @@ export default function ComplaintRegister(){
                         </div>
                         <div>
                             <label htmlFor="">Idade</label>
-                            <input type="number" placeholder="Ex: 45" className="border border-black border-2 rounded-lg px-7 py-3"/>
+                            <input type="number" placeholder="Ex: 45" className="border border-black border-2 rounded-lg px-7 py-3  w-full"/>
                         </div>
                     </div>
                     <div>
@@ -42,12 +42,41 @@ export default function ComplaintRegister(){
                             <textarea placeholder="Digite aqui..." className="w-full h-40 border border-black border-2 rounded-lg px-7 py-3"/>
                         </div>
                     </div>
+                    <div>
+                        <label htmlFor="">Tipo de violência</label>
+                        <div className="flex mt-6 space-x-10">
+                            <div>
+                                <input type="checkbox" name="" id="" className="w-6 h-6 rounded-lg mr-3"/>
+                                <label htmlFor="">CVLI</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="" id="" className="w-6 h-6 rounded-lg mr-3"/>
+                                <label htmlFor="">MVI</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="" id="" className="w-6 h-6 rounded-lg mr-3"/>
+                                <label htmlFor="">VDFCM</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="" id="" className="w-6 h-6 rounded-lg mr-3"/>
+                                <label htmlFor="">ESTUPRO</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="" id="" className="w-6 h-6 rounded-lg mr-3"/>
+                                <label htmlFor="">CVP</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="" id="" className="w-6 h-6 rounded-lg mr-3"/>
+                                <label htmlFor="">OUTROS</label>
+                            </div>
+                        </div>
+                    </div>
                     <div className="flex">
-                        <div className="w-2/4">
+                        <div className="w-3/5">
                             <label htmlFor="">Pessoa suspeita</label>
                             <input type="text" placeholder="Ex: Keven Leone Barros" className="border border-black border-2 rounded-lg px-7 py-3 w-full"/>
                         </div>
-                        <div className="w-1/4">
+                        <div className="w-2/5">
                             <label htmlFor="">Sexo</label>
                             <select name="" id="" className="border border-black border-2 rounded-lg px-7 py-3 appearance-none bg-dropdown-icon bg-right bg-no-repeat bg-[length:1em_1em] w-full">
                                 <option value="">Masculino</option>
@@ -56,7 +85,7 @@ export default function ComplaintRegister(){
                         </div>
                         <div>
                             <label htmlFor="">Idade</label>
-                            <input type="number" placeholder="Ex: 54" className="border border-black border-2 rounded-lg px-7 py-3"/>
+                            <input type="number" placeholder="Ex: 54" className="border border-black border-2 rounded-lg px-7 py-3 w-full"/>
                         </div>
                     </div>
                     <div>
@@ -65,7 +94,7 @@ export default function ComplaintRegister(){
                             <textarea placeholder="Digite aqui..." className="w-full h-40 border border-black border-2 rounded-lg px-7 py-3 "/>
                         </div>
                     </div>
-                    <button type="submit" className="font-bold text-white bg-bluemike h-16 rounded-lg">Cadastrar denúncia</button>
+                    <button type="submit" className="font-bold text-white bg-bluemike h-16 rounded-lg font-poppins">Cadastrar denúncia</button>
                 </form>
             </div>
         </>
