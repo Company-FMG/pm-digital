@@ -23,6 +23,9 @@ export default {
       },
       margin: {
         'custom' : '30rem',
+      },
+      backgroundImage: {
+        'dropdown-icon': "url(./src/assets/droparrow.svg)"
       }
     },
   },

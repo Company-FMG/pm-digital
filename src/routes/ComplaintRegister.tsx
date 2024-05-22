@@ -10,23 +10,23 @@ export default function ComplaintRegister(){
 
                 <form action="" className="text-2xl grid gap-10 *:space-x-12 *:*:*:block">
                     <div className="flex">
-                        <div>
+                        <div className="w-2/3">
                             <label htmlFor="">Localização</label>
-                            <input type="text" placeholder="Ex: Avenida Dois Rios 359, Ibura, Recife - PE" className="border border-black border-2 rounded-lg px-7 py-3"/>
+                            <input type="text" placeholder="Ex: Avenida Dois Rios 359, Ibura, Recife - PE" className="border border-black border-2 rounded-lg px-7 py-3 w-full"/>
                         </div>
-                        <div> 
+                        <div className="w-1/3"> 
                             <label htmlFor="">CEP</label>
                             <input type="text" placeholder="Ex: 50000-000" className="border border-black border-2 rounded-lg px-7 py-3"/>
                         </div>
                     </div>
                     <div className="flex">
-                        <div>
+                        <div className="w-2/4">
                             <label htmlFor="">Nome da vítima</label>
-                            <input type="text" placeholder="Ex: Joana Bezerra da Silva" className="border border-black border-2 rounded-lg px-7 py-3"/>
+                            <input type="text" placeholder="Ex: Joana Bezerra da Silva" className="border border-black border-2 rounded-lg px-7 py-3 w-full"/>
                         </div>
-                        <div>
+                        <div className="w-1/4">
                             <label htmlFor="">Sexo</label>
-                            <select name="" id="" className="border border-black border-2 rounded-lg px-7 py-3">
+                            <select name="" id="" className="border border-black border-2 rounded-lg px-7 py-3 appearance-none bg-dropdown-icon bg-right bg-no-repeat bg-[length:1em_1em] w-full">
                                 <option value="">Feminino</option>
                                 <option value="">Masculino</option>
                             </select>
@@ -39,17 +39,17 @@ export default function ComplaintRegister(){
                     <div>
                         <div>
                             <label htmlFor="">Situação informada</label>
-                            <input type="text" placeholder="Digite aqui..." className="w-full h-40 border border-black border-2 rounded-lg px-7 py-3"/>
+                            <textarea placeholder="Digite aqui..." className="w-full h-40 border border-black border-2 rounded-lg px-7 py-3"/>
                         </div>
                     </div>
                     <div className="flex">
-                        <div>
+                        <div className="w-2/4">
                             <label htmlFor="">Pessoa suspeita</label>
-                            <input type="text" placeholder="Ex: Keven Leone Barros" className="border border-black border-2 rounded-lg px-7 py-3"/>
+                            <input type="text" placeholder="Ex: Keven Leone Barros" className="border border-black border-2 rounded-lg px-7 py-3 w-full"/>
                         </div>
-                        <div>
+                        <div className="w-1/4">
                             <label htmlFor="">Sexo</label>
-                            <select name="" id="" className="border border-black border-2 rounded-lg px-7 py-3">
+                            <select name="" id="" className="border border-black border-2 rounded-lg px-7 py-3 appearance-none bg-dropdown-icon bg-right bg-no-repeat bg-[length:1em_1em] w-full">
                                 <option value="">Masculino</option>
                                 <option value="">Feminino</option>
                             </select>
@@ -62,7 +62,7 @@ export default function ComplaintRegister(){
                     <div>
                         <div>
                             <label htmlFor="">Descrição</label>
-                            <input type="text" placeholder="Digite aqui..." className="w-full h-40 border border-black border-2 rounded-lg px-7 py-3 "/>
+                            <textarea placeholder="Digite aqui..." className="w-full h-40 border border-black border-2 rounded-lg px-7 py-3 "/>
                         </div>
                     </div>
                     <button type="submit" className="font-bold text-white bg-bluemike h-16 rounded-lg">Cadastrar denúncia</button>
