@@ -9,6 +9,12 @@ export default function Viatura({
   responsavel,
   efetivo,
   areaAtuacao,
+} : {
+  idViatura:any,
+  placa: any,
+  responsavel:any,
+  efetivo:any,
+  areaAtuacao:any
 }) {
   const [showMore, setShowMore] = useState(false);
   function handleMoreClick() {
