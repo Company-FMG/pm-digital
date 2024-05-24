@@ -34,9 +34,11 @@ public class DenunciaController {
         return this.denunciaService.atualizaDenuncia(id, denunciaAtualizada);
     }
 
+
     @DeleteMapping("/{id}")
     public void removeDenuncia(@PathVariable Long id) {
         this.denunciaService.removeDenuncia(id);
     }
+
 
 }

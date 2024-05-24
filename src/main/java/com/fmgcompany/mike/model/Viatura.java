@@ -11,7 +11,7 @@ public class Viatura {
     @Id
     @Column(name = "id_viatura")
     private String idViatura;
-    @OneToMany(mappedBy = "id_policiais",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "viatura",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Policial> policiais = new ArrayList<Policial>();
     private String placa;
     private String modelo;

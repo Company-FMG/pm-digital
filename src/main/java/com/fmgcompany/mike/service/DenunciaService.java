@@ -48,6 +48,7 @@ public class DenunciaService {
         }
     }
 
+
     //delete
     public void removeDenuncia(Long id){
         Optional<Denuncia> denuncia = this.denunciaRepository.findById(id);
@@ -55,7 +56,9 @@ public class DenunciaService {
         if(denuncia.isEmpty()){
             throw new RuntimeException("Denúncia não encontrada");
         } else {
-            this.denunciaRepository.delete(denuncia);
+            this.denunciaRepository.deleteById(id);
         }
     }
+
+
 }
