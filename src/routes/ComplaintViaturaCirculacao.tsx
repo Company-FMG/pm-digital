@@ -1,9 +1,11 @@
 import NavbarMike from "../components/global/NavbarMike";
+import ProvisoryNavigationBreadcrumb from "../components/global/ProvisoryNavigationBreadcrumb";
 import Viatura from "../components/Viatura";
 export default function ComplaintViaturaCirculacao() {
   return (
     <>
       <NavbarMike />
+      <ProvisoryNavigationBreadcrumb/>
       <div className="px-48 py-2">
         <h1 className="font-bold text-5xl">Viaturas em Circulação</h1>
         <div className="pt-6">

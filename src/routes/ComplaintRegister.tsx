@@ -1,10 +1,11 @@
 import NavbarMike from "../components/global/NavbarMike";
+import ProvisoryNavigationBreadcrumb from "../components/global/ProvisoryNavigationBreadcrumb";
 
 export default function ComplaintRegister(){
     return(
         <>
             <NavbarMike/>
-
+            <ProvisoryNavigationBreadcrumb/>
             <div className="mx-40 my-20 px-16 py-11 space-y-20 border border-black border-2 rounded-lg">
                 <h2 className="font-bold text-5xl">Cadastro de Nova Denúncia</h2>
 
