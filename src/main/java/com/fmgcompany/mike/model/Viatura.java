@@ -1,10 +1,17 @@
 package com.fmgcompany.mike.model;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "viaturas")
 public class Viatura {
+    @Id
+    @Column(name = "id_viatura")
     private String idViatura;
+    @OneToMany(mappedBy = "id_policiais",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Policial> policiais = new ArrayList<Policial>();
     private String placa;
     private String modelo;
