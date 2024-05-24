@@ -1,6 +1,5 @@
 import React from "react";
-import mikelogo from '../assets/mikelogo.svg'
-import MikeLogoSlogan from '../assets/MikeLogoSlogan.svg'
+import MikeLogoSlogan from '../assets/MikeLogoSlogan.svg';
 
 interface ImageProps {
   src: string;
@@ -22,7 +21,7 @@ const IconLabel: React.FC<IconLabelProps> = ({ iconSrc, label }) => (
   </div>
 );
 
-const Login: React.FC = () => {
+export default function Login(){
   return (
     <main className="bg-blue-700 min-h-screen flex flex-col items-center justify-center">
       <div className="flex gap-0 md:flex-row flex-col w-full max-w-6xl">
@@ -75,4 +74,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+
