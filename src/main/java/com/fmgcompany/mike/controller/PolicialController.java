@@ -24,12 +24,12 @@ public class PolicialController {
     private PolicialService policialService;
 
     @GetMapping
-    public List<Policial> getAllUsers() {
+    public List<Policial> getAllPoliciais() {
         return policialService.findAll();
     }
 
     @GetMapping("/{idPolicial}")
-    public ResponseEntity<Policial> getUserById(@PathVariable String id) {
+    public ResponseEntity<Policial> getPolicialById(@PathVariable String id) {
         Optional<Policial> policial = policialService.findById(id);
         return policial.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
