@@ -1,8 +1,14 @@
 package com.fmgcompany.mike.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public abstract class Pessoa {
-    protected String nome;
+    
+    @Id
     protected String cpf;
+    protected String nome;
     protected int idade;
     protected String sexo;
 
