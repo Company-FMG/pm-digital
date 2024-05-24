@@ -5,6 +5,7 @@ public class Ocorrencia {
     private Policial responsavelBO;
     private String relatorio;
 
+    //getters
     public String getIdOcorrencia() {
         return this.idOcorrencia;
     }
@@ -15,5 +16,14 @@ public class Ocorrencia {
 
     public String getRelatorio() {
         return this.relatorio;
+    }
+
+    //setters
+    public void setRelatorio(String relatorio) {
+        this.relatorio = relatorio;
+    }
+
+    public void setResponsavelBO(Policial responsavelBO) {
+        this.responsavelBO = responsavelBO;
     }
 }
