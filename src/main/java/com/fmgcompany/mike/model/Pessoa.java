@@ -14,6 +14,7 @@ public abstract class Pessoa {
     protected int idade;
     protected String sexo;
 
+    //getters
     public String getNome() {
         return nome;
     }
@@ -27,6 +28,15 @@ public abstract class Pessoa {
     
     public int getIdade() {
         return idade;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    //setters
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
     public void setIdade(int idade) {
         this.idade = idade;
