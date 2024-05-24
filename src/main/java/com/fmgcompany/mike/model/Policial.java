@@ -45,4 +45,13 @@ public class Policial extends Pessoa {
     public Viatura getViatura() {
         return viatura;
     }
+
+    //setters
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public void setViatura(Viatura viatura) {
+        this.viatura = viatura;
+    }
 }
