@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Viatura {
     private String idViatura;
-    private List policiais = new ArrayList<Policial>();
+    private List<Policial> policiais = new ArrayList<Policial>();
     private String placa;
     private String modelo;
     private String marca;
@@ -38,11 +38,15 @@ public class Viatura {
         return estado;
     }
 
-    public List getPoliciais() {
+    public String getPlaca() {
+        return placa;
+    }
+
+    public List<Policial> getPoliciais() {
         return policiais;
     }
 
-    public void setPoliciais(List policiais) {
+    public void setPoliciais(List<Policial> policiais) {
         this.policiais = policiais;
     }
 }
