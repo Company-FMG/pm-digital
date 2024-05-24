@@ -1,5 +1,9 @@
 import React from "react";
 import MikeLogoSlogan from '../assets/MikeLogoSlogan.svg';
+import { Link } from 'react-router-dom';
+
+
+
 
 interface ImageProps {
   src: string;
@@ -60,12 +64,16 @@ export default function Login(){
               <a href="#" className="text-xl italic underline">
                 Esqueci minha senha
               </a>
+              <Link to="/">
+              
               <button
+                
                 type="submit"
                 className="mt-10 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg"
               >
                 Entrar
               </button>
+              </Link>
             </form>
           </div>
         </section>
