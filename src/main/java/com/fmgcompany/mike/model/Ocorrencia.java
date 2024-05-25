@@ -13,7 +13,7 @@ public class Ocorrencia {
     @Id
     private String idOcorrencia;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idPolicial", referencedColumnName = "id")
+    @JoinColumn(name = "idPolicial", referencedColumnName = "idPolicial")
     private Policial responsavelBO;
     private String relatorio;
 
