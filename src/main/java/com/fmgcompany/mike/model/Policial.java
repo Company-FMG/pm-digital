@@ -19,9 +19,10 @@ public class Policial extends Pessoa {
     
     public Policial(){}
 
-    public Policial(String nome, String cpf, int idade, String sexo, String idPolicial, String cargo, Viatura viatura) {
+    public Policial(String nome, String cpf, String email, int idade, String sexo, String idPolicial, String cargo, Viatura viatura) {
         this.nome = nome;
         this.cpf = cpf;
+        this.email = email;
         this.idade = idade;
         this.sexo = sexo;
         this.idPolicial = idPolicial;
@@ -33,7 +34,11 @@ public class Policial extends Pessoa {
     public String getNome() {
         return super.getNome();
     }
-    
+
+    public String getEmail() {
+        return super.getEmail();
+    }
+
     public String getIdPolicial() {
         return idPolicial;
     }
