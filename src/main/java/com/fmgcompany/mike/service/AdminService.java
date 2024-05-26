@@ -1,8 +1,8 @@
 package com.fmgcompany.mike.service;
 
 import com.fmgcompany.mike.model.Admin;
-import com.fmgcompany.mike.model.Denuncia;
 import com.fmgcompany.mike.repository.AdminRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class AdminService {
+    @Autowired
     private AdminRepository adminRepository;
 
     //get all admins
@@ -34,7 +35,7 @@ public class AdminService {
 
     //exists
     public boolean existePorId(String id) {
-        return adminRepository.existsById(id);
+        return this.adminRepository.existsById(id);
     }
 
 }
