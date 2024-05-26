@@ -46,6 +46,7 @@ public class PolicialController {
             Policial updatedPolicial = policial.get();
             updatedPolicial.setNome(policialDetails.getNome());
             updatedPolicial.setIdade(policialDetails.getIdade());
+            updatedPolicial.setEmail(policialDetails.getEmail());
             updatedPolicial.setSexo(policialDetails.getSexo());
             updatedPolicial.setCargo(policialDetails.getCargo());
             updatedPolicial.setViatura(policialDetails.getViatura());
