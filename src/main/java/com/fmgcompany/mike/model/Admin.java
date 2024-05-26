@@ -1,17 +1,21 @@
 package com.fmgcompany.mike.model;
 
-import jakarta.persistence.*;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
 
 @Entity
-@Table(name="admin")
+@Table(name = "admin")
 public class Admin extends Pessoa {
+    //attributes
     @Id
     private String idAdmin;
 
+    //constructors
     public Admin () {}
 
-    public Admin (String idAdmin, String cpf, String nome, String email, int idade, String sexo ) {
+    public Admin (String idAdmin, String cpf, String nome, String email, int idade, String sexo) {
         this.idAdmin = idAdmin;
         this.cpf = cpf;
         this.nome = nome;
@@ -21,16 +25,14 @@ public class Admin extends Pessoa {
     }
 
     //getters
-    public String getIdAdmin () {
+    public String getIdAdmin() {
         return idAdmin;
     }
     public String getNome() {
         return super.getNome();
     }
     public String getEmail() {
-        return super.getNome();
+        return super.getEmail();
     }
-
-    //setters
 
 }
