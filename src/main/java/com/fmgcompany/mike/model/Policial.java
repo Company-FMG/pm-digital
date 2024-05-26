@@ -13,7 +13,7 @@ public class Policial extends Pessoa {
     @Id
     private String idPolicial;
     private String cargo;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idViatura")
     private Viatura viatura;
     
