@@ -46,4 +46,9 @@ public class AdminController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping("/{id}")
+    public void deletarAdmin(@PathVariable String id){
+        this.adminService.deletarAdminPorId(id);
+    }
 }
