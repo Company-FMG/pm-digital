@@ -1,59 +1,42 @@
 package com.fmgcompany.mike.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+@Getter
 @Entity
 @Table(name = "viaturas")
 public class Viatura {
     @Id
     @Column(name = "id_viatura")
-    private String idViatura;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID idViatura;
+    @JsonManagedReference
+    @Setter
     @OneToMany(mappedBy = "viatura")
     private List<Policial> policiais = new ArrayList<Policial>();
+    @Setter
     private String placa;
+    @Setter
     private String modelo;
+    @Setter
     private String marca;
+    @Setter
     private String estado;
 
     public Viatura(){}
 
-    public Viatura(String idViatura, ArrayList<Policial>policiais, String placa, String modelo, String marca, String estado) {
-        this.idViatura = idViatura;
-        this.policiais = policiais;
+    public Viatura(String placa, String modelo, String marca, String estado) {
         this.placa = placa;
         this.modelo = modelo;
         this.marca = marca;
         this.estado = estado;
     }
 
-    public String getIdViatura() {
-        return idViatura;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public List<Policial> getPoliciais() {
-        return policiais;
-    }
-
-    public void setPoliciais(List<Policial> policiais) {
-        this.policiais = policiais;
-    }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ViaturaService {
@@ -17,7 +18,7 @@ public class ViaturaService {
         return this.viaturaRepository.findAll();
     }
 
-    public Optional<Viatura> buscarViaturaId(String id){
+    public Optional<Viatura> buscarViaturaId(UUID id){
         return this.viaturaRepository.findById(id);
     }
 
@@ -25,7 +26,7 @@ public class ViaturaService {
         return viaturaRepository.save(viatura);
     }
 
-    public void deletarViaturaId(String id){
+    public void deletarViaturaId(UUID id){
         this.viaturaRepository.deleteById(id);
     }
 }

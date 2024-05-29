@@ -1,7 +1,7 @@
 package com.fmgcompany.mike.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,13 +13,14 @@ public class Policial extends Pessoa {
     @Id
     private String idPolicial;
     private String cargo;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "idViatura")
     private Viatura viatura;
     
     public Policial(){}
 
-    public Policial(String nome, String cpf, String email, int idade, String sexo, String idPolicial, String cargo, Viatura viatura) {
+    public Policial(String nome, String cpf, String email, int idade, String sexo, String idPolicial, String cargo) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -27,7 +28,6 @@ public class Policial extends Pessoa {
         this.sexo = sexo;
         this.idPolicial = idPolicial;
         this.cargo = cargo;
-        this.viatura = viatura;
     }
 
     @Override

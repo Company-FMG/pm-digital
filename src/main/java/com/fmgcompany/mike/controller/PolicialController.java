@@ -28,7 +28,7 @@ public class PolicialController {
         return policialService.findAll();
     }
 
-    @GetMapping("/{idPolicial}")
+    @GetMapping("/{id}")
     public ResponseEntity<Policial> getPolicialById(@PathVariable String id) {
         Optional<Policial> policial = policialService.findById(id);
         return policial.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
@@ -39,7 +39,7 @@ public class PolicialController {
         return policialService.save(policial);
     }
 
-    @PutMapping("/{idPolicial}")
+    @PutMapping("/{id}")
     public ResponseEntity<Policial> updatePolicial(@PathVariable String id, @RequestBody Policial policialDetails) {
         Optional<Policial> policial = policialService.findById(id);
         if (policial.isPresent()) {
@@ -56,7 +56,7 @@ public class PolicialController {
         }
     }
 
-    @DeleteMapping("/{idPolicial}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePolicial(@PathVariable String id) {
         policialService.deleteById(id);
         return ResponseEntity.noContent().build();
