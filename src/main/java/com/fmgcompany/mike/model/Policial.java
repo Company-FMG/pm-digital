@@ -1,18 +1,22 @@
 package com.fmgcompany.mike.model;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import java.util.UUID;
 
+@Getter
 @Entity
 @Table(name="policiais")
 public class Policial extends Pessoa {
     @Id
-    private String idPolicial;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID idPolicial;
+
+    @Setter
     private String cargo;
+
+    @Setter
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "idViatura")
@@ -20,43 +24,22 @@ public class Policial extends Pessoa {
     
     public Policial(){}
 
-    public Policial(String nome, String cpf, String email, int idade, String sexo, String idPolicial, String cargo) {
+    public Policial(String nome, String cpf, String email, int idade, String sexo,String cargo) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.idade = idade;
         this.sexo = sexo;
-        this.idPolicial = idPolicial;
         this.cargo = cargo;
     }
-
+    /*
     @Override
     public String getNome() {
         return super.getNome();
     }
-
     public String getEmail() {
         return super.getEmail();
     }
 
-    public String getIdPolicial() {
-        return idPolicial;
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public Viatura getViatura() {
-        return viatura;
-    }
-
-    //setters
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
-    public void setViatura(Viatura viatura) {
-        this.viatura = viatura;
-    }
+     */
 }

@@ -3,6 +3,7 @@ package com.fmgcompany.mike.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class PolicialService {
         return policialRepository.findAll();
     }
 
-    public Optional<Policial> findById(String id) {
+    public Optional<Policial> findById(UUID id) {
         return policialRepository.findById(id);
     }
 
@@ -28,11 +29,11 @@ public class PolicialService {
         return policialRepository.save(policial);
     } 
 
-    public void deleteById(String id) {
+    public void deleteById(UUID id) {
         policialRepository.deleteById(id);
     }
 
-    public boolean existsById(String id) {
+    public boolean existsById(UUID id) {
         return policialRepository.existsById(id);
     }
 

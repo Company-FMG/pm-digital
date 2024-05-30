@@ -2,7 +2,7 @@ package com.fmgcompany.mike.controller;
 
 import java.util.List;
 import java.util.Optional;
-
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.fmgcompany.mike.service.PolicialService;
 import com.fmgcompany.mike.model.Policial;
 
@@ -29,7 +28,7 @@ public class PolicialController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Policial> getPolicialById(@PathVariable String id) {
+    public ResponseEntity<Policial> getPolicialById(@PathVariable UUID id) {
         Optional<Policial> policial = policialService.findById(id);
         return policial.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -40,7 +39,7 @@ public class PolicialController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Policial> updatePolicial(@PathVariable String id, @RequestBody Policial policialDetails) {
+    public ResponseEntity<Policial> updatePolicial(@PathVariable UUID id, @RequestBody Policial policialDetails) {
         Optional<Policial> policial = policialService.findById(id);
         if (policial.isPresent()) {
             Policial updatedPolicial = policial.get();
@@ -57,7 +56,7 @@ public class PolicialController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePolicial(@PathVariable String id) {
+    public ResponseEntity<Void> deletePolicial(@PathVariable UUID id) {
         policialService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

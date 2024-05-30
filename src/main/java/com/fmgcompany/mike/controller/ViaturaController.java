@@ -53,7 +53,7 @@ public class ViaturaController {
     }
     //Adicionar um policial a viatura
     @PutMapping("/{id}/{idPolicial}")
-    public ResponseEntity<Viatura> addPolicial(@PathVariable UUID id, @PathVariable String idPolicial){
+    public ResponseEntity<Viatura> addPolicial(@PathVariable UUID id, @PathVariable UUID idPolicial){
         Optional<Policial> p = this.policialService.findById(idPolicial);
         Optional<Viatura> v = this.viaturaService.buscarViaturaId(id);
         if(v.isPresent()){
@@ -75,7 +75,7 @@ public class ViaturaController {
     }
     //Remover um policial da viatura
     @DeleteMapping("/{id}/{idPolicial}")
-    public ResponseEntity<Viatura> removerPolicial(@PathVariable UUID id, @PathVariable String idPolicial){
+    public ResponseEntity<Viatura> removerPolicial(@PathVariable UUID id, @PathVariable UUID idPolicial){
         Optional<Policial> p = this.policialService.findById(idPolicial);
         Optional<Viatura> v = this.viaturaService.buscarViaturaId(id);
         if(v.isPresent()){
