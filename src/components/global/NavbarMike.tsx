@@ -1,6 +1,6 @@
 import logomike from '../../assets/mikelogo.svg'
 
-const NavbarMike: React.FC = () => {
+export default function NavbarMike () {
     return (
         <>
             <header className="p-0 bg-bluemike">
@@ -23,5 +23,3 @@ const NavbarMike: React.FC = () => {
 
     )
 }
-
-export default NavbarMike;
