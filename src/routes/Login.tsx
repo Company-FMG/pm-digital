@@ -1,6 +1,8 @@
 import * as React from "react";
 import MikeLogin from "../assets/MikeLogin.svg"
-
+import PublicSafety from "../assets/Public Safety.svg"
+import Secure from "../assets/Secure.svg"
+import MikeLogoSlogan  from "../assets/MikeLogoSlogan.svg"
 export default function Login() {
   return (
     
@@ -16,7 +18,7 @@ export default function Login() {
       <div className="flex gap-3.5 mt-14 text-xl text-white whitespace-nowrap">
         <img
           loading="lazy"
-          srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/19c282f99a38a9de4dc5d387ab355a41d8a1bae29abba39d2983fbe3b369061b?apiKey=91a1d4223fb149a1a197b80828621a6c&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/19c282f99a38a9de4dc5d387ab355a41d8a1bae29abba39d2983fbe3b369061b?apiKey=91a1d4223fb149a1a197b80828621a6c&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/19c282f99a38a9de4dc5d387ab355a41d8a1bae29abba39d2983fbe3b369061b?apiKey=91a1d4223fb149a1a197b80828621a6c&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/19c282f99a38a9de4dc5d387ab355a41d8a1bae29abba39d2983fbe3b369061b?apiKey=91a1d4223fb149a1a197b80828621a6c&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/19c282f99a38a9de4dc5d387ab355a41d8a1bae29abba39d2983fbe3b369061b?apiKey=91a1d4223fb149a1a197b80828621a6c&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/19c282f99a38a9de4dc5d387ab355a41d8a1bae29abba39d2983fbe3b369061b?apiKey=91a1d4223fb149a1a197b80828621a6c&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/19c282f99a38a9de4dc5d387ab355a41d8a1bae29abba39d2983fbe3b369061b?apiKey=91a1d4223fb149a1a197b80828621a6c&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/19c282f99a38a9de4dc5d387ab355a41d8a1bae29abba39d2983fbe3b369061b?apiKey=91a1d4223fb149a1a197b80828621a6c&"
+            srcSet={PublicSafety}
           className="shrink-0 w-9 aspect-square"
         />
         <div className="flex-auto my-auto italic">Matrícula</div>
@@ -46,12 +48,12 @@ export default function Login() {
           className="w-full border-2 border-white border-solid aspect-[100] stroke-[2.194px] stroke-white"
         />
       </div>
-      <div className="self-end mt-5 text-base italic text-white underline">
+      <button className="self-end mt-5 text-base italic text-white underline">
         Esqueci minha senha
-      </div>
-      <div className="justify-center items-center px-16 py-5 mt-7 text-xl font-bold text-blue-700 whitespace-nowrap bg-white rounded-md">
+      </button>
+      <button className="justify-center items-center px-16 py-5 mt-7 text-xl font-bold text-blue-700 whitespace-nowrap bg-white rounded-md" >
         Entrar
-      </div>
+      </button>
     </div>
   );
 }
