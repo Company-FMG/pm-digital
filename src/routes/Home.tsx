@@ -9,9 +9,11 @@ import {
 import NavbarMike from "../components/global/NavbarMike";
 import FooterMike from "../components/global/FooterMike";
 import AlertaOcorrenciaMike from "../components/modals/AlertaOcorrenciaMike"
+import MapMike from "../components/global/MapMike";
 
 export default function Home() {
   return (
+    <>
     <IonPage>
       <IonHeader>
         <IonToolbar>
@@ -19,7 +21,8 @@ export default function Home() {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <AlertaOcorrenciaMike/>
+       {/* <AlertaOcorrenciaMike/> */}
+        <MapMike/>
       </IonContent>
       <IonFooter>
         <IonToolbar>
@@ -27,5 +30,6 @@ export default function Home() {
         </IonToolbar>
       </IonFooter>
     </IonPage>
+    </>
   );
 }

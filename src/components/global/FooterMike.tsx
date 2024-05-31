@@ -21,7 +21,7 @@ export default function FooterMike() {
           
         </div>
         <div>
-          <h1 className="text-center text-xl text-black" onClick={handleShow}>
+          <h1 className="text-center text-xl text-black mt-2" onClick={handleShow}>
             Sobre o Mike
           </h1>
         </div>
