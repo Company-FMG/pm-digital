@@ -3,7 +3,11 @@ import rightarrow from "../../assets/rightarrow.svg";
 import { StateContext } from "../CreateContext";
 
 export default function AlertaOcorrenciaMike() {
-  const { handleShow } = useContext(StateContext);
+  const context = useContext(StateContext);
+  if (!context) {
+    throw new Error("ButtonComponent must be used within a StateProvider");
+  }
+  const { handleShow } = context;
 
   return (
     <>

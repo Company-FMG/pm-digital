@@ -1,8 +1,18 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, ReactNode, useState } from "react";
+interface StateContextProps {
+  show: boolean;
+  handleShow: () => void;
+}
 
-export const StateContext = createContext(false);
+export const StateContext = createContext<StateContextProps | undefined>(
+  undefined
+);
 
-export const StateProvider = ({ children }) => {
+interface StateProviderProps {
+  children: ReactNode;
+}
+
+export const StateProvider: React.FC<StateProviderProps> = ({ children }) => {
   const [show, setShow] = useState(true);
 
   const handleShow = () => {
