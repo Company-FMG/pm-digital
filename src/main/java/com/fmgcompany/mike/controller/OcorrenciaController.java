@@ -58,4 +58,20 @@ public class OcorrenciaController {
         ocorrenciaService.deletarOcorrenciaPorId(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/iniciar-ocorrencia")
+    public ResponseEntity<Ocorrencia> iniciarOcorrencia(@RequestBody Ocorrencia ocorrencia) {
+        Ocorrencia ocorrencia1 = ocorrenciaService.iniciarOcorrencia(ocorrencia);
+        return ResponseEntity.ok(ocorrencia1);
+    }
+
+    @PutMapping("/finalizar/{idOcorrencia}")
+    public ResponseEntity<Ocorrencia> finalizarOcorrencia(@PathVariable String idOcorrencia) {
+        try {
+            Ocorrencia ocorrencia = ocorrenciaService.finalizarOcorrencia(idOcorrencia);
+            return ResponseEntity.ok(ocorrencia);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

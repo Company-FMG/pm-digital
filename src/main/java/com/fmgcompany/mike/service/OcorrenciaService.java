@@ -1,7 +1,9 @@
 package com.fmgcompany.mike.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +35,21 @@ public class OcorrenciaService {
 
     public boolean existePorId(String id) {
         return ocorrenciaRepository.existsById(id);
+    }
+
+    public Ocorrencia iniciarOcorrencia(Ocorrencia ocorrencia) {
+        ocorrencia.setInicio(LocalDateTime.now());
+        return ocorrenciaRepository.save(ocorrencia);
+    }
+
+    public Ocorrencia finalizarOcorrencia(String idOcorrencia) {
+        Optional<Ocorrencia> ocorrenciaOptional = ocorrenciaRepository.findById(idOcorrencia);
+        if(ocorrenciaOptional.isPresent()) {
+            Ocorrencia ocorrencia = ocorrenciaOptional.get();
+            ocorrencia.setFim(LocalDateTime.now());
+            ocorrenciaRepository.save(ocorrencia);
+        } else {
+            throw new Exception("Ocorrência não encontrada");
+        }
     }
 }
