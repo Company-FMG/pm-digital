@@ -1,49 +1,46 @@
 package com.fmgcompany.mike.model;
 
+import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
+
+@ToString
+@Getter
 
 @Entity
 @Table(name = "ocorrencias")
 public class Ocorrencia {
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String idOcorrencia;
-    @OneToOne(cascade = CascadeType.ALL)
+    
+    @OneToOne
     @JoinColumn(name = "idPolicial", referencedColumnName = "idPolicial")
+    @Setter
     private Policial responsavelBO;
+    
+    @Setter
     private String relatorio;
+    
+    @Setter
+    private LocalDateTime inicio;
+    
+    @Setter
+    private LocalDateTime fim;
 
     public Ocorrencia() {}
 
-    public Ocorrencia(String idOcorrencia, Policial responsavelBO, String relatorio) {
-        this.idOcorrencia = idOcorrencia;
+    public Ocorrencia(Policial responsavelBO, String relatorio) {
         this.responsavelBO = responsavelBO;
         this.relatorio = relatorio;
     }
 
-    //getters
-    public String getIdOcorrencia() {
-        return this.idOcorrencia;
-    }
-
-    public Policial getResponsavelBO() {
-        return this.responsavelBO;
-    }
-
-    public String getRelatorio() {
-        return this.relatorio;
-    }
-
-    //setters
-    public void setRelatorio(String relatorio) {
-        this.relatorio = relatorio;
-    }
-
-    public void setResponsavelBO(Policial responsavelBO) {
-        this.responsavelBO = responsavelBO;
-    }
 }
