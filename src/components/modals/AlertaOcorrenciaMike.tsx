@@ -1,5 +1,14 @@
+import { useContext } from "react";
 import rightarrow from "../../assets/rightarrow.svg";
+import { StateContext } from "../CreateContext";
+
 export default function AlertaOcorrenciaMike() {
+  const context = useContext(StateContext);
+  if (!context) {
+    throw new Error("ButtonComponent must be used within a StateProvider");
+  }
+  const { handleShow } = context;
+
   return (
     <>
       <div className="lg:flex lg:justify-center ">
@@ -17,7 +26,10 @@ export default function AlertaOcorrenciaMike() {
               </p>
             </div>
             <div>
-              <button className="text-center bg-bluemike text-lg text-white rounded-xl h-[50] w-max px-8 py-4">
+              <button
+                className="text-center bg-bluemike text-lg text-white rounded-xl h-[50] w-max px-8 py-4"
+                onClick={handleShow}
+              >
                 A CAMINHO
                 <img
                   className="pl-4 inline-block fill-white"
