@@ -1,5 +1,7 @@
+import { Geolocation } from '@capacitor/geolocation';
 import { GoogleMap } from '@capacitor/google-maps';
 import { useRef, useState } from 'react';
+import { useIonViewDidEnter, useIonViewWillEnter } from '@ionic/react';
 
 export default function MapTest() {
   const key:string = process.env.REACT_APP_MAP_API_KEY!
@@ -23,14 +25,40 @@ export default function MapTest() {
     })
   }
 
+  const permission = async () => {
+    try {
+      const permissionStatus = await Geolocation.checkPermissions();
+      console.log('Permission status: ', permissionStatus.location);
+      if (permissionStatus?.location != 'granted') {
+        const requestStatus = await Geolocation.requestPermissions();
+        if (requestStatus.location != 'granted') {
+          return;
+        }
+      }
+      let options: PositionOptions = {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 3000
+      };
+
+      const position = await Geolocation.getCurrentPosition(options);
+      console.log(position);
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  useIonViewWillEnter(() => {
+    createMap();
+  });
+
   return (
     <div>
       <capacitor-google-map ref={mapRef} style={{
         display: 'inline-block',
         width: "100%",
-        height: "86vh"
+        height: "67vh"
       }}></capacitor-google-map>
-      <button onClick={createMap}>Create Map</button>
     </div>
   )
 }
