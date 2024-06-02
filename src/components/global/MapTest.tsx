@@ -8,44 +8,41 @@ export default function MapTest() {
   const mapRef = useRef(null);
   let newMap: GoogleMap;
 
-  async function createMap() {
+
+  async function createMap() : Promise<void>{
+
+    let options: PositionOptions = {
+      enableHighAccuracy: false,
+      timeout: 10000,
+      maximumAge: 3000
+    };
+
+    const position = await Geolocation.getCurrentPosition(options);
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    console.log(position)
+
     if (!mapRef.current) return;
 
     newMap = await GoogleMap.create({
-      id: 'my-cool-map',
+      id: 'home-map',
       element: mapRef.current,
       apiKey: key,
       config: {
         center: {
-          lat: -8.0262863,
-          lng: -34.8920267
+          lat: latitude,
+          lng: longitude
         },
-        zoom: 10,
+        zoom: 17,
       },
     })
-  }
 
-  const permission = async () => {
-    try {
-      const permissionStatus = await Geolocation.checkPermissions();
-      console.log('Permission status: ', permissionStatus.location);
-      if (permissionStatus?.location != 'granted') {
-        const requestStatus = await Geolocation.requestPermissions();
-        if (requestStatus.location != 'granted') {
-          return;
-        }
+    const markerId = await newMap.addMarker({
+      coordinate: {
+        lat: latitude,
+        lng: longitude
       }
-      let options: PositionOptions = {
-        enableHighAccuracy: true,
-        timeout: 15000,
-        maximumAge: 3000
-      };
-
-      const position = await Geolocation.getCurrentPosition(options);
-      console.log(position);
-    } catch (e) {
-      console.log(e)
-    }
+    });
   }
 
   useIonViewWillEnter(() => {
