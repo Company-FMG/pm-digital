@@ -24,3 +24,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ion-toolbar {
+    --min-height: none;
+}

@@ -10,9 +10,9 @@ export default function AlertaOcorrenciaMike() {
   const { handleShow } = context;
 
   return (
-    <>
-      <div className="fixed lg:flex lg:justify-center ">
-        <div className="rounded-xl drop-shadow-md bg-cinzamike h-64 m-8 mt-24">
+    
+      <div className="lg:flex lg:justify-center">
+        <div className="rounded-xl drop-shadow-md bg-white h-64 mx-auto">
           <div className="flex flex-col min-h-full items-center justify-center p-4 text-center gap-4">
             <div className="">
               <h1 className="text-xl font-bold">ALERTA DE OCORRÊNCIA</h1>
@@ -41,6 +41,6 @@ export default function AlertaOcorrenciaMike() {
           </div>
         </div>
       </div>
-    </>
+    
   );
 }
