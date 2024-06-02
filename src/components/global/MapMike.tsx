@@ -1,3 +1,4 @@
+{/*
 import { Geolocation } from "@capacitor/geolocation";
 import { useState, useRef } from "react";
 import { MapContainer, TileLayer, useMap } from 'react-leaflet'
@@ -39,7 +40,7 @@ export default function MapMike() {
     } catch (e) {
       console.log(e)
     }
-  } */
+  } 
 
   return (
     <>
@@ -55,4 +56,5 @@ export default function MapMike() {
       </MapContainer>
     </>
   )
-}
+} */}
+
