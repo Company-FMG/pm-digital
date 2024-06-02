@@ -61,4 +61,6 @@ public class OcorrenciaService {
         } else {
             System.out.println("Ocorrência finalizada");
         }
+    }
+
 }
