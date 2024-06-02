@@ -1,8 +1,6 @@
 import { useContext, useState } from "react";
 import rightarrow from "../../assets/rightarrow.svg";
 import { StateContext } from "../CreateContext";
-import RegistrarBO from "../modals/RegistrarBO";
-import Modal from "./Modal";
 export default function FooterMike() {
   const context = useContext(StateContext);
 
@@ -23,9 +21,7 @@ export default function FooterMike() {
         </div>
         <div>
           {show && (
-            <button
-              /* onClick={handleModal} */ className="bg-cinzamike text-xl text-black p-2 rounded-xl h-14 w-72"
-            >
+            <button className="bg-cinzamike text-xl text-black p-2 rounded-xl h-14 w-72">
               Finalizar Ocorrência
               <img className="pl-4 inline-block" src={rightarrow} alt="" />
             </button>
