@@ -1,16 +1,8 @@
-import { useContext, useState } from "react";
 import rightarrow from "../../assets/rightarrow.svg";
-import { ModalContext } from "../ModalContext";
-import { IonAlert, IonButton } from "@ionic/react";
-import RegistrarBO from "../modals/RegistrarBO";
+import { useModal } from "../ModalContext";
 
 export default function FooterMike() {
-  const modalContext = useContext(ModalContext);
-
-  if (!modalContext) {
-    throw new Error("ControlComponent must be used within a StateProvider");
-  }
-  const { handleShow } = modalContext;
+  const { handleShow } = useModal();
 
   return (
     <>

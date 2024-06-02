@@ -1,13 +1,8 @@
-import { useContext } from "react";
 import rightarrow from "../../assets/rightarrow.svg";
-import { ModalContext } from "../ModalContext";
+import { useModal } from "../ModalContext";
 
 export default function AlertaOcorrenciaMike() {
-  const context = useContext(ModalContext);
-  if (!context) {
-    throw new Error("ButtonComponent must be used within a StateProvider");
-  }
-  const { handleShow } = context;
+  const { handleShow } = useModal();
 
   return (
     

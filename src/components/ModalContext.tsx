@@ -1,17 +1,22 @@
-import { createContext, ReactNode, useState } from "react";
-interface ModelContextProvider {
+import { createContext, ReactNode, useContext, useState } from "react";
+
+//interface do contexto
+interface ModalContextProps {
   show: boolean;
   handleShow: () => void;
 }
 
-export const ModalContext = createContext<ModelContextProvider | undefined>(
+//contexto inicia indefinido
+export const ModalContext = createContext<ModalContextProps | undefined>(
   undefined
 );
 
+//interface do provider
 interface ModalProviderProps {
   children: ReactNode;
 }
 
+//define o provider do context
 export const ModalProvider = ({ children }: ModalProviderProps) => {
   const [show, setShow] = useState(false);
 
@@ -24,4 +29,13 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
       {children}
     </ModalContext.Provider>
   );
+};
+
+//cria um hook personalizado para puxar o contexto
+export const useModal = (): ModalContextProps => {
+  const context = useContext(ModalContext);
+  if (context === undefined) {
+    throw new Error('useModal must be used within a ModalProvider');
+  }
+  return context;
 };

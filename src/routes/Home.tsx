@@ -10,16 +10,14 @@ import FooterMike from "../components/global/FooterMike";
 import AlertaOcorrenciaMike from "../components/modals/AlertaOcorrenciaMike";
 import MapMike from "../components/global/MapMike";
 import MapTest from "../components/global/MapTest";
-import { useContext } from "react";
-import { StateContext } from "../components/CreateContext";
 import RegistrarBO from "../components/modals/RegistrarBO";
+import { useModal } from "../components/ModalContext";
+import InsereRelatorio from "../components/modals/InsereRelatorio";
+import OcorrenciaFinalizada from "../components/modals/OcorrenciaFinalizada";
 
 export default function Home() {
-  const context = useContext(StateContext);
-  if (!context) {
-    throw new Error("ControlComponent must be used within a StateProvider");
-  }
-  const { isModalOpen } = context;
+  const { show } = useModal();
+
   return (
     <>
       <IonPage>
@@ -28,13 +26,14 @@ export default function Home() {
             <NavbarMike />
           </IonToolbar>
         </IonHeader>
-        <IonContent>
-          <div className="relative">
-            <MapTest />
-            <div className="absolute right-14 top-32">
-              {isModalOpen && <AlertaOcorrenciaMike />}
-            </div>
+        <IonContent className="relative">
+          <MapTest />
+          <div className="absolute right-14 top-32">
+            {show && <AlertaOcorrenciaMike />}
           </div>
+          <RegistrarBO />
+          <InsereRelatorio />
+          <OcorrenciaFinalizada />
           {/*  
         <MapMike/> */}
         </IonContent>
