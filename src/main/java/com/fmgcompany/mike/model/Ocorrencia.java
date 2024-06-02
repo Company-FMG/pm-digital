@@ -9,7 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Duration;
 
 @ToString
 @Getter
@@ -31,10 +32,11 @@ public class Ocorrencia {
     private String relatorio;
     
     @Setter
-    private LocalDateTime inicio;
+    private LocalTime inicio;
     
     @Setter
-    private LocalDateTime fim;
+    private LocalTime fim;
+    private Duration duracao = Duration.between(inicio, fim);
 
     public Ocorrencia() {}
 
