@@ -33,7 +33,8 @@ export default function ReactMap () {
             <GoogleMap
               mapContainerClassName="map-container"
               center={center}
-              zoom={20}
+              zoom={18} 
+              options={{disableDefaultUI:true}}
               >
                 {center && <MarkerF position={center} />}
               </GoogleMap>
