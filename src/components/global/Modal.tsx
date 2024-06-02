@@ -5,12 +5,6 @@ interface ModalProps{
 }
 
 function Modal({ children }: ModalProps){
-    const { show } = useModal();
-
-    if(!show){
-        return null;
-    }
-
     return(
         <div className="fixed top-2/4 right-2/4 translate-x-2/4 -translate-y-3/4">
             <div className="lg:flex lg:justify-center">

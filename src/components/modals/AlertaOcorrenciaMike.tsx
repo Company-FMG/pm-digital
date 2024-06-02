@@ -1,14 +1,16 @@
 import rightarrow from "../../assets/rightarrow.svg";
 import { useModal } from "../ModalContext";
+import Modal from "../global/Modal";
 
 export default function AlertaOcorrenciaMike() {
-  const { handleShow } = useModal();
+  const { showAlertaOcorrencia, handleShow } = useModal();
+
+  if(!showAlertaOcorrencia){
+      return null;
+  }
 
   return (
-    
-      <div className="lg:flex lg:justify-center">
-        <div className="rounded-xl drop-shadow-md bg-white h-64 mx-auto">
-          <div className="flex flex-col min-h-full items-center justify-center p-4 text-center gap-4">
+      <Modal>
             <div className="">
               <h1 className="text-xl font-bold">ALERTA DE OCORRÊNCIA</h1>
             </div>
@@ -23,7 +25,7 @@ export default function AlertaOcorrenciaMike() {
             <div>
               <button
                 className="text-center bg-bluemike text-lg text-white rounded-xl h-[50] w-max px-8 py-4"
-                onClick={handleShow}
+                onClick={() => handleShow("alertaOcorrencia")}
               >
                 A CAMINHO
                 <img
@@ -33,9 +35,7 @@ export default function AlertaOcorrenciaMike() {
                 />
               </button>
             </div>
-          </div>
-        </div>
-      </div>
+    </Modal>
     
   );
 }
