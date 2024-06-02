@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { ModalProvider } from "./components/ModalContext"
-import App from './App';
+import App from './AppRoutes';
 import './index.css'
 
 const container = document.getElementById('root');
