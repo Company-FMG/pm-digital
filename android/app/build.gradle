@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+// Import dotenv and load the environment vars
 project.ext.env = new Properties()
 file('../../.env').withInputStream { project.ext.env.load(it) }
 
