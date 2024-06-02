@@ -24,6 +24,13 @@ export default function DetalhesDenuncia() {
                     <p>Situação informada: </p>
                     <p>Tipo de caso: </p>
                 </div>
+                <div className="grid gap-4 mt-20">
+                    <h1 className="font-bold md:text-xl lg:text-2xl">Informações da cena</h1>
+                    <p>Pessoa suspeita: </p>
+                    <p>Sexo: </p>
+                    <p>Idade: </p>
+                    <p className="mb-8">Descrição: </p>
+                </div>
             </div>
         </IonPage>
     );
