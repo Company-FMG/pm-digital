@@ -1,12 +1,17 @@
-import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
+import { GoogleMap, MarkerF, useLoadScript, DirectionsService, DirectionsRenderer, useGoogleMap } from "@react-google-maps/api";
 import { Geolocation } from "@capacitor/geolocation";
 import { useEffect, useMemo, useState } from "react";
 import "../../index.css"
+import { IonButton } from "@ionic/react";
 
 export default function ReactMap () {
     const { isLoaded } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY! });
     const [center, setCenter] = useState<{ lat: number, lng: number } | undefined>(undefined);
+    const rafaPosition = { lat: -8.131462, lng: -34.905769 };
 
+    const [map, setMap] = useState<google.maps.Map | null>(null);
+
+    
     useEffect(() => {
         async function createMap(): Promise<void> {
             let options: PositionOptions = {
@@ -35,10 +40,15 @@ export default function ReactMap () {
               center={center}
               zoom={18} 
               options={{disableDefaultUI:true}}
+              onLoad={(map) => setMap(map)}
               >
                 {center && <MarkerF position={center} />}
+                <MarkerF position={rafaPosition}/>
               </GoogleMap>
           )}
+          <IonButton className="absolute top-4 right-4 z-10" onClick={() => map?.panTo(center!)}>
+            Meu Local
+          </IonButton>
         </div>
       );
 }
