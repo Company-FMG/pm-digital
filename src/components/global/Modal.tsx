@@ -1,16 +1,20 @@
+import { useContext } from "react";
+import { ModalContext } from "../ModalContext";
+
 interface ModalProps{
-    isVisible: boolean;
-    onClose: () => void;
     children: React.ReactNode;
 }
 
-function Modal({ isVisible, onClose, children }: ModalProps){
-    if(!isVisible){
-        return null;
+function Modal({ children }: ModalProps){
+    const modalContext = useContext(ModalContext);
+
+    if (!modalContext) {
+        throw new Error("ControlComponent must be used within a StateProvider");
     }
+    const { handleShow } = modalContext;
 
     return(
-        <div className="fixed bg-orange-500 top-0">
+        <div className="bg-orange-500 mx-auto">
             {children}
         </div>
     );

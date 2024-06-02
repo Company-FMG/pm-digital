@@ -10,6 +10,7 @@ import NavbarMike from "../components/global/NavbarMike";
 import FooterMike from "../components/global/FooterMike";
 import AlertaOcorrenciaMike from "../components/modals/AlertaOcorrenciaMike"
 import MapMike from "../components/global/MapMike";
+import RegistrarBO from "../components/modals/RegistrarBO";
 
 export default function Home() {
   return (
@@ -20,8 +21,9 @@ export default function Home() {
           <NavbarMike />
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-       {/* <AlertaOcorrenciaMike/> */}
+      <IonContent fullscreen className="relative">
+        <RegistrarBO />
+        <AlertaOcorrenciaMike/>
         <MapMike/>
       </IonContent>
       <IonFooter>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { StateProvider } from "./components/CreateContext"
+import { ModalProvider } from "./components/ModalContext"
 import App from './App';
 import './index.css'
 
@@ -8,8 +8,8 @@ const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(
   <React.StrictMode>
-    <StateProvider>
+    <ModalProvider>
       <App />
-    </StateProvider>
+    </ModalProvider>
   </React.StrictMode>
 );

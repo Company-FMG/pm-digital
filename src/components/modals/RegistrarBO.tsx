@@ -2,8 +2,8 @@ import Modal from "../global/Modal";
 
 export default function RegistrarBO(){
     return(
-        <div className="h-10 w-10"> 
+        <Modal>
             <h1>teste</h1>
-        </div>
+        </Modal>
     );   
 };
