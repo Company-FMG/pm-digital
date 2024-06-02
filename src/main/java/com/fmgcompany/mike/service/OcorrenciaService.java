@@ -52,4 +52,13 @@ public class OcorrenciaService {
             throw new Exception("Ocorrência não encontrada");
         }
     }
+
+    public void getStatus(Ocorrencia ocorrencia) {
+        if (ocorrencia.getInicio() == null) {
+            System.out.println("Ocorrência não iniciada");
+        } else if (ocorrencia.getFim() == null) {
+            System.out.println("Ocorrência em andamento");
+        } else {
+            System.out.println("Ocorrência finalizada");
+        }
 }
