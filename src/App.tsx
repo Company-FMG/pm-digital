@@ -51,10 +51,10 @@ export default function App () {
   <IonApp>
     <IonReactRouter>
         <IonRouterOutlet>
-          <Route exact path="/">
+          <Route exact path="/login">
             <Login />
           </Route>
-          <Route exact path='/home'>
+          <Route exact path='/'>
             <Home />
           </Route>
         </IonRouterOutlet>

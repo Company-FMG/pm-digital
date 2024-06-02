@@ -8,12 +8,11 @@ import {
 import NavbarMike from "../components/global/NavbarMike";
 import FooterMike from "../components/global/FooterMike";
 import AlertaOcorrenciaMike from "../components/modals/AlertaOcorrenciaMike";
-import MapMike from "../components/global/MapMike";
-import MapTest from "../components/global/MapTest";
 import RegistrarBO from "../components/modals/RegistrarBO";
 import { useModal } from "../components/ModalContext";
 import InsereRelatorio from "../components/modals/InsereRelatorio";
 import OcorrenciaFinalizada from "../components/modals/OcorrenciaFinalizada";
+import ReactMap from "../components/global/ReactMap";
 
 export default function Home() {
   const { show } = useModal();
@@ -27,7 +26,7 @@ export default function Home() {
           </IonToolbar>
         </IonHeader>
         <IonContent className="relative">
-          <MapTest />
+          <ReactMap />
           <div className="absolute right-14 top-32">
             {show && <AlertaOcorrenciaMike />}
           </div>

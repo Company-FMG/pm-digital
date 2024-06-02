@@ -28,3 +28,8 @@
 ion-toolbar {
     --min-height: none;
 }
+
+.map-container {
+    height: 70vh;
+    width: 100%;
+}

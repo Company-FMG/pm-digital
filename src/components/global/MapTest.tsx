@@ -1,5 +1,5 @@
+{/*
 import { Geolocation } from '@capacitor/geolocation';
-import { GoogleMap } from '@capacitor/google-maps';
 import { useRef, useState } from 'react';
 import { useIonViewDidEnter, useIonViewWillEnter } from '@ionic/react';
 
@@ -59,3 +59,4 @@ export default function MapTest() {
     </div>
   )
 }
+*/}
