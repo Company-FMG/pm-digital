@@ -13,6 +13,17 @@ export default function DetalhesDenuncia() {
                     <h1 className="font-bold text-3xl sm:text-4xl ">#121 - VBG (2km)</h1>
                     <button className="md:ml-56 rotate-45 text-4xl">+</button>
                 </div>
+                <h1 className="text-2xl md:text-xl lg:text-2xl font-bold">
+                    Localização: <br></br>{endereco}
+                </h1>
+                <div className="grid gap-4">
+                    <h1 className="font-bold md:text-xl lg:text-2xl">Ocorrência N°: </h1>
+                    <p>Nome da vítima: </p>
+                    <p>Sexo: </p>
+                    <p>Idade: </p>
+                    <p>Situação informada: </p>
+                    <p>Tipo de caso: </p>
+                </div>
             </div>
         </IonPage>
     );
