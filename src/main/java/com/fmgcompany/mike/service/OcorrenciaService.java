@@ -3,12 +3,13 @@ package com.fmgcompany.mike.service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fmgcompany.mike.repository.OcorrenciaRepository;
+import com.fmgcompany.mike.exception.OcorrenciaNotFoundException;
 import com.fmgcompany.mike.model.Ocorrencia;
 
 @Service
@@ -38,7 +39,7 @@ public class OcorrenciaService {
     }
 
     public Ocorrencia iniciarOcorrencia(Ocorrencia ocorrencia) {
-        ocorrencia.setInicio(LocalDateTime.now());
+        ocorrencia.setInicio(LocalTime.now());
         return ocorrenciaRepository.save(ocorrencia);
     }
 
@@ -46,10 +47,10 @@ public class OcorrenciaService {
         Optional<Ocorrencia> ocorrenciaOptional = ocorrenciaRepository.findById(idOcorrencia);
         if(ocorrenciaOptional.isPresent()) {
             Ocorrencia ocorrencia = ocorrenciaOptional.get();
-            ocorrencia.setFim(LocalDateTime.now());
-            ocorrenciaRepository.save(ocorrencia);
+            ocorrencia.setFim(LocalTime.now());
+            return ocorrenciaRepository.save(ocorrencia);
         } else {
-            throw new Exception("Ocorrência não encontrada");
+            throw new OcorrenciaNotFoundException("Ocorrência não encontrada com o ID: " + idOcorrencia);
         }
     }
 
