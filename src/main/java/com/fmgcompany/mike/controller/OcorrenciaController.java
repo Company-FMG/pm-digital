@@ -44,10 +44,10 @@ public class OcorrenciaController {
     public ResponseEntity<Ocorrencia> atualizarOcorrencia(@PathVariable String id, @RequestBody Ocorrencia ocorrenciaDetails) {
         Optional<Ocorrencia> ocorrencia = ocorrenciaService.buscarOcorrenciaPorId(id);
         if (ocorrencia.isPresent()) {
-            Ocorrencia updatedOcorrencia = ocorrencia.get();
-            updatedOcorrencia.setResponsavelBO(ocorrenciaDetails.getResponsavelBO());
-            updatedOcorrencia.setRelatorio(ocorrenciaDetails.getRelatorio());
-            return ResponseEntity.ok(ocorrenciaService.criarOcorrencia(updatedOcorrencia));
+            Ocorrencia updatedOcorencia = ocorrencia.get();
+            updatedOcorencia.setResponsavelBo(ocorrenciaDetails.getResponsavelBo());
+            updatedOcorencia.setRelatorio(ocorrenciaDetails.getRelatorio());
+            return ResponseEntity.ok(ocorrenciaService.criarOcorrencia(updatedOcorencia));
         } else {
             return ResponseEntity.notFound().build();
         }

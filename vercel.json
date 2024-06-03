@@ -2,8 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "src/main/java/com/fmgcompany/mike/MikeApplication.java",
-            "use": "@vercel/n"
+            "src": "target/mike-0.0.1-SNAPSHOT.jar",
+            "use": "@vercel/static-build"
         }
-    ]
+    ],
+    "routes": [
+        {
+          "src": "/(.*)",
+          "dest": "/"
+        }
+      ]
 }

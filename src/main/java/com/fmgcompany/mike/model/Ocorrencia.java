@@ -27,7 +27,7 @@ public class Ocorrencia {
     @OneToOne
     @JoinColumn(name = "idPolicial", referencedColumnName = "idPolicial")
     @Setter
-    private Policial responsavelBO;
+    private Policial responsavelBo;
     
     @Setter
     private String relatorio;
@@ -37,13 +37,27 @@ public class Ocorrencia {
     
     @Setter
     private LocalTime fim;
-    private Duration duracao = Duration.between(inicio, fim);
+    private Duration duracao;
 
     public Ocorrencia() {}
 
-    public Ocorrencia(Policial responsavelBO, String relatorio) {
-        this.responsavelBO = responsavelBO;
+    public Ocorrencia(Policial responsavelBo, String relatorio) {
+        this.responsavelBo = responsavelBo;
         this.relatorio = relatorio;
     }
 
+    public Ocorrencia(Policial responsavelBo, String relatorio, LocalTime inicio, LocalTime fim) {
+        this.responsavelBo = responsavelBo;
+        this.relatorio = relatorio;
+        this.inicio = inicio;
+        this.fim = fim;
+    }
+
+    public Duration getDuracao() {
+        if (inicio != null && fim != null) {
+            return Duration.between(inicio, fim);
+        } else {
+            return Duration.ZERO; 
+        }
+    }
 }
