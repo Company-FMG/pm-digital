@@ -1,0 +1,9 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "src/main/java/com/fmgcompany/mike/MikeApplication.java",
+            "use": "@vercel/n"
+        }
+    ]
+}
