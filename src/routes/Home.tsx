@@ -10,8 +10,6 @@ import FooterMike from "../components/global/FooterMike";
 import AlertaOcorrenciaMike from "../components/modals/AlertaOcorrenciaMike";
 import RegistrarBO from "../components/modals/RegistrarBO";
 import { useModal } from "../components/ModalContext";
-import InsereRelatorio from "../components/modals/InsereRelatorio";
-import OcorrenciaFinalizada from "../components/modals/OcorrenciaFinalizada";
 import ReactMap from "../components/global/ReactMap";
 import DetalhesDenuncia from "../components/modals/DetalhesDenuncia";
 
@@ -30,8 +28,6 @@ export default function Home() {
           <ReactMap />
           <AlertaOcorrenciaMike />
           <RegistrarBO />
-          <InsereRelatorio />
-          <OcorrenciaFinalizada />
           <DetalhesDenuncia />
         </IonContent>
         <IonFooter>

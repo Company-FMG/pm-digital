@@ -1,8 +1,10 @@
-import { useModal } from "../ModalContext";
+import { useHistory } from "react-router-dom";
 import Modal from "../global/Modal";
+import { useModal } from "../ModalContext";
 
 export default function RegistrarBO(){
     const { showRegistrarBO, handleShow } = useModal();
+    const history = useHistory();
 
     if(!showRegistrarBO){
         return null;
@@ -12,7 +14,7 @@ export default function RegistrarBO(){
         <Modal>
             <div className="w-80 h-40 space-y-3">
                 <h2 className="text-2xl font-bold">Registrar Boletim de Ocorrência</h2>
-                <button onClick={() => {handleShow("registrarBO"); handleShow("insereRelatorio")}} className="text-center bg-bluemike text-xl text-[#FFFFFF] p-2 rounded-xl h-14 w-32">
+                <button onClick={() => { handleShow('registrarBO'); history.push('/relatorio') }} className="text-center bg-bluemike text-xl text-[#FFFFFF] p-2 rounded-xl h-14 w-32">
                     Concordo
                 </button>
             </div>
