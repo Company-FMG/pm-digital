@@ -44,6 +44,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Login from './routes/Login';
 import Relatorio from './routes/Relatorio';
+import Perfil from './routes/Perfil';
 
 setupIonicReact();
 
@@ -60,6 +61,9 @@ export default function AppRoutes() {
           </Route>
           <Route exact path='/relatorio'>
             <Relatorio/>
+          </Route>
+          <Route exact path='/perfil'>
+            <Perfil/>
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>
