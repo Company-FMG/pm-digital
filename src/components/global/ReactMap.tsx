@@ -1,34 +1,57 @@
 import { GoogleMap, MarkerF, useLoadScript, DirectionsService, DirectionsRenderer, useGoogleMap } from "@react-google-maps/api";
 import { Geolocation } from "@capacitor/geolocation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../../index.css"
 import { IonButton } from "@ionic/react";
 
 export default function ReactMap () {
-    const { isLoaded } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY! });
+    const { isLoaded } = useLoadScript({ 
+      googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY!,
+      libraries: ['places']  
+    });
     const [center, setCenter] = useState<{ lat: number, lng: number } | undefined>(undefined);
+    const [map, setMap] = useState<google.maps.Map | null>(null);
+    const [directionsResponse, setDirectionsResponse] = useState<google.maps.DirectionsResult | null>(null);
+
+    const [distance, setDistance] = useState<string | null>(null);
+    const [duration, setDuration] = useState<string | null>(null);
+  
+    
     const rafaPosition = { lat: -8.131462, lng: -34.905769 };
 
-    const [map, setMap] = useState<google.maps.Map | null>(null);
-
-    
-    useEffect(() => {
-        async function createMap(): Promise<void> {
-            let options: PositionOptions = {
-                enableHighAccuracy: true,
-                timeout: 10000,
-                maximumAge: 3000
-            };
+    async function calculateRoute(origin: { lat: number, lng: number }, destination: { lat: number, lng: number }) {
         
-            const position = await Geolocation.getCurrentPosition(options);
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            console.log(position);
+      // eslint-disable-next-line no-undef
+      const directionsService = new google.maps.DirectionsService()
+      // eslint-disable-next-line no-undef
+      const results = await directionsService.route({
+        origin,
+        destination,
+        travelMode: google.maps.TravelMode.DRIVING,
+      })
+      setDirectionsResponse(results)
+      setDistance(results.routes[0].legs[0].distance?.text || null);
+      setDuration(results.routes[0].legs[0].duration?.text || null);
+    }
 
-            setCenter({ lat: latitude, lng: longitude });
-        }
-        createMap();
-    }, []);
+    useEffect(() => {
+      async function createMap(): Promise<void> {
+          let options: PositionOptions = {
+              enableHighAccuracy: true,
+              timeout: 10000,
+              maximumAge: 3000
+          };
+      
+          const position = await Geolocation.getCurrentPosition(options);
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          console.log(position);
+
+          setCenter({ lat: latitude, lng: longitude });
+          calculateRoute({ lat: latitude, lng: longitude }, rafaPosition);
+      }
+      createMap();
+  }, []);
 
     return (
         <div>
@@ -44,11 +67,19 @@ export default function ReactMap () {
               >
                 {center && <MarkerF position={center} />}
                 <MarkerF position={rafaPosition}/>
+                {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
               </GoogleMap>
           )}
-          <IonButton className="absolute top-4 right-4 z-10" onClick={() => map?.panTo(center!)}>
+          <div className="absolute top-4 left-4">
+          <IonButton className="" onClick={() => map?.panTo(center!)}>
             Meu Local
           </IonButton>
+
+          <div className="w-auto h-auto bg-white px-4 py-2">
+            <h1 className="text-sm">Distância: {distance}</h1>
+            <h1 className="text-sm">Duração: {duration}</h1>
+          </div>
+          </div>
         </div>
       );
 }
