@@ -1,12 +1,18 @@
 import { IonContent, IonPage } from "@ionic/react";
 import Modal from "../global/Modal";
+import { useModal } from "../ModalContext";
 
 export default function DetalhesDenuncia() {
+    const { showDetalhesDenuncia } = useModal();
+
+    if(!showDetalhesDenuncia){
+        return null;
+    }
+
     const endereco = "Rua do Príncipe, 235"
 
     return (
-        /* <Modal> */
-        <IonPage>
+        <Modal>
             <div className="w-96 sm:w-[700px] max-w-7xl space-y-4 bg-white text-black rounded-md mx-auto my-auto px-6 py-4">
                 <div className="flex flex-row gap-4 items-center">
                     <div className="bg-red w-8 h-8 sm:w-8 sm:h-8 md:w-12 md:h-12 lg:w-12 lg:h-12 rounded-full"></div>
@@ -32,6 +38,6 @@ export default function DetalhesDenuncia() {
                     <p className="mb-8">Descrição: </p>
                 </div>
             </div>
-        </IonPage>
+        </Modal>
     );
 };

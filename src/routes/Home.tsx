@@ -13,9 +13,10 @@ import { useModal } from "../components/ModalContext";
 import InsereRelatorio from "../components/modals/InsereRelatorio";
 import OcorrenciaFinalizada from "../components/modals/OcorrenciaFinalizada";
 import ReactMap from "../components/global/ReactMap";
+import DetalhesDenuncia from "../components/modals/DetalhesDenuncia";
 
 export default function Home() {
-  const { show } = useModal();
+  const { showAlertaOcorrencia } = useModal();
 
   return (
     <>
@@ -25,16 +26,13 @@ export default function Home() {
             <NavbarMike />
           </IonToolbar>
         </IonHeader>
-        <IonContent className="relative">
+        <IonContent slot="fixed" className="relative">
           <ReactMap />
-          <div className="absolute right-14 top-32">
-            {show && <AlertaOcorrenciaMike />}
-          </div>
+          <AlertaOcorrenciaMike />
           <RegistrarBO />
           <InsereRelatorio />
           <OcorrenciaFinalizada />
-          {/*  
-        <MapMike/> */}
+          <DetalhesDenuncia />
         </IonContent>
         <IonFooter>
           <IonToolbar>
