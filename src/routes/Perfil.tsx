@@ -43,7 +43,7 @@ import UltimaOcorrencia from "../components/global/UltimaOcorrencia";
                 <h3 className="text-xl font-bold mb-0">{cargo} {nome}</h3>
                 <p>{matricula}</p>
               </div>
-              <button onClick={() => history.push('/') } className="bg-bluemike text-xs font-bold text-white px-8 py-3 rounded-md">
+              <button onClick={() => history.push('/home') } className="bg-bluemike text-xs font-bold text-white px-8 py-3 rounded-md">
                 VOLTAR PARA PÁGINA INICIAL
               </button>
             </div>
