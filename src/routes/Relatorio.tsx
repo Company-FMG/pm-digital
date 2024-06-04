@@ -7,7 +7,7 @@ import {
 } from "@ionic/react";
 import NavbarMike from "../components/global/NavbarMike";
 import { useHistory } from "react-router-dom";
-import { useModal } from "../components/ModalContext";
+import { useModal } from "../contexts/ModalContext";
 import OcorrenciaFinalizada from "../components/modals/OcorrenciaFinalizada";
 
 export default function Relatorio() {

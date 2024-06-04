@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Modal from "../global/Modal";
 import axios from "axios";
-import { useModal } from "../ModalContext";
+import { useModal } from "../../contexts/ModalContext";
 
 export default function ModalTesteOcorrencia() {
   const { handleEndereco } = useModal();

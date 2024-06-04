@@ -1,9 +1,9 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { ModalProvider } from "./components/ModalContext"
+import { ModalProvider } from "./contexts/ModalContext"
 import App from './AppRoutes';
 import './index.css'
-import { MapProvider } from './components/MapContext';
+import { MapProvider } from './contexts/MapContext';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);

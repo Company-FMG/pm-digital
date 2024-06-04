@@ -1,5 +1,5 @@
 import rightarrow from "../../assets/rightarrow.svg";
-import { useModal } from "../ModalContext";
+import { useModal } from "../../contexts/ModalContext";
 
 export default function FooterMike() {
   const { handleShow } = useModal();

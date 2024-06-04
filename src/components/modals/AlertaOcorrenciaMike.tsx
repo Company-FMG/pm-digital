@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import rightarrow from "../../assets/rightarrow.svg";
 import usePolling from "../../hooks/usePolling";
-import { useModal } from "../ModalContext";
-import { useMap } from "../MapContext";
+import { useModal } from "../../contexts/ModalContext";
+import { useMap } from "../../contexts/MapContext";
 import Modal from "../global/Modal";
 
 export default function AlertaOcorrenciaMike() {

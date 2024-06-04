@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 import Modal from "../global/Modal";
-import { useModal } from "../ModalContext";
+import { useModal } from "../../contexts/ModalContext";
 
 export default function RegistrarBO(){
     const { showRegistrarBO, handleShow } = useModal();
