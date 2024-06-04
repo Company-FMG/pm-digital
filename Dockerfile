@@ -1,4 +1,4 @@
-FROM maven:4.0.0-openjdk:21-slim AS builder
+FROM openjdk:21-slim AS builder
 WORKDIR /app
 
 COPY .mvn/ .mvn
