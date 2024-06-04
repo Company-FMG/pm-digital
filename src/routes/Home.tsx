@@ -25,8 +25,8 @@ export default function Home() {
           </IonToolbar>
         </IonHeader>
         <IonContent slot="fixed" className="relative">
-          <Opcoes />
           <ReactMap />
+          <Opcoes />
           <AlertaOcorrenciaMike />
           <RegistrarBO />
           <DetalhesDenuncia />
