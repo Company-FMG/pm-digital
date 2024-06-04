@@ -7,6 +7,7 @@ interface ModalContextProps {
   showInsereRelatorio: boolean;
   showOcorrenciaFinalizada: boolean;
   showDetalhesDenuncia: boolean;
+  showSobreMike: boolean;
   endereco: string;
   handleShow: (modal: string) => void;
   handleEndereco: (endereco: string) => void;
@@ -31,6 +32,7 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
   const [showOcorrenciaFinalizada, setShowOcorrenciaFinalizada] =
     useState(false);
   const [showDetalhesDenuncia, setShowDetalhesDenuncia] = useState(false);
+  const [showSobreMike, setShowSobreMike] = useState(false);
 
   const handleShow = (modal: string) => {
     if (modal === "alertaOcorrencia") {
@@ -48,6 +50,9 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
     } else if (modal === "detalhesDenuncia") {
       console.log("detalhesDenuncia");
       setShowDetalhesDenuncia(!showDetalhesDenuncia);
+    } else if (modal === "sobreMike") {
+      console.log("sobreMike");
+      setShowSobreMike(!showSobreMike);
     }
   };
 
@@ -65,6 +70,7 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
         showInsereRelatorio,
         showOcorrenciaFinalizada,
         showDetalhesDenuncia,
+        showSobreMike,
         handleShow,
         handleEndereco,
       }}
