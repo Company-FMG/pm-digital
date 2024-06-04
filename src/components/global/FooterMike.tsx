@@ -21,9 +21,6 @@ export default function FooterMike() {
         <div>
           <button onClick={() => handleShow("sobreMike")} className="text-center text-xl text-black mt-2">Sobre o Mike</button>
         </div>
-        <div>
-           <button onClick={() => handleShow("alertaOcorrencia")}>TESTE MODAL</button>
-        </div>
       </div>
     </>
   );

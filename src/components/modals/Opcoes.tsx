@@ -10,7 +10,7 @@ export default function Opcoes(){
     }
 
     return(
-        <div className="absolute top-3 right-3 border-2 border-gray-300 bg-white rounded p-7 text-center flex flex-col items-center w-80 space-y-2">
+        <div className="fixed top-16 sm:top-24 right-3 border-2 border-gray-300 bg-white rounded p-7 text-center flex flex-col items-center w-80 space-y-2">
             <img src="https://source.unsplash.com/40x40/?portrait?4" alt="" className="rounded-full h-14 w-14" />
             <div>
                 <h2 className="text-2xl font-bold text-bluemike m-0">Olá Keven Leone</h2>
