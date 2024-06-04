@@ -8,8 +8,6 @@ RUN ./mvnw dependency:go-offline
 
 COPY src ./src
 
-RUN mvn -B package -DskipTests
-
 FROM openjdk:21-slim
 
 WORKDIR /app
