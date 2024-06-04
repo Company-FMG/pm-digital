@@ -46,7 +46,7 @@ export default function Login() {
             <button className="self-end mt-5 pb-7 text-base italic text-white underline">
               Esqueci minha senha
             </button>
-            <button onClick={() => history.push("/")} className="text-center text-xl p-35 rounded-md h-14 w-73 bg-white text-bluemike font-inter font-bold" color="primary">
+            <button onClick={() => history.push("/home")} className="text-center text-xl p-35 rounded-md h-14 w-73 bg-white text-bluemike font-inter font-bold" color="primary">
               Entrar
             </button>
           </div>

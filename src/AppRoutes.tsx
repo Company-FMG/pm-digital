@@ -47,10 +47,10 @@ export default function AppRoutes() {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route exact path="/login">
+          <Route exact path="/">
             <Login />
           </Route>
-          <Route exact path='/'>
+          <Route exact path='/home'>
             <Home />
           </Route>
           <Route exact path='/relatorio'>

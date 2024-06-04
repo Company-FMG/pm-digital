@@ -21,7 +21,7 @@ export default function Opcoes(){
             <div className="border-2 border-gray-300 rounded w-full">
                 <button onClick={() => history.push('/perfil')} className="w-full py-3">Minha conta</button>
             </div>
-            <button onClick={() => history.push("/login")} className="bg-bluemike text-white w-full rounded py-3">Sair</button>
+            <button onClick={() => history.push("/")} className="bg-bluemike text-white w-full rounded py-3">Sair</button>
             <button className="absolute right-3 -top-1 rotate-45 text-2xl" onClick={() => handleShow("opcoes")}>+</button>
         </div>
     );   
