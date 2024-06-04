@@ -7,10 +7,15 @@ import {
     IonFabButton,
     IonIcon,
 } from "@ionic/react";
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import { pencilSharp } from 'ionicons/icons';
+import { usePhotoGallery } from '../hooks/usePhotoGallery';
 import NavbarMike from "../components/global/NavbarMike";
 import { useHistory } from "react-router";
   
   export default function Perfil() {
+    defineCustomElements(window);
+    const { photo, takePhoto } = usePhotoGallery();
     const history = useHistory();
 
     return (
@@ -24,7 +29,12 @@ import { useHistory } from "react-router";
           <div className="space-y-12 px-5">
             <div className="pt-10 text-center space-y-5">
               <div className="relative inline-block">
-                <img className="w-28 h-28 object-cover max-w-28 md:w-36 lg:w-64 rounded-full ring-2 md:ring-4 ring-white ring-offset-4 ring-offset-bluemike" src="https://source.unsplash.com/40x40/?portrait?4"  alt="profile"/>
+                <img className="w-28 h-28 object-cover max-w-28 md:w-36 lg:w-64 rounded-full ring-2 md:ring-4 ring-white ring-offset-4 ring-offset-bluemike" src={photo.webviewPath}  alt="profile"/>
+                <IonFab vertical="bottom" horizontal="start" slot="fixed" className="absolute -bottom-4 left-20">
+                  <IonFabButton onClick={() => takePhoto()}>
+                    <IonIcon icon={pencilSharp}></IonIcon>
+                  </IonFabButton>
+                </IonFab>
               </div>
               <div>
                 <h3 className="text-xl font-bold mb-0">Cap. Roberto Nascimento</h3>
