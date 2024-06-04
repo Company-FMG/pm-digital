@@ -18,7 +18,7 @@ export default function ReactMap () {
   const [distance, setDistance] = useState<string | null>(null);
   const [duration, setDuration] = useState<string | null>(null);
   
-  const rafaPosition = { lat: 40.6890451, lng: -74.0672107 };
+  const rafaPosition = { lat: -8.131462, lng: -34.905769 };
 
   async function calculateRoute(origin: { lat: number, lng: number }, destination: { lat: number, lng: number }) {
     const directionsService = new google.maps.DirectionsService();
