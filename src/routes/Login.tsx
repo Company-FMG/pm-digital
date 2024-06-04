@@ -2,8 +2,8 @@ import * as React from "react";
 import MikeLogin from "../assets/MikeLogin.svg"
 import PublicSafety from "../assets/Public Safety.svg"
 import Secure from "../assets/Secure.svg"
-import MikeLogoSlogan  from "../assets/MikeLogoSlogan.svg"
-import { IonButton, IonContent, IonInput, IonPage } from "@ionic/react";
+import MikeLogoSlogan from "../assets/MikeLogoSlogan.svg"
+import { IonButton, IonCol, IonContent, IonHeader, IonImg, IonInput, IonPage, IonRow, IonTitle, IonToolbar } from "@ionic/react";
 import { useHistory } from "react-router";
 
 export default function Login() {
@@ -54,7 +54,7 @@ export default function Login() {
       </IonContent>
     </IonPage>
   );
-  
+
 }
 
 

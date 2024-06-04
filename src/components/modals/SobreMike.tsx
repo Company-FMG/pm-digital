@@ -12,7 +12,7 @@ export default function SobreMike(){
 
     return(
         <Modal>
-            <div className="w-80 h-40 space-y-3">
+            <div className="w-80 h-90 space-y-3">
                 <h2 className="text-2xl font-bold">Sobre o Mike</h2>
                 <button className="absolute right-5 top-5 rotate-45 text-2xl" onClick={() => { handleShow("sobreMike"); history.push('/') }}>+</button>
                 <p className="text-xl">
