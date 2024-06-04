@@ -13,6 +13,7 @@ import { usePhotoGallery } from '../hooks/usePhotoGallery';
 import NavbarMike from "../components/global/NavbarMike";
 import { useHistory } from "react-router";
 import { useCredentials } from "../contexts/CredentialsContext";
+import UltimaOcorrencia from "../components/global/UltimaOcorrencia";
   
   export default function Perfil() {
     defineCustomElements(window);
@@ -48,6 +49,7 @@ import { useCredentials } from "../contexts/CredentialsContext";
             </div>
             <hr className="bg-gray-500"/>
           </div>
+          <UltimaOcorrencia/>
         </IonContent>
       </IonPage>
     );
