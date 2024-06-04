@@ -2,7 +2,7 @@ import { GoogleMap, MarkerF, DirectionsRenderer, useLoadScript } from "@react-go
 import { Geolocation } from "@capacitor/geolocation";
 import { useEffect, useState } from "react";
 import { IonButton } from "@ionic/react";
-import { useMap } from "../MapContext";
+import { useMap } from "../../contexts/MapContext";
 import "../../index.css";
 
 export default function ReactMap () {

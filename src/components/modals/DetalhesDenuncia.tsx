@@ -1,6 +1,6 @@
 import { IonContent, IonPage } from "@ionic/react";
 import Modal from "../global/Modal";
-import { useModal } from "../ModalContext";
+import { useModal } from "../../contexts/ModalContext";
 import axios from "axios";
 import { useState, useEffect } from "react";
 

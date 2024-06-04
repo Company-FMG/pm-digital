@@ -1,5 +1,5 @@
 import { useHistory } from "react-router";
-import { useModal } from "../ModalContext";
+import { useModal } from "../../contexts/ModalContext";
 import Modal from "../global/Modal";
 
 export default function OcorrenciaFinalizada(){
