@@ -12,10 +12,9 @@ import RegistrarBO from "../components/modals/RegistrarBO";
 import { useModal } from "../contexts/ModalContext";
 import ReactMap from "../components/global/ReactMap";
 import DetalhesDenuncia from "../components/modals/DetalhesDenuncia";
+import Opcoes from "../components/modals/Opcoes";
 
 export default function Home() {
-  const { showAlertaOcorrencia } = useModal();
-
   return (
     <>
       <IonPage>
@@ -25,6 +24,7 @@ export default function Home() {
           </IonToolbar>
         </IonHeader>
         <IonContent slot="fixed" className="relative">
+          <Opcoes />
           <ReactMap />
           <AlertaOcorrenciaMike />
           <RegistrarBO />
