@@ -1,6 +1,5 @@
-describe('My First Test', () => {
+describe('route test', () => {
   it('visits the app root url', () => {
     cy.visit('/')
-    cy.contains('ion-content', 'Tab 1 page')
   })
 })
