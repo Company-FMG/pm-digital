@@ -28,31 +28,30 @@ export default function DetalhesDenuncia() {
     <div>
       {denuncias.map((denuncia: any) => (
         <div key={denuncia.id}>
-          <div className="absolute top-0">
-            <div className="w-96 sm:w-[700px] max-w-7xl space-y-4 bg-white text-black rounded-md mx-auto my-auto px-6 py-4">
+          <div className="absolute top-2/4 right-2/4 translate-x-2/4 -translate-y-2/4">
+            <div className="w-96 max-w-7xl space-y-2 bg-white text-black rounded-md mx-auto my-auto px-8 pt-2 pb-8">
               <div className="flex flex-row gap-4 items-center">
                 <div className="bg-red w-8 h-8 sm:w-8 sm:h-8 md:w-12 md:h-12 lg:w-12 lg:h-12 rounded-full"></div>
-                <h1 className="font-bold text-3xl sm:text-4xl ">
+                <h1 className="font-bold text-xl sm:text-4xl ">
                   #121 - VBG (2km)
                 </h1>
                 <button
                   onClick={() => handleShow("detalhesDenuncia")}
-                  className="md:ml-56 rotate-45 text-4xl"
+                  className="absolute right-10 rotate-45 text-2xl"
                 >
                   +
                 </button>
               </div>
-              <h1 className="text-2xl md:text-xl lg:text-2xl font-bold">
-                Localização: <br></br>
-                {denuncia.endereco}
+              <h1 className="text-xl md:text-xl lg:text-2xl font-bold">
+                Localização: {denuncia.endereco}
               </h1>
 
-              <div className="grid gap-4">
+              <div className="grid gap-2">
                 <div>
-                  <h1 className="font-bold md:text-xl lg:text-2xl">
+                  <h1 className="font-bold text-xl lg:text-xl my-0">
                     Ocorrência N°: {denuncia.id}{" "}
                   </h1>
-                  <p>Nome da vítima:{denuncia.vitima} </p>
+                  <p>Nome da vítima: {denuncia.vitima} </p>
                   <p>Sexo: Masculino</p>
                   <p>Idade: 40</p>
                   <p>Situação informada: {denuncia.infoCena}</p>
@@ -60,14 +59,14 @@ export default function DetalhesDenuncia() {
                 </div>
               </div>
 
-              <div className="grid gap-4 mt-20">
-                <h1 className="font-bold md:text-xl lg:text-2xl">
+              <div className="grid">
+                <h1 className="font-bold text-xl mt-2 mb-0">
                   Informações da cena
                 </h1>
-                <p>Pessoa suspeita: </p>
-                <p>Sexo: </p>
-                <p>Idade: </p>
-                <p className="mb-8">Descrição: </p>
+                <p>Pessoa suspeita: João do pé de feijão</p>
+                <p>Sexo: Masculino</p>
+                <p>Idade: Não informada</p>
+                <p>Descrição: Tem um pé de feijão</p>
               </div>
             </div>
           </div>
