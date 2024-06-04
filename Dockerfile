@@ -9,4 +9,6 @@ RUN ./mvnw dependency:go-offline
 
 COPY src ./src
 
+EXPOSE 8080
+
 CMD ["java", "-jar", "target/mike-0.0.1-SNAPSHOT.jar"]
