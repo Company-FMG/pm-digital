@@ -19,7 +19,7 @@ export default function FooterMike() {
           </button>
         </div>
         <div>
-          <h1 className="text-center text-xl text-black mt-2">Sobre o Mike</h1>
+          <button className="text-center text-xl text-black mt-2">Sobre o Mike</button>
         </div>
         <div>
           <button onClick={() => handleShow("alertaOcorrencia")}>TESTE MODAL</button>
