@@ -17,9 +17,9 @@ import UltimaOcorrencia from "../components/global/UltimaOcorrencia";
   
   export default function Perfil() {
     defineCustomElements(window);
-    const { takePhoto } = usePhotoGallery();
+    const { photo, takePhoto } = usePhotoGallery();
     const history = useHistory();
-    const { nome, matricula, cargo, pfp } = useCredentials();
+    const { nome, matricula, cargo, pfp, handleChangePhoto } = useCredentials();
 
     return (
       <IonPage>
@@ -32,9 +32,9 @@ import UltimaOcorrencia from "../components/global/UltimaOcorrencia";
           <div className="space-y-12 px-5">
             <div className="pt-10 text-center space-y-5">
               <div className="relative inline-block">
-                <img className="w-28 h-28 object-cover max-w-28 md:w-36 lg:w-64 rounded-full ring-2 md:ring-4 ring-white ring-offset-4 ring-offset-bluemike" src={pfp.webviewPath}  alt="profile"/>
+                <img className="w-28 h-28 object-cover max-w-28 md:w-36 lg:w-64 rounded-full ring-2 md:ring-4 ring-white ring-offset-4 ring-offset-bluemike" src={photo.webviewPath}  alt="profile"/>
                 <IonFab vertical="bottom" horizontal="start" slot="fixed" className="absolute -bottom-4 left-20">
-                  <IonFabButton onClick={() => takePhoto()}>
+                  <IonFabButton onClick={() => { takePhoto(); handleChangePhoto(photo.webviewPath) }}>
                     <IonIcon icon={pencilSharp}></IonIcon>
                   </IonFabButton>
                 </IonFab>

@@ -8,8 +8,9 @@ interface CredentialsContextProps {
     senha: string,
     cargo: string,
     idade: number,
-    pfp: UserPhoto,
+    pfp: string,
     handleLogin: (matricula: string, senha: string) => void;
+    handleChangePhoto: (photo: string) => void;
 }
 
 //contexto inicia indefinido
@@ -31,10 +32,15 @@ export const CredentialsProvider = ({ children }: CredentialsProviderProps) => {
     const [senha, setSenha] = useState("");
     const [cargo, setCargo] = useState("Cap.");
     const [idade, setIdade] = useState(40);
-    const [pfp, setPfp] = useState(photo);
+    const [pfp, setPfp] = useState("https://migration-polopoly.otempo.com.br/polopoly_fs/3.219668.1534216140!httpImage/image.jpg_gen/derivatives/hard-news-img-medium-fit_380/image.jpg");
 
     const handleLogin = (matricula: string, senha: string) => {
         
+    }
+
+    const handleChangePhoto = (photo: string) => {
+        console.log("change photo");
+        setPfp(photo);
     }
 
     return (
@@ -46,7 +52,8 @@ export const CredentialsProvider = ({ children }: CredentialsProviderProps) => {
             cargo,
             idade,
             pfp,
-            handleLogin
+            handleLogin,
+            handleChangePhoto,
         }}
         >
         {children}

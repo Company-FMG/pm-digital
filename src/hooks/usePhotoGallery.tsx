@@ -8,7 +8,7 @@ import { Capacitor } from '@capacitor/core';
 
 export interface UserPhoto {
   filepath?: string;
-  webviewPath?: string;
+  webviewPath: string;
 }
 
 export function usePhotoGallery() {
@@ -28,7 +28,7 @@ export function usePhotoGallery() {
     const fileName = Date.now() + '.jpeg';
     const newPhoto = {
       filepath: fileName,
-      webviewPath: photo.webPath,
+      webviewPath: photo.webPath || "",
     }
 
     setPhoto(newPhoto);
