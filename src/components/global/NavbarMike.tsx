@@ -15,8 +15,8 @@ export default function NavbarMike () {
                     </a>
                     <div className="flex flex-row gap-4 sm:gap-6 items-center justify-center">
                         <button onClick={() => handleShow("alertaOcorrencia")} className='text-white'>alerta</button>
-                        <button onClick={() => handleShow("opcoes")} className='flex space-x-3 items-center'>
-                            <img alt="" className="w-6 h-6 object-cover sm:w-8 md:w-12 lg:w-12 rounded-full ring-2 md:ring-4 ring-white ring-offset-4 ring-offset-bluemike" src={pfp.webviewPath} />
+                        <button onClick={() => handleShow("opcoes")} className='flex space-x-2 items-center'>
+                            <img alt="" className="w-8 h-8 object-cover md:w-12 md:h-12 rounded-full border border-white" src={pfp.webviewPath} />
                             <div className="font-poppins text-xs sm:text-base md:text-xl lg:text-2xl text-white">
                                 <p>{nome}</p>
                             </div>
