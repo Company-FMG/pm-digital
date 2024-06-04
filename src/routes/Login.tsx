@@ -3,7 +3,7 @@ import MikeLogin from "../assets/MikeLogin.svg"
 import PublicSafety from "../assets/Public Safety.svg"
 import Secure from "../assets/Secure.svg"
 import MikeLogoSlogan  from "../assets/MikeLogoSlogan.svg"
-import { IonContent, IonInput, IonPage } from "@ionic/react";
+import { IonButton, IonContent, IonInput, IonPage } from "@ionic/react";
 export default function Login() {
   return (
     <IonPage>
@@ -32,7 +32,7 @@ export default function Login() {
         <img
           loading="lazy"
             srcSet={Secure}
-          className="shrink-0 w-9 aspect-[0.99]"
+          className="shrink-0 w-9 aspect-square"
         />
          <IonInput color="light" type="password" className="italic white" placeholder="Senha"></IonInput>
       </div>
@@ -49,12 +49,12 @@ export default function Login() {
 
 
 
-      <button className="self-end mt-5 text-base italic text-white underline">
+      <button className="self-end mt-5 pb-12 text-base italic text-white underline">
         Esqueci minha senha
       </button>
-      <button className="justify-center items-center px-16 py-5 mt-7 text-xl font-bold text-blue-700 whitespace-nowrap bg-white rounded-md" >
+      <IonButton href="/" className="text-center italic text-xl p-35 rounded-xl h-14 w-73 bg-white" color="primary" fill="outline">
         Entrar
-      </button>
+      </IonButton>
     </div>
     </IonContent>
     </IonPage>
