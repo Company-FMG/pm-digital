@@ -7,15 +7,14 @@ import { Preferences } from '@capacitor/preferences';
 import { Capacitor } from '@capacitor/core';
 
 export interface UserPhoto {
-  filepath: string;
+  filepath?: string;
   webviewPath?: string;
 }
 
 export function usePhotoGallery() {
   const [photo, setPhoto] = useState<UserPhoto>(
     {
-      filepath: "https://source.unsplash.com/40x40/?portrait?4",
-      webviewPath: "https://source.unsplash.com/40x40/?portrait?4",
+      webviewPath: "https://migration-polopoly.otempo.com.br/polopoly_fs/3.219668.1534216140!httpImage/image.jpg_gen/derivatives/hard-news-img-medium-fit_380/image.jpg",
     }
   );
 
