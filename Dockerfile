@@ -1,5 +1,5 @@
 # Use the official OpenJDK image as the base image
-FROM eclipse-temurin:21-jdk-slim as build
+FROM openjdk:21-jdk-slim as build
 
 # Set the working directory in the container
 WORKDIR /app
@@ -21,7 +21,7 @@ COPY src ./src
 RUN ./mvnw package -DskipTests
 
 # Use a smaller base image to run the application
-FROM eclipse-temurin:21-jdk-slim
+FROM openjdk:21-jdk-slim
 
 # Set the working directory in the container
 WORKDIR /app
