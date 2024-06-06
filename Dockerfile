@@ -1,14 +1,5 @@
-# Use the official OpenJDK image as the base image
-FROM openjdk:21-jdk-slim
-
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy the JAR file into the container
-COPY target/mike-0.0.1-SNAPSHOT.jar /app/mike-0.0.1-SNAPSHOT.jar
-
-# Expose the port the application will run on
+FROM openjdk:17-jdk-slim
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
 EXPOSE 8080
-
-# Run the application
-CMD ["java", "-jar", "/app/mike-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
