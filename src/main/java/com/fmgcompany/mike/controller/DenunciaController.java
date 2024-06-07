@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:8100")
+@CrossOrigin(origins = "https://fictional-fishstick-wxrgrgqx5jwfjr5-8101.app.github.dev/")
 @RestController
 @RequestMapping("/api/denuncias")
 public class DenunciaController {
