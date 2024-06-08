@@ -20,11 +20,19 @@ public class PolicialController {
     public List<Policial> getAllPoliciais() {
         return policialService.findAll();
     }
-
+    @GetMapping("/email")
+    public List<String> getEmail(){
+        return policialService.findByEmail();
+    }
     @GetMapping("/{id}")
     public ResponseEntity<Policial> getPolicialById(@PathVariable UUID id) {
         Optional<Policial> policial = policialService.findById(id);
         return policial.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/nome/{nome}")
+    public Policial buscarPorNome(@PathVariable String nome){
+        return policialService.findByNome(nome);
     }
 
     @PostMapping

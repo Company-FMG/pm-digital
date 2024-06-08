@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fmgcompany.mike.model.Policial;
@@ -37,5 +38,12 @@ public class PolicialService {
         return policialRepository.existsById(id);
     }
 
+    public List<String> findByEmail(){
+        return policialRepository.findByEmail();
+    }
+
+    public Policial findByNome(String nome){
+        return this.policialRepository.findByNome(nome);
+    }
     
 }
