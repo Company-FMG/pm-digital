@@ -15,7 +15,7 @@ export default function DetalhesDenuncia() {
   
   useEffect(() => {
      axios
-      .get("http://localhost:8080/api/denuncias")
+      .get("https://mikebackend-05gc09wt.b4a.run/api/denuncias")
       .then((response) => {
         setDenuncias(response.data);
       })
