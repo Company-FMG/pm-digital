@@ -11,7 +11,7 @@ export default function AlertaOcorrenciaMike() {
   const [latestDenuncia, setLatestDenuncia] = useState(null);
 
   const { data: denuncias } = usePolling(
-    "http://localhost:8080/api/denuncias",
+    "https://mikebackend-05gc09wt.b4a.run/api/denuncias",
     5000
   );
 
