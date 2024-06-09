@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState, useEffect } from "react";
 
 //interface do contexto
 interface ModalContextProps {
@@ -8,7 +8,7 @@ interface ModalContextProps {
   showOcorrenciaFinalizada: boolean;
   showDetalhesDenuncia: boolean;
   showSobreMike: boolean;
-  showOpcoes:boolean;
+  showOpcoes: boolean;
   endereco: string;
   handleShow: (modal: string) => void;
   handleEndereco: (endereco: string) => void;
@@ -30,8 +30,7 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
   const [showAlertaOcorrencia, setShowAlertaOcorrencia] = useState(false);
   const [showRegistrarBO, setShowRegistrarBO] = useState(false);
   const [showInsereRelatorio, setShowInsereRelatorio] = useState(false);
-  const [showOcorrenciaFinalizada, setShowOcorrenciaFinalizada] =
-    useState(false);
+  const [showOcorrenciaFinalizada, setShowOcorrenciaFinalizada] = useState(false);
   const [showDetalhesDenuncia, setShowDetalhesDenuncia] = useState(false);
   const [showSobreMike, setShowSobreMike] = useState(false);
   const [showOpcoes, setShowOpcoes] = useState(false);
@@ -55,16 +54,22 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
     } else if (modal === "sobreMike") {
       console.log("sobreMike");
       setShowSobreMike(!showSobreMike);
-    } else if (modal === "opcoes"){
+    } else if (modal === "opcoes") {
       console.log("opcoes");
       setShowOpcoes(!showOpcoes);
     }
   };
 
   const handleEndereco = (enderecoRecebido: string) => {
-    console.log(typeof(endereco));
+    console.log(typeof (endereco));
     setEndereco(enderecoRecebido);
   };
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'test') {
+      (window as any)._testHandleShow = handleShow;
+    }
+  }, [handleShow]);
 
   return (
     <ModalContext.Provider
