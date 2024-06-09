@@ -5,6 +5,7 @@ describe('Perfil para Home', () => {
         cy.visit('/perfil');
         
         cy.contains('VOLTAR PARA PÁGINA INICIAL').should('be.visible');
+        cy.contains('VOLTAR PARA PÁGINA INICIAL').click();
         
         cy.visit('/home');
     });
