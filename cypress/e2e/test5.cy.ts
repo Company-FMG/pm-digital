@@ -4,7 +4,7 @@ describe('Modal "SobreMike"', () => {
 
         cy.get(':nth-child(3) > .text-center').click();
 
-        cy.get('div.modal-content').should('be.visible');
+        cy.get(':nth-child(2) > .lg:flex > .rounded-xl').should('be.visible');
     });
 });
 
