@@ -23,6 +23,7 @@ Tecnologias utilizadas:
 
 ## Como rodar os testes do Cypress?
 
+* Antes de começar, lembre-se de rodar no terminal `npm install` para instalar todas as depências do projeto. 
 1. No terminal do Powershell, digite o comando `npx cypress open`, que irá rodar o Cypress na sua máquina.
 2. Com o cypress aberto, selecione a opção E2E Testing, e escolha o navegador de sua preferência.
 3. No navegador, basta selecionar o arquivo de teste que você deseja testar.
