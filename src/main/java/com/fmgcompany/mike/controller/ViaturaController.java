@@ -63,6 +63,8 @@ public class ViaturaController {
                 List<Policial> pLista = new ArrayList<>();
                 pLista.add(policial);
                 viatura.setPoliciais(pLista);
+                policial.setViatura(viatura);
+                policialService.save(policial);
                 return ResponseEntity.ok(this.viaturaService.criarViatura(viatura));
             }else{
                 return ResponseEntity.notFound().build();
