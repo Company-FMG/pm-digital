@@ -1,10 +1,12 @@
-describe('Modal "SobreMike"', () => {
-    it('verifica abertura do modal', () => {
+describe('Rota Home', () => {
+    it('verifica os botões com escrita fixa na rota home', () => {
+        
         cy.visit('/home');
 
-        cy.get('.text-center').click();
-
-        cy.get('.rounded-xl').should('be.visible');
+        cy.contains('alerta').should('be.visible');
+        cy.contains('Dados da Ocorrência').should('be.visible');
+        cy.contains('Finalizar Ocorrência').should('be.visible');
+        cy.contains('Sobre o Mike').should('be.visible');        
     });
 });
 
