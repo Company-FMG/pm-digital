@@ -1,8 +1,12 @@
 package com.fmgcompany.mike.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -15,6 +19,11 @@ public class Policial extends Pessoa {
 
     @Setter
     private String cargo;
+
+    @JsonManagedReference
+    @Setter
+    @OneToMany(mappedBy = "responsavelBo")
+    private List<Ocorrencia> ocorrencias = new ArrayList<Ocorrencia>();
 
     @Setter
     @JsonBackReference
@@ -32,14 +41,4 @@ public class Policial extends Pessoa {
         this.sexo = sexo;
         this.cargo = cargo;
     }
-    /*
-    @Override
-    public String getNome() {
-        return super.getNome();
-    }
-    public String getEmail() {
-        return super.getEmail();
-    }
-
-     */
 }

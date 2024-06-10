@@ -1,15 +1,11 @@
 package com.fmgcompany.mike.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.ToString;
 import lombok.Getter;
 import lombok.Setter;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+
 import java.time.LocalTime;
 import java.time.Duration;
 
@@ -23,9 +19,9 @@ public class Ocorrencia {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String idOcorrencia;
-    
-    @OneToOne
-    @JoinColumn(name = "idPolicial", referencedColumnName = "idPolicial")
+
+    @JsonBackReference
+    @ManyToOne
     @Setter
     private Policial responsavelBo;
     

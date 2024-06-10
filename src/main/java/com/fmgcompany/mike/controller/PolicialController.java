@@ -3,6 +3,10 @@ package com.fmgcompany.mike.controller;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import com.fmgcompany.mike.model.Ocorrencia;
+import com.fmgcompany.mike.model.Viatura;
+import com.fmgcompany.mike.service.OcorrenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +19,8 @@ import com.fmgcompany.mike.model.Policial;
 public class PolicialController {
     @Autowired
     private PolicialService policialService;
+    @Autowired
+    OcorrenciaService ocorrenciaService;
 
     @GetMapping
     public List<Policial> getAllPoliciais() {
@@ -61,5 +67,28 @@ public class PolicialController {
     public ResponseEntity<Void> deletePolicial(@PathVariable UUID id) {
         policialService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+    //Remover um ocorrência de policial
+    @DeleteMapping("/{id}/{idOcorrencia}")
+    public ResponseEntity<Policial> removerOcorrencia(@PathVariable UUID id, @PathVariable String idOcorrencia){
+        Optional<Policial> p = this.policialService.findById(id);
+        Optional<Ocorrencia> o = this.ocorrenciaService.buscarOcorrenciaPorId(idOcorrencia);
+        if(p.isPresent()){
+            if(o.isPresent()){
+                Ocorrencia ocorrencia = o.get();
+                Policial policial = p.get();
+                List<Ocorrencia> oLista = policial.getOcorrencias();
+                oLista.remove(ocorrencia);
+                policial.setOcorrencias(oLista);
+                ocorrencia.setResponsavelBo(null);
+                ocorrenciaService.criarOcorrencia(ocorrencia);
+                return ResponseEntity.ok(this.policialService.save(policial));
+            }else{
+                return ResponseEntity.notFound().build();
+
+            }
+        }else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
