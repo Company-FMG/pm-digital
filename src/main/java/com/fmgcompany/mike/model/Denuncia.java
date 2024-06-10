@@ -1,5 +1,6 @@
 package com.fmgcompany.mike.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Setter;
 
@@ -19,8 +20,10 @@ public class Denuncia {
     @Column
     protected String mapa;
 
-    @Column
-    protected String vitima;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "vitima_id", referencedColumnName = "id")
+    private Vitima vitima;
 
     @Column
     protected String status;
@@ -30,7 +33,7 @@ public class Denuncia {
 
     public Denuncia(){}
 
-    public Denuncia(long id, String situacaoInformada, String endereco, String mapa, String vitima, String status, String infoCena) {
+    public Denuncia(long id, String situacaoInformada, String endereco, String mapa, Vitima vitima, String status, String infoCena) {
         this.id = id;
         this.situacaoInformada = situacaoInformada;
         this.endereco = endereco;
@@ -60,7 +63,7 @@ public class Denuncia {
         return mapa;
     }
 
-    public String getVitima() {
+    public Vitima getVitima() {
         return vitima;
     }
 
@@ -88,7 +91,7 @@ public class Denuncia {
         this.mapa = mapa;
     }
 
-    public void setVitima(String vitima) {
+    public void setVitima(Vitima vitima) {
         this.vitima = vitima;
     }
 

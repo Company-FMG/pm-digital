@@ -19,7 +19,7 @@ public class DenunciaService {
     }
 
     //get
-    public Optional<Denuncia> bucaDenunciaPeloId(Long id){
+    public Optional<Denuncia> buscaDenunciaPeloId(Long id){
         return  this.denunciaRepository.findById(id);
     }
 
@@ -36,11 +36,9 @@ public class DenunciaService {
             throw new RuntimeException("Denúncia não encontrada");
         } else {
             Denuncia denuncia = denunciaOptional.get();
-
             denuncia.setSituacaoInformada(denunciaAtualizada.getSituacaoInformada());
             denuncia.setEndereco(denunciaAtualizada.getEndereco());
             denuncia.setMapa(denunciaAtualizada.getMapa());
-            denuncia.setVitima(denunciaAtualizada.getVitima());
             denuncia.setStatus(denunciaAtualizada.getStatus());
             denuncia.setInfoCena(denunciaAtualizada.getInfoCena());
 

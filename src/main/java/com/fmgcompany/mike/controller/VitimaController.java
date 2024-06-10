@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:8100")
 @RestController
-@RequestMapping("/api/vitimas")
+@RequestMapping("/api/vitima")
 public class VitimaController {
     @Autowired
     private VitimaService vitimaService;
