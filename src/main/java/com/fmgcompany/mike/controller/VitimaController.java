@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:8100")
 @RestController
 @RequestMapping("/api/vitima")
 public class VitimaController {

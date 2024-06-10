@@ -1,8 +1,10 @@
 package com.fmgcompany.mike.controller;
 
 import com.fmgcompany.mike.model.Denuncia;
+import com.fmgcompany.mike.model.Suspeito;
 import com.fmgcompany.mike.model.Vitima;
 import com.fmgcompany.mike.service.DenunciaService;
+import com.fmgcompany.mike.service.SuspeitoService;
 import com.fmgcompany.mike.service.VitimaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,8 @@ public class DenunciaController {
     private DenunciaService denunciaService;
     @Autowired
     private VitimaService vitimaService;
+    @Autowired
+    private SuspeitoService suspeitoService;
 
     @GetMapping
     public List<Denuncia> listaDenuncias() {
@@ -41,7 +45,6 @@ public class DenunciaController {
         return this.denunciaService.atualizaDenuncia(id, denunciaAtualizada);
     }
 
-    //Adicionar uma vítima a uma denúncia
     @PutMapping("/{id}/{idVitima}")
     public ResponseEntity<Vitima> atribuirVitima(@PathVariable Long id, @PathVariable String idVitima){
         Optional<Vitima> vitima = this.vitimaService.findById(idVitima);
@@ -64,6 +67,28 @@ public class DenunciaController {
             return ResponseEntity.notFound().build();
         }
 
+    }
+
+    @PutMapping("/{id}/{idSuspeito}")
+    public ResponseEntity<Suspeito> atribuirSuspeito(@PathVariable Long id, @PathVariable String idSuspeito){
+        Optional<Suspeito> suspeito = this.suspeitoService.findById(idSuspeito);
+        Optional<Denuncia> denuncia = this.denunciaService.buscaDenunciaPeloId(id);
+        if(suspeito.isPresent()){
+            if(denuncia.isPresent()){
+                Denuncia d = denuncia.get();
+                Suspeito s = suspeito.get();
+                List<Suspeito> sLista = new ArrayList<>();
+                sLista.add(s);
+                d.setSuspeitos(sLista);
+                s.setDenuncia(d);
+                this.denunciaService.criaDenuncia(d);
+                return ResponseEntity.ok(this.suspeitoService.save(s));
+            }else{
+                return ResponseEntity.notFound().build();
+            }
+        }else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 

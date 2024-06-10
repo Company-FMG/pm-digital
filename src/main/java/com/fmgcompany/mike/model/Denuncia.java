@@ -2,8 +2,18 @@ package com.fmgcompany.mike.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="denuncias")
 public class Denuncia {
@@ -25,81 +35,13 @@ public class Denuncia {
     @JoinColumn(name = "vitima_id", referencedColumnName = "id")
     private Vitima vitima;
 
+    @JsonBackReference
+    @OneToMany
+    private List<Suspeito> suspeitos;
+
     @Column
     protected String status;
 
     @Column
     protected String infoCena;
-
-    public Denuncia(){}
-
-    public Denuncia(long id, String situacaoInformada, String endereco, String mapa, Vitima vitima, String status, String infoCena) {
-        this.id = id;
-        this.situacaoInformada = situacaoInformada;
-        this.endereco = endereco;
-        this.mapa = mapa;
-        this.vitima = vitima;
-        this.status = status;
-        this.infoCena = infoCena;
-    }
-
-    //analizar metodo
-    @Column
-    protected void encaminharOcorrencia(){};
-
-    public long getId() {
-        return id;
-    }
-
-    public String getSituacaoInformada() {
-        return situacaoInformada;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public String getMapa() {
-        return mapa;
-    }
-
-    public Vitima getVitima() {
-        return vitima;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public String getInfoCena() {
-        return infoCena;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setSituacaoInformada(String situacaoInformada) {
-        this.situacaoInformada = situacaoInformada;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public void setMapa(String mapa) {
-        this.mapa = mapa;
-    }
-
-    public void setVitima(Vitima vitima) {
-        this.vitima = vitima;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setInfoCena(String infoCena) {
-        this.infoCena = infoCena;
-    }
 }
