@@ -21,4 +21,8 @@ public class Suspeito extends Pessoa{
     @JsonManagedReference
     @ManyToOne
     private Denuncia denuncia;
+
+    @Getter
+    @Setter
+    protected String descricaoSuspeito;
 }
