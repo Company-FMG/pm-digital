@@ -17,11 +17,11 @@ export default function ProvisoryNavigationBreadcrumb() {
                         </li>
                         <li className="flex items-center space-x-1">
                             <span className="dark:text-gray-600">/</span>
-                            <a rel="noopener noreferrer" href="/login" className="flex items-center px-1 capitalize hover:underline">Login</a>
+                            <a rel="noopener noreferrer" href="/" className="flex items-center px-1 capitalize hover:underline">Login</a>
                         </li>
                         <li className="flex items-center space-x-1">
                             <span className="dark:text-gray-600">/</span>
-                            <a rel="noopener noreferrer" href="/" className="flex items-center px-1 capitalize hover:underline">Default</a>
+                            <a rel="noopener noreferrer" href="/home" className="flex items-center px-1 capitalize hover:underline">Default</a>
                         </li>
                     </ol>
                 </nav>

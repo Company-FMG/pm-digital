@@ -2,9 +2,6 @@ import React from "react";
 import MikeLogoSlogan from '../assets/MikeLogoSlogan.svg';
 import { Link } from 'react-router-dom';
 
-
-
-
 interface ImageProps {
   src: string;
   alt: string;
@@ -64,7 +61,7 @@ export default function Login(){
               <a href="#" className="text-xl italic underline">
                 Esqueci minha senha
               </a>
-              <Link to="/">
+              <Link to="/home">
               
               <button
                 
@@ -80,6 +77,4 @@ export default function Login(){
       </div>
     </main>
   );
-};
-
-
+}
