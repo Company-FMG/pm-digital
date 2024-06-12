@@ -1,20 +1,20 @@
 import NavbarMike from '../components/global/NavbarMike';
 import ProvisoryNavigationBreadcrumb from '../components/global/ProvisoryNavigationBreadcrumb';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, /*useNavigate*/ } from 'react-router-dom';
 
 //implementar a verificação de autenticação aqui
-const useAuth = () => {
+/*const useAuth = () => {
   const user = localStorage.getItem('user');
   return user !== null;
-};
+};*/
 
 function AuthenticatedLayout() {
-  const navigate = useNavigate();
+  {/*const navigate = useNavigate();
   const isAuthenticated = useAuth();
 
   if (!isAuthenticated) {
-    navigate('/login');
-  }
+    navigate('/');
+  }*/}
 
   return (
     <>
