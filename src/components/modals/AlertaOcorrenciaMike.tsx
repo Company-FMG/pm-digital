@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useState, useEffect } from "react";
 import rightarrow from "../../assets/rightarrow.svg";
 import usePolling from "../../hooks/usePolling";

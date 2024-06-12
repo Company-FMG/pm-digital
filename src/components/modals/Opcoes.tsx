@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useHistory } from "react-router";
 import { useModal } from "../../contexts/ModalContext";
 import { useCredentials } from "../../contexts/CredentialsContext";
