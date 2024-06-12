@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import NavbarMike from '../components/global/NavbarMike';
 import ProvisoryNavigationBreadcrumb from '../components/global/ProvisoryNavigationBreadcrumb';
+
+interface AuthenticatedLayoutProps{
+  children: React.ReactNode;
+}
 
 //implementar a verificação de autenticação aqui
 const useAuth = () => {
@@ -9,7 +13,7 @@ const useAuth = () => {
   return !!token;
 };
 
-function AuthenticatedLayout() {
+function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
   const navigate = useNavigate();
   const isAuthenticated = useAuth();
 
@@ -24,7 +28,7 @@ function AuthenticatedLayout() {
       <NavbarMike />
       <ProvisoryNavigationBreadcrumb />
       <main>
-        <Outlet />
+        {children}
       </main>
     </>
   );
