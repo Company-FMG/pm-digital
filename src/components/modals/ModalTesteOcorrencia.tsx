@@ -9,7 +9,7 @@ export default function ModalTesteOcorrencia() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/denuncias")
+      .get("https://mike-back-pi4.onrender.com/api/denuncias")
       .then((response) => {
         setDenuncias(response.data);
       })

@@ -15,7 +15,7 @@ export default function DetalhesDenuncia() {
   
   useEffect(() => {
      axios
-      .get("https://mikebackend-05gc09wt.b4a.run/api/denuncias")
+      .get("https://mike-back-pi4.onrender.com/api/denuncias")
       .then((response) => {
         setDenuncias(response.data);
       })

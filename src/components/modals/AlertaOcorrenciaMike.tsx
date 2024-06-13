@@ -12,7 +12,7 @@ export default function AlertaOcorrenciaMike() {
   const [latestDenuncia, setLatestDenuncia] = useState(null);
 
   const { data: denuncias } = usePolling(
-    "https://mikebackend-05gc09wt.b4a.run/api/denuncias",
+    "https://mike-back-pi4.onrender.com/api/denuncias",
     5000
   );
 
