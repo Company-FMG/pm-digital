@@ -1,6 +1,7 @@
 import * as React from "react";
 import MikeLogin from "../assets/MikeLogin.svg"
 import PublicSafety from "../assets/Public Safety.svg"
+import pmDigitalLogo from '../assets/PM Digital Logo.svg'
 import Secure from "../assets/Secure.svg"
 import MikeLogoSlogan from "../assets/MikeLogoSlogan.svg"
 import { IonButton, IonCol, IonContent, IonHeader, IonImg, IonInput, IonPage, IonRow, IonTitle, IonToolbar } from "@ionic/react";
@@ -16,12 +17,9 @@ export default function Login() {
           <div className="flex flex-col px-14 lg:px-40 py-14 md:py-20 mx-auto  space-y-5">
             <img
               loading="lazy"
-              src={MikeLogin}
+              src={pmDigitalLogo}
               className="self-center aspect-[1.0] w-48 md:w-52"
             />
-            <p className="self-center mt-8 text-xl font-medium text-center text-white">
-              Um sistema inteligente para a segurança pública
-            </p>
 
 
             <div className="flex gap-0 mt-14 text-xl text-white whitespace-nowrap">

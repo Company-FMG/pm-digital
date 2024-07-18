@@ -19,7 +19,7 @@ export default function FooterMike() {
           </button>
         </div>
         <div>
-          <button onClick={() => handleShow("sobreMike")} className="text-center text-lg text-black mt-2">Sobre o Mike</button>
+          <button onClick={() => handleShow("sobreMike")} className="text-center text-lg text-black mt-2">Sobre o PM Digital</button>
         </div>
       </div>
     </>

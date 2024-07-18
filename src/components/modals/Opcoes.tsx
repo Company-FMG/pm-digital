@@ -17,7 +17,7 @@ export default function Opcoes(){
             <img src={pfp.webviewPath} alt="" className="rounded-full object-cover h-14 w-14" />
             <div>
                 <h2 className="text-xl font-bold text-bluemike m-0">Olá {nome}</h2>
-                <p className="text-sm">Atendente do compom {matricula}</p>
+                <p className="text-sm">Coronel {matricula}</p>
             </div>
             <div className="border-2 border-gray-300 rounded w-full">
                 <button onClick={() => history.push('/perfil')} className="w-full py-3">Minha conta</button>
