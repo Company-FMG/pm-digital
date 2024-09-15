@@ -18,6 +18,17 @@ Este projeto é composto por três aplicações:
 6. [Licença](#licença)
 
 ## Descrição Geral
+Este repositório contém o <b>PM Digital</b>, um sistema inovador que conecta cidadãos com a Polícia Militar e Civil para facilitar a resolução de casos de violência, contribuindo para a segurança pública no Estado de Pernambuco. O projeto visa atender demandas do curso <b>Sistemas para Internet</b>, sendo tratado como uma solução real com potencial de impacto social. Ele é desenvolvido em parceria com o empreendedor social <b>Daniel Paixão</b> e supervisionado pelos professores da graduação.
+
+O <b>PM Digital</b> está sendo utilizado em diversas avaliações acadêmicas, nas disciplinas:
+
+- Projeto Integrador IV
+- Aplicações Orientadas a Serviços
+- Programação para Dispositivos Móveis
+- Processos de Testes de Software
+- Projeto Integrador V
+- Pesquisa Científica e Desenvolvimento Tecnológico
+
 ## Tecnologias Utilizadas
 - ### Front-end Web (GIO)
     - [Vite](https://vitejs.dev) (Compilador local/Configurações de desenvolvimento)
