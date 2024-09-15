@@ -19,6 +19,24 @@ Este projeto é composto por três aplicações:
 
 ## Descrição Geral
 ## Tecnologias Utilizadas
+- ### Front-end Web (GIO)
+    - [Vite](https://vitejs.dev) (Compilador local/Configurações de desenvolvimento)
+    - [React](https://react.dev) (Framework de UI. Configurado no Vite para utilizar TypeScript)
+    - [TailwindCSS](https://tailwindcss.com) (Framework de estilização)
+    - [MambaUI](https://mambaui.com) (Biblioteca de componentes)
+- ### Front-end Mobile (DEVO)
+    - [Vite](https://vitejs.dev) (Compilador local/Configurações de desenvolvimento)
+    - [React](https://react.dev) (Framework de UI. Configurado no Vite para utilizar TypeScript)
+    - [TailwindCSS](https://tailwindcss.com) (Framework de estilização)
+    - [MambaUI](https://mambaui.com) (Biblioteca de componentes)
+    - [Ionic](https://ionicframework.com) (Framework de desenvolvimento mobile baseado em React)
+    - [Google Maps API](https://developers.google.com/maps) (API de mapas, cálculo de rotas e demais serviços de localização do Google)
+    - [Axios](https://axios-http.com/ptbr/) (Framework responsável pela conexão com o Back-end)
+    - [Cypress](https://www.cypress.io) (Framework de testes de front-end)
+- ### Back-end
+    - [Spring](https://spring.io/) (Framework de Java para facilitar o desenvolvimento de aplicações back-end)
+    - [Supabase](https://supabase.com/) (Banco de dados)
+    - [Render](https://render.com/) (Plataforma de deploying)
 ## Estrutura do Projeto
 ## Configuração e Execução
 - ### Front-end Web (GIO)
