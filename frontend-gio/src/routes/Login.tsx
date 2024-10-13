@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import image18 from "../assets/image 18.png";
 import PMDigitalcomSlogan from "../assets/PM Digital com Slogan.svg"
+import PublicSafety from "../assets/Public Safety(1).png"
+import Secure1 from "../assets/Secure(1).png"
+
+
 
 interface ImageProps {
   src: string;
@@ -51,16 +55,16 @@ export default function Login(){
           <div className="relative bg-blue-700 bg-opacity-20 w-full h-full" />
         </section>
         <section className="flex flex-col items-end justify-center w-full md:w-3/5 pb-80 bg-blue-700 text-white">
-          <div className="w-full max-w-lg pr-30 ">
+          <div className="w-full max-w-lg pr-30">
             <Image
              src={PMDigitalcomSlogan}
               alt="Logo"
               className="w-full"
             />
-            <form className="mt-20" onSubmit={handleLogin}>
-              
-              
+            <form className="mt-10" onSubmit={handleLogin}>
+               
               <div className="mb-5">
+                <img src={PublicSafety}style={{}}/>
                 <input
                   type="text"
                   className="mt-2 p-3 w-full border-1 border-b bg-transparent text-white italic"
@@ -70,7 +74,7 @@ export default function Login(){
                 />
               </div>
               <div className="mb-5">
-                
+                <img src={Secure1}/>
                 <input
                   type="password"
                   className="mt-2 p-3 w-full border-1 border-b bg-transparent text-white italic"
