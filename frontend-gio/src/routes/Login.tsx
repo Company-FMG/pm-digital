@@ -1,6 +1,7 @@
 import { useState } from "react";
-import MikeLogoSlogan from '../assets/MikeLogoSlogan.svg';
 import { useNavigate } from 'react-router-dom';
+import image18 from "../assets/image 18.png";
+import PMDigitalcomSlogan from "../assets/PM Digital com Slogan.svg"
 
 interface ImageProps {
   src: string;
@@ -43,41 +44,43 @@ export default function Login(){
       <div className="flex gap-0 md:flex-row flex-col w-full max-w-6xl">
         <section className="relative flex flex-col justify-center w-full md:w-2/5 min-h-[1160px]">
           <Image
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/b84e908038c077e02a1562e4f24dbed83f5362f6c75c44829b09b51fbbb407bd?apiKey=91a1d4223fb149a1a197b80828621a6c&"
+            src={image18}
             alt="Background"
             className="absolute inset-0 object-cover w-full h-full"
           />
           <div className="relative bg-blue-700 bg-opacity-20 w-full h-full" />
         </section>
         <section className="flex flex-col items-end justify-center w-full md:w-3/5 pb-80 bg-blue-700 text-white">
-          <div className="w-full max-w-lg pr-50 ">
+          <div className="w-full max-w-lg pr-30 ">
             <Image
-             src={MikeLogoSlogan}
+             src={PMDigitalcomSlogan}
               alt="Logo"
               className="w-full"
             />
-            <form className="mt-10" onSubmit={handleLogin}>
+            <form className="mt-20" onSubmit={handleLogin}>
+              
+              
               <div className="mb-5">
-                <IconLabel iconSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/bdec2657c7b3d519d79ecfb70044210c240c4dcb0bf94173044b674a3ab86a07?apiKey=91a1d4223fb149a1a197b80828621a6c&" label="Matrícula" />
                 <input
                   type="text"
-                  className="mt-2 p-3 w-full border-2 border-white bg-transparent text-white"
-                  placeholder="Digite sua matrícula"
+                  className="mt-2 p-3 w-full border-1 border-b bg-transparent text-white italic"
+                  placeholder="Matrícula"
                   value={matricula}
                   onChange={(e) => setMatricula(e.target.value)}
                 />
               </div>
               <div className="mb-5">
-                <IconLabel iconSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/ebbd445098f55900b1e18de17dd2bab72152f02756d5e7d07501f68c845fd423?apiKey=91a1d4223fb149a1a197b80828621a6c&" label="Senha" />
+                
                 <input
                   type="password"
-                  className="mt-2 p-3 w-full border-2 border-white bg-transparent text-white"
-                  placeholder="Digite sua senha"
+                  className="mt-2 p-3 w-full border-1 border-b bg-transparent text-white italic"
+                  placeholder="Senha"
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
                 />
               </div>
-              <a href="#" className="text-xl italic underline">
+
+              <a href="#" className="text-xl italic underline" style={{ margin: '300px' }} >
                 Esqueci minha senha
               </a>
               <button
