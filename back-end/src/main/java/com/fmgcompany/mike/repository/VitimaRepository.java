@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.UUID;
 
-public interface VitimaRepository extends JpaRepository<Vitima, String> {
+public interface VitimaRepository extends JpaRepository<Vitima, UUID> {
     @Query(value = "SELECT email FROM Vitima")
     List<String> findByEmail();
 
