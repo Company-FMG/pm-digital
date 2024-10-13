@@ -4,26 +4,26 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "vitimas")
-public class Vitima extends Pessoa{
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Vitima extends Denuncia {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "vitima")
-    private List<Denuncia> denuncias = new ArrayList<>();
+    private String nome;
+    private String sexo;
+    private int idade;
+
+    @OneToOne(mappedBy = "vitimas")
+    @JoinColumn(name="idDenuncia")
+    private Denuncia denuncia;
 }
