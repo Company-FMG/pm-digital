@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import image18 from "../assets/image 18.png";
+import policialbg from "../assets/policialbg.png";
 import PMDigitalcomSlogan from "../assets/PM Digital com Slogan.svg"
 
 interface ImageProps {
@@ -23,7 +23,7 @@ const IconLabel: React.FC<IconLabelProps> = ({ iconSrc, label }) => (
   </div>
 );
 
-export default function Login(){
+export default function Login() {
   const [matricula, setMatricula] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
@@ -40,26 +40,25 @@ export default function Login(){
   };
 
   return (
-    <main className="bg-blue-700 min-h-screen flex flex-col items-center justify-center">
-      <div className="flex gap-0 md:flex-row flex-col w-full max-w-6xl">
-        <section className="relative flex flex-col justify-center w-full md:w-2/5 min-h-[1160px]">
+
+    <main className="bg-blue-700 flex flex-col justify-center">
+      <div className="flex mx-auto gap-0 sm:gap-8 lg:mx-0 px-12 lg:px-0 items-center lg:flex-row h-screen">
+        <section className="justify-center">
           <Image
-            src={image18}
+            src={policialbg}
             alt="Background"
-            className="absolute inset-0 object-cover w-full h-full"
+            className="hidden lg:block object-cover lg:w-[36rem] xl:w-[48rem] 2xl:w-[65rem] h-screen brightness-75"
           />
-          <div className="relative bg-blue-700 bg-opacity-20 w-full h-full" />
         </section>
-        <section className="flex flex-col items-end justify-center w-full md:w-3/5 pb-80 bg-blue-700 text-white">
-          <div className="w-full max-w-lg pr-30 ">
+        <section className="flex flex-col mx-auto items-end text-end justify-center bg-blue-700 text-white">
+          <div className="w-full max-w-md 2xl:max-w-lg px-4 lg:px-16 2xl:px-12 mx-auto my-auto">
             <Image
-             src={PMDigitalcomSlogan}
+              src={PMDigitalcomSlogan}
               alt="Logo"
-              className="w-full"
+              className="w-auto"
             />
-            <form className="mt-20" onSubmit={handleLogin}>
-              
-              
+            <form className="pt-20" onSubmit={handleLogin}>
+
               <div className="mb-5">
                 <input
                   type="text"
@@ -70,7 +69,7 @@ export default function Login(){
                 />
               </div>
               <div className="mb-5">
-                
+
                 <input
                   type="password"
                   className="mt-2 p-3 w-full border-1 border-b bg-transparent text-white italic"
@@ -80,14 +79,13 @@ export default function Login(){
                 />
               </div>
 
-              <a href="#" className="text-xl italic underline" style={{ margin: '300px' }} >
+              <a href="#" className="text-xl italic underline">
                 Esqueci minha senha
               </a>
+
               <button
-                
                 type="submit"
-                className="mt-10 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg"
-              >
+                className="mt-10 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg">
                 Entrar
               </button>
             </form>
