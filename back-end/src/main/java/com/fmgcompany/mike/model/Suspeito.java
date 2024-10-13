@@ -1,28 +1,27 @@
 package com.fmgcompany.mike.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.UUID;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "suspeitos")
-public class Suspeito extends Pessoa{
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Suspeito extends Denuncia {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
-    @JsonManagedReference
-    @ManyToOne
+    private String nome;
+    private String sexo;
+    private int idade;
+
+    @OneToOne(mappedBy = "suspeitos")
+    @JoinColumn(name="idDenuncia")
     private Denuncia denuncia;
-
-    @Getter
-    @Setter
-    protected String descricaoSuspeito;
 }
