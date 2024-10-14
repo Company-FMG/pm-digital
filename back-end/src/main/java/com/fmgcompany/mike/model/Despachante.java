@@ -17,7 +17,7 @@ public class Despachante {
     //só precisa dos atributos
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID idAdmin;
+    private UUID id;
 
     private String nome;
     private String matricula;
@@ -26,5 +26,4 @@ public class Despachante {
 
     @OneToMany(mappedBy = "despachante")
     private List<Denuncia> denuncias;
-
 }
