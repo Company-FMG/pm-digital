@@ -31,7 +31,7 @@ export default function Login() {
               <IonInput
                 color="light"
                 type="text"
-                className="italic white"
+                className="italic white border-none p-2"
                 placeholder="Matrícula"
               />
             </div>
@@ -45,7 +45,7 @@ export default function Login() {
               <IonInput
                 color="light"
                 type="password"
-                className="italic white"
+                className="italic white border-none p-2"
                 placeholder="Senha"
               />
             </div>
@@ -56,7 +56,7 @@ export default function Login() {
             
             <button
               onClick={() => history.push("/home")}
-              className="text-center text-base sm:text-lg lg:text-xl py-3 px-6 rounded-md w-full bg-white text-bluemike font-inter font-bold"
+              className="text-center text-base sm:text-lg lg:text-xl py-3 px-6 w-full bg-white text-bluemike font-inter font-bold"
             >
               Entrar
             </button>
