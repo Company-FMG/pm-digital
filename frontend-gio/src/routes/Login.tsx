@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import policialbg from "../assets/policialbg.png";
-import PMDigitalcomSlogan from "../assets/PM Digital com Slogan.svg"
+import PMDigitalcomSlogan from "../assets/PM Digital com Slogan.svg";
+import PublicSafety from "../assets/Public Safety(1).png";
+import Secure from "../assets/Secure(1).png"; 
 
 interface ImageProps {
   src: string;
@@ -10,17 +12,6 @@ interface ImageProps {
 }
 const Image: React.FC<ImageProps> = ({ src, alt, className }) => (
   <img loading="lazy" src={src} alt={alt} className={className} />
-);
-
-interface IconLabelProps {
-  iconSrc: string;
-  label: string;
-}
-const IconLabel: React.FC<IconLabelProps> = ({ iconSrc, label }) => (
-  <div className="flex gap-5 text-3xl font-light text-white">
-    <Image src={iconSrc} alt={label} className="shrink-0 w-9 h-9" />
-    <div className="italic">{label}</div>
-  </div>
 );
 
 export default function Login() {
@@ -40,7 +31,6 @@ export default function Login() {
   };
 
   return (
-
     <main className="bg-blue-700 flex flex-col justify-center">
       <div className="flex mx-auto gap-0 sm:gap-8 lg:mx-0 px-12 lg:px-0 items-center lg:flex-row h-screen">
         <section className="justify-center">
@@ -59,20 +49,22 @@ export default function Login() {
             />
             <form className="pt-20" onSubmit={handleLogin}>
 
-              <div className="mb-5">
+              <div className="mb-5 flex items-center gap-3">
+                <img src={PublicSafety} alt="Matrícula" className="w-7 h-7" />
                 <input
                   type="text"
-                  className="mt-2 p-3 w-full border-1 border-b bg-transparent text-white italic"
+                  className="mt-2 p-3 w-full border-b bg-transparent text-white italic"
                   placeholder="Matrícula"
                   value={matricula}
                   onChange={(e) => setMatricula(e.target.value)}
                 />
               </div>
-              <div className="mb-5">
 
+              <div className="mb-5 flex items-center gap-3">
+                <img src={Secure} alt="Senha" className="w-7 h-7" />
                 <input
                   type="password"
-                  className="mt-2 p-3 w-full border-1 border-b bg-transparent text-white italic"
+                  className="mt-1 p-3 w-full border-b bg-transparent text-white italic"
                   placeholder="Senha"
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
