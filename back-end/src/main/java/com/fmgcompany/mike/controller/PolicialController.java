@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.fmgcompany.mike.model.Ocorrencia;
-import com.fmgcompany.mike.model.Viatura;
-import com.fmgcompany.mike.service.OcorrenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
