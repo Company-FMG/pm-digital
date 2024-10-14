@@ -6,6 +6,7 @@ import Secure from "../assets/Secure.svg"
 import MikeLogoSlogan from "../assets/MikeLogoSlogan.svg"
 import { IonButton, IonCol, IonContent, IonHeader, IonImg, IonInput, IonPage, IonRow, IonTitle, IonToolbar } from "@ionic/react";
 import { useHistory } from "react-router";
+import PmDigitalComSlogan from '../assets/PM Digital com Slogan.svg'
 
 export default function Login() {
   const history = useHistory();
@@ -13,14 +14,13 @@ export default function Login() {
   return (
     <IonPage>
       <IonContent>
-        <div className="w-full bg-bluemike h-full">
-          <div className="flex flex-col px-14 lg:px-40 py-14 md:py-20 mx-auto  space-y-5">
+        <div className="w-full bg-bluemike h-full pr-44 pl-44">
+          <div className="flex flex-col px-44 py-10  mx-auto  space-y-8">
             <img
               loading="lazy"
-              src={pmDigitalLogo}
+              src={PmDigitalComSlogan}
               className="self-center aspect-[1.0] w-48 md:w-52"
             />
-
 
             <div className="flex gap-0 mt-14 text-xl text-white whitespace-nowrap">
               <img
@@ -28,9 +28,9 @@ export default function Login() {
                   srcSet={PublicSafety}
                 className="shrink-0 w-9 aspect-square"
               />
-              <IonInput color="light" type="text" className="italic white" placeholder="Matrícula"></IonInput>
+              <IonInput color="light" type="text" className="italic white solidgit " placeholder="Matrícula"></IonInput>
             </div>
-            <hr className="bg-white  border-b-2 border-white"/>
+           
           
             <div className="flex gap-0  mt-12 text-xl text-white whitespace-nowrap">
               <img
