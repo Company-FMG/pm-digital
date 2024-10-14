@@ -13,8 +13,8 @@ export default function Login() {
   return (
     <IonPage>
       <IonContent>
-        <div className="w-full bg-bluemike h-full">
-          <div className="flex flex-col px-14 lg:px-40 py-14 md:py-20 mx-auto  space-y-5">
+        <div className="w-full bg-bluemike h-full pr-40 pl-40">
+          <div className="flex flex-col px-14 lg:px-80 md:py-30 mx-auto  space-y-6">
             <img
               loading="lazy"
               src={pmDigitalLogo}
