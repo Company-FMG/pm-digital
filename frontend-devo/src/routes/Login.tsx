@@ -6,6 +6,7 @@ import Secure from "../assets/Secure.svg"
 import MikeLogoSlogan from "../assets/MikeLogoSlogan.svg"
 import { IonButton, IonCol, IonContent, IonHeader, IonImg, IonInput, IonPage, IonRow, IonTitle, IonToolbar } from "@ionic/react";
 import { useHistory } from "react-router";
+import PmDigital from "../assets/PM Digital com Slogan.svg"
 
 export default function Login() {
   const history = useHistory();
@@ -17,7 +18,7 @@ export default function Login() {
           <div className="flex flex-col px-14 lg:px-80 md:py-30 mx-auto  space-y-6">
             <img
               loading="lazy"
-              src={pmDigitalLogo}
+              src={PmDigital}
               className="self-center aspect-[1.0] w-48 md:w-52"
             />
 
@@ -30,7 +31,6 @@ export default function Login() {
               />
               <IonInput color="light" type="text" className="italic white" placeholder="Matrícula"></IonInput>
             </div>
-            <hr className="bg-white  border-b-2 border-white"/>
           
             <div className="flex gap-0  mt-12 text-xl text-white whitespace-nowrap">
               <img
