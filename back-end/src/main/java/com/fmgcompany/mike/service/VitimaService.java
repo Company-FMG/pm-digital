@@ -18,10 +18,6 @@ public class VitimaService {
         return this.vitimaRepository.findAll();
     }
 
-    public List<String> findByEmail(){
-        return vitimaRepository.findByEmail();
-    }
-
     public Vitima findByNome(String nome){
         return this.vitimaRepository.findByNome(nome);
     }
