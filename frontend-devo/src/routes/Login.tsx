@@ -14,12 +14,12 @@ export default function Login() {
   return (
     <IonPage>
       <IonContent>
-        <div className="w-full bg-bluemike h-full px-6 sm:px-10 md:px-20 lg:px-32 xl:px-44">
-          <div className="flex flex-col py-10 mx-auto space-y-8 max-w-md sm:max-w-lg lg:max-w-2xl">
+        <div className="flex flex-col w-full justify-center bg-bluemike h-full px-12 sm:px-10 md:px-20 lg:px-32 xl:px-44">
+          <div className="mx-auto my-auto py-10 space-y-8 max-w-md sm:max-w-lg lg:max-w-2xl">
             <img
               loading="lazy"
               src={PmDigitalComSlogan}
-              className="self-center aspect-[1.0] w-32 sm:w-40 md:w-48 lg:w-52"
+              className="self-center w-full mb-16"
             />
 
             <div className="flex gap-2 mt-8 sm:mt-10 text-lg sm:text-xl text-white items-center">
@@ -56,7 +56,7 @@ export default function Login() {
             
             <button
               onClick={() => history.push("/home")}
-              className="text-center text-base sm:text-lg lg:text-xl py-3 px-6 w-full bg-white text-bluemike font-inter font-bold"
+              className="text-center text-base sm:text-lg lg:text-xl py-3 px-6 w-full bg-white rounded-md text-bluemike font-inter font-bold"
             >
               Entrar
             </button>
