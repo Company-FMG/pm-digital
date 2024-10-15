@@ -7,13 +7,13 @@ interface ComplaintCardProps{
 function ComplaintCard({ status, tipo, endereco }: ComplaintCardProps){
     const getColor = () => {
         switch(status){
-            case 'nova':
+            case 'EM_ABERTO':
                 return 'h-8 w-8 rounded-full bg-red'
             break;
-            case 'em andamento':
+            case 'EM_ANDAMENTO':
                 return 'h-8 w-8 rounded-full bg-yellow-200'
             break;
-            case 'finalizada':
+            case 'FINALIZADA':
                 return 'h-8 w-8 rounded-full bg-cyan-500'
             break;
             default:
