@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/vitima")
+@RequestMapping("/vitimas")
 public class VitimaController {
     @Autowired
     private VitimaService vitimaService;

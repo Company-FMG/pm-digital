@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/suspeitos")
+@RequestMapping("/suspeitos")
 public class SuspeitoController {
     @Autowired
     private SuspeitoService suspeitoService;

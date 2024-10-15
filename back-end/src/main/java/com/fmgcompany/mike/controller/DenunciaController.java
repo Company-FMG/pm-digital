@@ -15,9 +15,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@CrossOrigin(origins = "http://localhost:8100")
 @RestController
-@RequestMapping("/api/denuncias")
+@RequestMapping("/denuncias")
 public class DenunciaController {
     @Autowired
     private DenunciaService denunciaService;
