@@ -1,6 +1,7 @@
 package com.fmgcompany.mike.controller;
 
 import com.fmgcompany.mike.model.Denuncia;
+import com.fmgcompany.mike.model.Status;
 import com.fmgcompany.mike.model.Suspeito;
 import com.fmgcompany.mike.model.Vitima;
 import com.fmgcompany.mike.service.DenunciaService;
@@ -33,6 +34,11 @@ public class DenunciaController {
     @GetMapping("/{id}")
     public Optional<Denuncia> buscaDenunciaPeloId(@PathVariable UUID id) {
         return this.denunciaService.buscaDenunciaPeloId(id);
+    }
+
+    @GetMapping("/filter")
+    public List<Denuncia> filtroStatus(@RequestParam Status status) {
+        return this.denunciaService.filtroStatus(status);
     }
 
     @PostMapping

@@ -23,6 +23,8 @@ public class Denuncia {
     private int n_local;
     private String cep;
 
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @OneToOne
     @JoinColumn(name = "vitima_id", referencedColumnName = "id")

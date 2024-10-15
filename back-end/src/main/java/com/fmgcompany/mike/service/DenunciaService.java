@@ -1,6 +1,7 @@
 package com.fmgcompany.mike.service;
 
 import com.fmgcompany.mike.model.Denuncia;
+import com.fmgcompany.mike.model.Status;
 import com.fmgcompany.mike.repository.DenunciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,10 @@ public class DenunciaService {
     //get
     public Optional<Denuncia> buscaDenunciaPeloId(UUID id){
         return  this.denunciaRepository.findById(id);
+    }
+
+    public List<Denuncia> filtroStatus(Status status){
+        return this.denunciaRepository.findByStatus(status);
     }
 
     //set
