@@ -30,6 +30,8 @@ public class Denuncia {
 
     @OneToOne
     @JoinColumn(name = "suspeito_id",referencedColumnName = "id")
-    private Suspeito suspeitos;
+    private Suspeito suspeito;
 
+    @ManyToOne
+    private Despachante despachante;
 }

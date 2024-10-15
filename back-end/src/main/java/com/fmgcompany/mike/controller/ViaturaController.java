@@ -54,7 +54,7 @@ public class ViaturaController {
 
     @PutMapping("/{id}/{idPolicial}")
     public ResponseEntity<Viatura> addPolicial(@PathVariable UUID id, @PathVariable UUID idPolicial){
-        Optional<Policial> p = this.policialService.findById(idPolicial);
+        Optional<Policial> p = this.policialService.buscarPorId(idPolicial);
         Optional<Viatura> v = this.viaturaService.buscarPorId(id);
         if(v.isPresent()){
             if(p.isPresent()){
@@ -64,7 +64,7 @@ public class ViaturaController {
                 pLista.add(policial);
                 viatura.setPoliciais(pLista);
                 policial.setViatura(viatura);
-                policialService.save(policial);
+                policialService.criar(policial);
                 return ResponseEntity.ok(this.viaturaService.criarViatura(viatura));
             } else{
                 return ResponseEntity.notFound().build();
@@ -76,7 +76,7 @@ public class ViaturaController {
 
     @DeleteMapping("/{id}/{idPolicial}")
     public ResponseEntity<Viatura> removerPolicial(@PathVariable UUID id, @PathVariable UUID idPolicial){
-        Optional<Policial> p = this.policialService.findById(idPolicial);
+        Optional<Policial> p = this.policialService.buscarPorId(idPolicial);
         Optional<Viatura> v = this.viaturaService.buscarPorId(id);
         if(v.isPresent()){
             if(p.isPresent()){

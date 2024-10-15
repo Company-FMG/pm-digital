@@ -27,10 +27,10 @@ public class VitimaController {
         return vitima.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/nome/{nome}")
-    public Vitima buscarPorNome(@PathVariable String nome){
-        return vitimaService.findByNome(nome);
-    }
+//    @GetMapping("/nome/{nome}")
+//    public Vitima buscarPorNome(@PathVariable String nome){
+//        return vitimaService.findByNome(nome);
+//    }
 
     @PostMapping
     public Vitima createVitima(@RequestBody Vitima vitima) {

@@ -12,7 +12,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Vitima extends Denuncia {
+public class Vitima{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -21,7 +21,7 @@ public class Vitima extends Denuncia {
     private String sexo;
     private int idade;
 
-    @OneToOne(mappedBy = "vitimas")
-    @JoinColumn(name="idDenuncia")
+    @OneToOne(mappedBy = "vitima")
+    @JoinColumn(name="denuncia_id")
     private Denuncia denuncia;
 }

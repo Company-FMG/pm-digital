@@ -20,7 +20,7 @@ public class Viatura {
 
     private String placa;
 
-    @ManyToOne
+    @OneToMany
     private List<Policial> policiais;
 
     @OneToOne

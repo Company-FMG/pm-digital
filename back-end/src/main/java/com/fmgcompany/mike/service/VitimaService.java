@@ -18,9 +18,9 @@ public class VitimaService {
         return this.vitimaRepository.findAll();
     }
 
-    public Vitima findByNome(String nome){
-        return this.vitimaRepository.findByNome(nome);
-    }
+//    public Vitima findByNome(String nome){
+//        return this.vitimaRepository.findByNome(nome);
+//    }
 
     public Optional<Vitima> findById(UUID id) {
         return vitimaRepository.findById(id);

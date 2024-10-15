@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Suspeito extends Denuncia {
+public class Suspeito{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -21,7 +21,7 @@ public class Suspeito extends Denuncia {
     private String sexo;
     private int idade;
 
-    @OneToOne(mappedBy = "suspeitos")
-    @JoinColumn(name="idDenuncia")
+    @OneToOne(mappedBy = "suspeito")
+    @JoinColumn(name="denuncia_id")
     private Denuncia denuncia;
 }

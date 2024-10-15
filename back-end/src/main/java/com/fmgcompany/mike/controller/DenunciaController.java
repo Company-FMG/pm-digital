@@ -47,7 +47,7 @@ public class DenunciaController {
     }
 
     @PutMapping("/{id}/{idVitima}")
-    public ResponseEntity<Vitima> atribuirVitima(@PathVariable UUID id, @PathVariable String idVitima){
+    public ResponseEntity<Vitima> atribuirVitima(@PathVariable UUID id, @PathVariable UUID idVitima){
         Optional<Vitima> vitima = this.vitimaService.findById(idVitima);
         Optional<Denuncia> denuncia = this.denunciaService.buscaDenunciaPeloId(id);
         if(vitima.isPresent()){
@@ -69,14 +69,14 @@ public class DenunciaController {
     }
 
     @PutMapping("/{id}/{idSuspeito}")
-    public ResponseEntity<Suspeito> atribuirSuspeito(@PathVariable UUID id, @PathVariable String idSuspeito){
+    public ResponseEntity<Suspeito> atribuirSuspeito(@PathVariable UUID id, @PathVariable UUID idSuspeito){
         Optional<Suspeito> suspeito = this.suspeitoService.findById(idSuspeito);
         Optional<Denuncia> denuncia = this.denunciaService.buscaDenunciaPeloId(id);
         if(suspeito.isPresent()){
             if(denuncia.isPresent()){
                 Denuncia d = denuncia.get();
                 Suspeito s = suspeito.get();
-                d.setSuspeitos(s);
+                d.setSuspeito(s);
                 s.setDenuncia(d);
                 this.denunciaService.criaDenuncia(d);
                 return ResponseEntity.ok(this.suspeitoService.save(s));
