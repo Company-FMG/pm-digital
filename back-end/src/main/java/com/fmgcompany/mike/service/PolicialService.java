@@ -14,36 +14,22 @@ import com.fmgcompany.mike.repository.PolicialRepository;
 
 @Service
 public class PolicialService {
-    
     @Autowired
     private PolicialRepository policialRepository;
 
-    public List<Policial> findAll() {
-        return policialRepository.findAll();
+    public List<Policial> listarTodos() {
+        return this.policialRepository.findAll();
     }
 
-    public Optional<Policial> findById(UUID id) {
-        return policialRepository.findById(id);
+    public Optional<Policial> buscarPorId(UUID id) {
+        return this.policialRepository.findById(id);
     }
 
-    public Policial save(Policial policial) {
-        return policialRepository.save(policial);
+    public Policial criar(Policial policial) {
+        return this.policialRepository.save(policial);
     } 
 
-    public void deleteById(UUID id) {
-        policialRepository.deleteById(id);
+    public void deletarPorId(UUID id) {
+        this.policialRepository.deleteById(id);
     }
-
-    public boolean existsById(UUID id) {
-        return policialRepository.existsById(id);
-    }
-
-    public List<String> findByEmail(){
-        return policialRepository.findByEmail();
-    }
-
-    public Policial findByNome(String nome){
-        return this.policialRepository.findByNome(nome);
-    }
-    
 }
