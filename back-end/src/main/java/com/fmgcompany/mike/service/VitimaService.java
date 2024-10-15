@@ -1,6 +1,5 @@
 package com.fmgcompany.mike.service;
 
-import com.fmgcompany.mike.model.Policial;
 import com.fmgcompany.mike.model.Vitima;
 import com.fmgcompany.mike.repository.VitimaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +18,11 @@ public class VitimaService {
         return this.vitimaRepository.findAll();
     }
 
-    public List<String> findByEmail(){
-        return vitimaRepository.findByEmail();
-    }
-
     public Vitima findByNome(String nome){
         return this.vitimaRepository.findByNome(nome);
     }
 
-    public Optional<Vitima> findById(String id) {
+    public Optional<Vitima> findById(UUID id) {
         return vitimaRepository.findById(id);
     }
 
@@ -35,7 +30,7 @@ public class VitimaService {
         return vitimaRepository.save(vitima);
     }
 
-    public void deleteById(String id){
+    public void deleteById(UUID id){
         this.vitimaRepository.deleteById(id);
     }
 }

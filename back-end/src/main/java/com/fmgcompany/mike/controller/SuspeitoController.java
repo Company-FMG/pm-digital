@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/suspeitos")
@@ -21,7 +22,7 @@ public class SuspeitoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Suspeito> getSuspeitoById(@PathVariable String id) {
+    public ResponseEntity<Suspeito> getSuspeitoById(@PathVariable UUID id) {
         Optional<Suspeito> suspeito = suspeitoService.findById(id);
         return suspeito.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -32,13 +33,12 @@ public class SuspeitoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Suspeito> updateSuspeito(@PathVariable String id, @RequestBody Suspeito suspeitoDetails) {
+    public ResponseEntity<Suspeito> updateSuspeito(@PathVariable UUID id, @RequestBody Suspeito suspeitoDetails) {
         Optional<Suspeito> suspeito = suspeitoService.findById(id);
         if (suspeito.isPresent()) {
             Suspeito updatedSuspeito = suspeito.get();
             updatedSuspeito.setNome(suspeitoDetails.getNome());
             updatedSuspeito.setIdade(suspeitoDetails.getIdade());
-            updatedSuspeito.setEmail(suspeitoDetails.getEmail());
             updatedSuspeito.setSexo(suspeitoDetails.getSexo());
             return ResponseEntity.ok(suspeitoService.save(updatedSuspeito));
         } else {
@@ -47,7 +47,7 @@ public class SuspeitoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSuspeito(@PathVariable String id) {
+    public ResponseEntity<Void> deleteSuspeito(@PathVariable UUID id) {
         suspeitoService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

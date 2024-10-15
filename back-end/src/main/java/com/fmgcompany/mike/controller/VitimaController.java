@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/vitima")
@@ -20,13 +21,8 @@ public class VitimaController {
         return vitimaService.findAll();
     }
 
-    @GetMapping("/email")
-    public List<String> getVitimaByEmail(){
-        return vitimaService.findByEmail();
-    }
-
     @GetMapping("/{id}")
-    public ResponseEntity<Vitima> getVitimaById(@PathVariable String id) {
+    public ResponseEntity<Vitima> getVitimaById(@PathVariable UUID id) {
         Optional<Vitima> vitima = vitimaService.findById(id);
         return vitima.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -42,13 +38,12 @@ public class VitimaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Vitima> updateVitima(@PathVariable String id, @RequestBody Vitima vitimaDetails) {
+    public ResponseEntity<Vitima> updateVitima(@PathVariable UUID id, @RequestBody Vitima vitimaDetails) {
         Optional<Vitima> vitima = vitimaService.findById(id);
         if (vitima.isPresent()) {
             Vitima updatedVitima = vitima.get();
             updatedVitima.setNome(vitimaDetails.getNome());
             updatedVitima.setIdade(vitimaDetails.getIdade());
-            updatedVitima.setEmail(vitimaDetails.getEmail());
             updatedVitima.setSexo(vitimaDetails.getSexo());
             return ResponseEntity.ok(vitimaService.save(updatedVitima));
         } else {
@@ -57,7 +52,7 @@ public class VitimaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteVitima(@PathVariable String id) {
+    public ResponseEntity<Void> deleteVitima(@PathVariable UUID id) {
         vitimaService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class SuspeitoService {
@@ -17,7 +18,7 @@ public class SuspeitoService {
         return this.vitimaRepository.findAll();
     }
 
-    public Optional<Suspeito> findById(String id) {
+    public Optional<Suspeito> findById(UUID id) {
         return vitimaRepository.findById(id);
     }
 
@@ -25,7 +26,7 @@ public class SuspeitoService {
         return vitimaRepository.save(vitima);
     }
 
-    public void deleteById(String id){
+    public void deleteById(UUID id){
         this.vitimaRepository.deleteById(id);
     }
 }
