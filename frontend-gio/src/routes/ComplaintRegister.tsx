@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import AuthenticatedLayout from "../layouts/AuthenticatedLayout";
+const api_key = import.meta.env.VITE_REACT_GOOGLE_MAPS_KEY
+
+import { useJsApiLoader, GoogleMap, Autocomplete } from "@react-google-maps/api";
 
 interface FormData {
     situacaoInformada: string;
@@ -9,6 +12,7 @@ interface FormData {
     status: string,
     infoCena: string;
 }
+const center = {lat: -8.054895, lng: -34.887762}
 
 export default function ComplaintRegister(){
     const [formData, setFormData] = useState<FormData>({
@@ -42,6 +46,15 @@ export default function ComplaintRegister(){
         }
     };*/}
 
+    const { isLoaded } = useJsApiLoader({
+        googleMapsApiKey: api_key,
+        libraries: ['places']
+    })
+
+    if (!isLoaded){
+        return <h1>Erro</h1>
+    }
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         
@@ -71,7 +84,11 @@ export default function ComplaintRegister(){
     };
 
     return(
+        
         <AuthenticatedLayout>
+            <GoogleMap center={center} zoom={15} mapContainerStyle={{width: "100%", height: "40%", position: "absolute"}}>
+
+             </GoogleMap>
             <div className="mx-40 my-20 px-16 py-11 space-y-20 border-black border-2 rounded-lg">
                 <h2 className="font-bold text-5xl">Cadastro de Nova Denúncia</h2>
 
@@ -79,7 +96,9 @@ export default function ComplaintRegister(){
                     <div className="flex">
                         <div className="w-2/3">
                             <label htmlFor="">Endereço</label>
+                            <Autocomplete>
                             <input onChange={handleChange} name="endereco" type="text" placeholder="Ex: Avenida Dois Rios 359, Ibura, Recife - PE" className="border-black border-2 rounded-lg px-7 py-3 w-full"/>
+                            </Autocomplete>
                         </div>
                         <div className="w-1/3"> 
                             <label htmlFor="">Mapa (CEP)</label>
@@ -165,6 +184,7 @@ export default function ComplaintRegister(){
                     <button type="submit" className="font-bold text-white bg-bluemike h-16 rounded-lg font-poppins">Cadastrar denúncia</button>
                 </form>
             </div>
+ 
         </AuthenticatedLayout>
     );
 }
