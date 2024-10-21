@@ -47,6 +47,7 @@ public class DenunciaService {
             denuncia.setLocal(denunciaAtualizada.getLocal());
             denuncia.setN_local(denunciaAtualizada.getN_local());
             denuncia.setCep(denunciaAtualizada.getCep());
+            denuncia.setStatus(denunciaAtualizada.getStatus());
 
             return this.denunciaRepository.save(denuncia);
         }
