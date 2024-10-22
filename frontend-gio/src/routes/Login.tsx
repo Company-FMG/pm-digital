@@ -1,6 +1,9 @@
 import { useState } from "react";
-import MikeLogoSlogan from '../assets/MikeLogoSlogan.svg';
 import { useNavigate } from 'react-router-dom';
+import policialbg from "../assets/policialbg.png";
+import PMDigitalcomSlogan from "../assets/PM Digital com Slogan.svg";
+import PublicSafety from "../assets/Public Safety(1).png";
+import Secure from "../assets/Secure(1).png"; 
 
 interface ImageProps {
   src: string;
@@ -11,18 +14,7 @@ const Image: React.FC<ImageProps> = ({ src, alt, className }) => (
   <img loading="lazy" src={src} alt={alt} className={className} />
 );
 
-interface IconLabelProps {
-  iconSrc: string;
-  label: string;
-}
-const IconLabel: React.FC<IconLabelProps> = ({ iconSrc, label }) => (
-  <div className="flex gap-5 text-3xl font-light text-white">
-    <Image src={iconSrc} alt={label} className="shrink-0 w-9 h-9" />
-    <div className="italic">{label}</div>
-  </div>
-);
-
-export default function Login(){
+export default function Login() {
   const [matricula, setMatricula] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
@@ -39,52 +31,53 @@ export default function Login(){
   };
 
   return (
-    <main className="bg-blue-700 min-h-screen flex flex-col items-center justify-center">
-      <div className="flex gap-0 md:flex-row flex-col w-full max-w-6xl">
-        <section className="relative flex flex-col justify-center w-full md:w-2/5 min-h-[1160px]">
+    <main className="bg-blue-700 flex flex-col justify-center">
+      <div className="flex mx-auto gap-0 sm:gap-8 lg:mx-0 px-12 lg:px-0 items-center lg:flex-row h-screen">
+        <section className="justify-center">
           <Image
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/b84e908038c077e02a1562e4f24dbed83f5362f6c75c44829b09b51fbbb407bd?apiKey=91a1d4223fb149a1a197b80828621a6c&"
+            src={policialbg}
             alt="Background"
-            className="absolute inset-0 object-cover w-full h-full"
+            className="hidden lg:block object-cover lg:w-[36rem] xl:w-[48rem] 2xl:w-[65rem] h-screen brightness-75"
           />
-          <div className="relative bg-blue-700 bg-opacity-20 w-full h-full" />
         </section>
-        <section className="flex flex-col items-end justify-center w-full md:w-3/5 pb-80 bg-blue-700 text-white">
-          <div className="w-full max-w-lg pr-50 ">
+        <section className="flex flex-col mx-auto items-end text-end justify-center bg-blue-700 text-white">
+          <div className="w-full max-w-md 2xl:max-w-lg px-4 lg:px-16 2xl:px-12 mx-auto my-auto">
             <Image
-             src={MikeLogoSlogan}
+              src={PMDigitalcomSlogan}
               alt="Logo"
-              className="w-full"
+              className="w-auto"
             />
-            <form className="mt-10" onSubmit={handleLogin}>
-              <div className="mb-5">
-                <IconLabel iconSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/bdec2657c7b3d519d79ecfb70044210c240c4dcb0bf94173044b674a3ab86a07?apiKey=91a1d4223fb149a1a197b80828621a6c&" label="Matrícula" />
+            <form className="pt-20" onSubmit={handleLogin}>
+
+              <div className="mb-5 flex items-center gap-3">
+                <img src={PublicSafety} alt="Matrícula" className="w-7 h-7" />
                 <input
                   type="text"
-                  className="mt-2 p-3 w-full border-2 border-white bg-transparent text-white"
-                  placeholder="Digite sua matrícula"
+                  className="mt-2 p-3 w-full border-b bg-transparent text-white italic"
+                  placeholder="Matrícula"
                   value={matricula}
                   onChange={(e) => setMatricula(e.target.value)}
                 />
               </div>
-              <div className="mb-5">
-                <IconLabel iconSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/ebbd445098f55900b1e18de17dd2bab72152f02756d5e7d07501f68c845fd423?apiKey=91a1d4223fb149a1a197b80828621a6c&" label="Senha" />
+
+              <div className="mb-5 flex items-center gap-3">
+                <img src={Secure} alt="Senha" className="w-7 h-7" />
                 <input
                   type="password"
-                  className="mt-2 p-3 w-full border-2 border-white bg-transparent text-white"
-                  placeholder="Digite sua senha"
+                  className="mt-1 p-3 w-full border-b bg-transparent text-white italic"
+                  placeholder="Senha"
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
                 />
               </div>
+
               <a href="#" className="text-xl italic underline">
                 Esqueci minha senha
               </a>
+
               <button
-                
                 type="submit"
-                className="mt-10 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg"
-              >
+                className="mt-10 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg">
                 Entrar
               </button>
             </form>

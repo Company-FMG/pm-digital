@@ -40,14 +40,11 @@ export default function AlertaOcorrenciaMike() {
       <div>
         <p>{latestDenuncia ? latestDenuncia.endereco : ""}</p>
       </div>
-      <div>
-        <p>
-          <a href="">Ver mais</a>
-        </p>
-      </div>
+         
+
       <div>
         <button
-          className="text-center bg-bluemike text-lg text-white rounded-xl h-[50] w-max px-8 py-4"
+          className="text-center bg-bluemike text-lg text-white rounded-xl h-[50] w-max px-8 py-4 mt-4"
           onClick={() => {
             setShowMap(true);
             handleShow("alertaOcorrencia");
