@@ -1,44 +1,29 @@
 package com.fmgcompany.mike.model;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.List;
+import lombok.*;
 import java.util.UUID;
 
-@Getter
 @Entity
 @Table(name="policiais")
-public class Policial extends Pessoa {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Policial{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID idPolicial;
+    private UUID id;
 
-    @Setter
-    private String cargo;
+    private boolean comandante;
+    private String nome;
+    private String matricula;
+    private String email;
+    private String senha;
 
-    @JsonManagedReference
-    @Setter
-    @OneToMany(mappedBy = "responsavelBo")
-    private List<Ocorrencia> ocorrencias = new ArrayList<Ocorrencia>();
-
-    @Setter
-    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "idViatura")
+    @JsonBackReference
+    @JoinColumn(name = "id_viatura")
     private Viatura viatura;
-    
-    public Policial(){}
-
-    public Policial(String nome, String cpf, String email, int idade, String sexo,String cargo) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.idade = idade;
-        this.sexo = sexo;
-        this.cargo = cargo;
-    }
 }

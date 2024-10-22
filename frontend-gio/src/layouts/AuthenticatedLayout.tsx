@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavbarMike from '../components/global/NavbarMike';
-import ProvisoryNavigationBreadcrumb from '../components/global/ProvisoryNavigationBreadcrumb';
 
 interface AuthenticatedLayoutProps{
   children: React.ReactNode;
@@ -26,8 +25,7 @@ function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
   return (
     <>
       <NavbarMike />
-      <ProvisoryNavigationBreadcrumb />
-      <main>
+      <main className='lg:pt-14 pt-10'>
         {children}
       </main>
     </>

@@ -8,6 +8,7 @@ import { IonButton, IonCol, IonContent, IonHeader, IonImg, IonInput, IonPage, Io
 import { useHistory } from "react-router";
 import PmDigitalComSlogan from '../assets/PM Digital com Slogan.svg';
 
+
 export default function Login() {
   const history = useHistory();
 

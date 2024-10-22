@@ -15,20 +15,22 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/viaturas")
+@RequestMapping("/viaturas")
 public class ViaturaController {
     @Autowired
     private ViaturaService viaturaService;
+
     @Autowired
     private PolicialService policialService;
 
     @GetMapping
     public List<Viatura> buscarTodasViaturas(){
-        return this.viaturaService.buscarViaturas();
+        return this.viaturaService.listarTodas();
     }
+
     @GetMapping("/{id}")
     public Optional<Viatura> buscarViatura(@PathVariable UUID id){
-        return this.viaturaService.buscarViaturaId(id);
+        return this.viaturaService.buscarPorId(id);
     }
 
     @PostMapping
@@ -36,26 +38,24 @@ public class ViaturaController {
         return this.viaturaService.criarViatura(viatura);
     }
 
-    //Alterar a viatura
-    @PutMapping
-    public ResponseEntity<Viatura> alterarViatura(@PathVariable UUID id, @RequestBody Viatura alteracoes){
-        Optional<Viatura> viatura = this.viaturaService.buscarViaturaId(id);
+    @PutMapping("/{id}")
+    public ResponseEntity<Viatura> update(@PathVariable UUID id, @RequestBody Viatura viaturaDetails){
+        Optional<Viatura> viatura = this.viaturaService.buscarPorId(id);
         if(viatura.isPresent()){
-            Viatura viaturaAtualizada = viatura.get();
-            viaturaAtualizada.setPoliciais(alteracoes.getPoliciais());
-            viaturaAtualizada.setMarca(alteracoes.getMarca());
-            viaturaAtualizada.setPlaca(alteracoes.getPlaca());
-            viaturaAtualizada.setModelo(alteracoes.getModelo());
-            return ResponseEntity.ok(this.viaturaService.criarViatura(viaturaAtualizada));
-        }else{
+            Viatura updatedViatura = viatura.get();
+            updatedViatura.setPoliciais(viaturaDetails.getPoliciais());
+            updatedViatura.setPlaca(viaturaDetails.getPlaca());
+            updatedViatura.setDenuncia(viaturaDetails.getDenuncia());
+            return ResponseEntity.ok(this.viaturaService.criarViatura(updatedViatura));
+        } else{
             return ResponseEntity.notFound().build();
         }
     }
-    //Adicionar um policial a viatura
+
     @PutMapping("/{id}/{idPolicial}")
     public ResponseEntity<Viatura> addPolicial(@PathVariable UUID id, @PathVariable UUID idPolicial){
-        Optional<Policial> p = this.policialService.findById(idPolicial);
-        Optional<Viatura> v = this.viaturaService.buscarViaturaId(id);
+        Optional<Policial> p = this.policialService.buscarPorId(idPolicial);
+        Optional<Viatura> v = this.viaturaService.buscarPorId(id);
         if(v.isPresent()){
             if(p.isPresent()){
                 Viatura viatura = v.get();
@@ -64,22 +64,20 @@ public class ViaturaController {
                 pLista.add(policial);
                 viatura.setPoliciais(pLista);
                 policial.setViatura(viatura);
-                policialService.save(policial);
+                policialService.criar(policial);
                 return ResponseEntity.ok(this.viaturaService.criarViatura(viatura));
-            }else{
+            } else{
                 return ResponseEntity.notFound().build();
-
             }
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
-
     }
-    //Remover um policial da viatura
+
     @DeleteMapping("/{id}/{idPolicial}")
     public ResponseEntity<Viatura> removerPolicial(@PathVariable UUID id, @PathVariable UUID idPolicial){
-        Optional<Policial> p = this.policialService.findById(idPolicial);
-        Optional<Viatura> v = this.viaturaService.buscarViaturaId(id);
+        Optional<Policial> p = this.policialService.buscarPorId(idPolicial);
+        Optional<Viatura> v = this.viaturaService.buscarPorId(id);
         if(v.isPresent()){
             if(p.isPresent()){
                 Viatura viatura = v.get();
@@ -88,25 +86,23 @@ public class ViaturaController {
                 pLista.remove(policial);
                 viatura.setPoliciais(pLista);
                 return ResponseEntity.ok(this.viaturaService.criarViatura(viatura));
-            }else{
+            } else{
                 return ResponseEntity.notFound().build();
 
             }
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletarViatura(@PathVariable UUID id){
-        //this.viaturaService.deletarViaturaId(id);
-        Optional<Viatura> v = this.viaturaService.buscarViaturaId(id);
+        Optional<Viatura> v = this.viaturaService.buscarPorId(id);
         if(v.isPresent()){
-            this.viaturaService.deletarViaturaId(id);
-            return new ResponseEntity<>("Viatura deletada com sucesso",HttpStatus.OK);
-        }else{
+            this.viaturaService.deletarPorId(id);
+            return new ResponseEntity<>("Viatura deletada com sucesso", HttpStatus.OK);
+        } else{
             return new ResponseEntity<>("ID não existe",HttpStatus.BAD_REQUEST);
         }
     }
-
-
 }

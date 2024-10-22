@@ -14,11 +14,11 @@ public class ViaturaService {
     @Autowired
     private ViaturaRepository viaturaRepository;
 
-    public List<Viatura> buscarViaturas(){
+    public List<Viatura> listarTodas(){
         return this.viaturaRepository.findAll();
     }
 
-    public Optional<Viatura> buscarViaturaId(UUID id){
+    public Optional<Viatura> buscarPorId(UUID id){
         return this.viaturaRepository.findById(id);
     }
 
@@ -26,7 +26,7 @@ public class ViaturaService {
         return viaturaRepository.save(viatura);
     }
 
-    public void deletarViaturaId(UUID id){
+    public void deletarPorId(UUID id){
         this.viaturaRepository.deleteById(id);
     }
 }

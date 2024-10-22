@@ -2,46 +2,38 @@ package com.fmgcompany.mike.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="denuncias")
 public class Denuncia {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+    private String tipo_violencia;
+    private String relato;
+    private String local;
+    private int n_local;
+    private String cep;
 
-    @Column
-    protected String situacaoInformada;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
-    @Column
-    protected String endereco;
-
-    @Column
-    protected String mapa;
-
-    @JsonBackReference
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "vitima_id", referencedColumnName = "id")
     private Vitima vitima;
 
-    @JsonBackReference
-    @OneToMany
-    private List<Suspeito> suspeitos;
+    @OneToOne
+    @JoinColumn(name = "suspeito_id",referencedColumnName = "id")
+    private Suspeito suspeito;
 
-    @Column
-    protected String status;
-
-    @Column
-    protected String infoCena;
+    @ManyToOne
+    private Despachante despachante;
 }
