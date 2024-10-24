@@ -20,6 +20,7 @@ public class Suspeito{
     private String nome;
     private String sexo;
     private int idade;
+    private String descricao;
 
     @OneToOne(mappedBy = "suspeito")
     @JoinColumn(name="denuncia_id")
