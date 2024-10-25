@@ -26,7 +26,6 @@ function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
   return (
     <>
       <NavbarMike />
-      <ProvisoryNavigationBreadcrumb />
       <main>
         {children}
       </main>
