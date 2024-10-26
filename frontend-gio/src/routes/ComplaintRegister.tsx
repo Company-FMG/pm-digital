@@ -15,21 +15,6 @@ export default function ComplaintRegister() {
         }));
     };
 
-    {/*const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, checked } = e.target;
-        if (checked) {
-            setFormData(prevState => ({
-                ...prevState,
-                violenceTypes: [...prevState.violenceTypes, name]
-            }));
-        } else {
-            setFormData(prevState => ({
-                ...prevState,
-                violenceTypes: prevState.violenceTypes.filter(type => type !== name)
-            }));
-        }
-    };*/}
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -44,11 +29,12 @@ export default function ComplaintRegister() {
                 console.log('Dados enviados com sucesso!');
                 // Limpar o formulário após o envio bem-sucedido, se necessário
                 setFormData({
-                    tipo: '',
-                    local: '',
+                    tipo: "",
+                    local: "",
                     cep: undefined,
-                    relato: '',
-                    geolocation: null
+                    relato: "",
+                    referencia: "",
+                    geolocation: null,
                 });
             } else {
                 console.error('Erro ao enviar os dados');
@@ -59,7 +45,6 @@ export default function ComplaintRegister() {
     };
 
     return (
-
         <AuthenticatedLayout>
             <div className="mx-4 md:mx-20 lg:mx-40 my-10 md:my-20 px-4 md:px-10 lg:px-16 py-8 md:py-11 space-y-8 md:space-y-12 border-black border-2 rounded-lg">
                 <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl">Cadastro de Nova Denúncia</h2>
@@ -105,10 +90,9 @@ export default function ComplaintRegister() {
                         <select
                             onChange={handleChange}
                             name="sexo"
-                            className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
+                            className="none border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
                             required
                         >
-
                             <option value="" disabled selected>Selecione</option>
                             <option value="CVLI">CVLI</option>
                             <option value="MVI">MVI</option>
@@ -148,8 +132,7 @@ export default function ComplaintRegister() {
                                 name="sexo"
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
                             >
-
-                                <option value="" selected>Selecione</option>
+                                <option value="" disabled selected>Selecione</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Feminino">Feminino</option>
                                 <option value="Outro">Outro</option>
@@ -186,8 +169,7 @@ export default function ComplaintRegister() {
                                 name="sexo"
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
                             >
-
-                                <option value="" selected>Selecione</option>
+                                <option value="" disabled selected>Selecione</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Feminino">Feminino</option>
                                 <option value="Outro">Outro</option>

@@ -6,10 +6,10 @@ import { useForm } from "../../contexts/ComplaintFormContext"
 const api_key = import.meta.env.VITE_REACT_GOOGLE_MAPS_KEY
 
 interface ComplaintAdressProps {
-    type: any
+    type: typeof GooglePlacesAutocomplete;
 }
 
-export default function ComplaintAdress({type}:ComplaintAdressProps) {
+export default function ComplaintAdress({type}: ComplaintAdressProps,) {
     const { setFormData } = useForm()
 
     const [value, setValue] = useState<SingleValue<Option> | null>(null);
@@ -48,7 +48,6 @@ export default function ComplaintAdress({type}:ComplaintAdressProps) {
             }
         })
         console.log(place, type)
-        
     }
     
     
