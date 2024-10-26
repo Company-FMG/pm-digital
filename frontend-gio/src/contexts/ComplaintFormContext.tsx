@@ -14,6 +14,7 @@ interface FormData {
     local: string;
     cep: string | undefined;
     relato: string;
+    referencia: string;
     geolocation: {lat: number, lng: number} | null;
 }
 
@@ -21,10 +22,11 @@ const FormContext = createContext<ComplaintFormContextProps | undefined>(undefin
 
 export const FormProvider = ({children}:FormProviderProps) => {
     const [formData, setFormData] = useState<FormData>({
+        tipo: "",
         local: "",
         cep: undefined,
         relato: "",
-        tipo: "",
+        referencia: "",
         geolocation: null,
     });
 
