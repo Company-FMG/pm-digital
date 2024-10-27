@@ -9,13 +9,33 @@ interface FormProviderProps {
     children: React.ReactNode;
 }
 
+interface Geolocation {
+    lat: number;
+    lng: number;
+}
+
+interface Vitima {
+    nome: string;
+    sexo: string;
+    idade: number;
+}
+
+interface Suspeito {
+    nome: string;
+    sexo: string;
+    idade: number;
+    descricao: string;
+}
+
 interface FormData {
     tipo: string;
     local: string;
     cep: string | undefined;
     relato: string;
     referencia: string;
-    geolocation: {lat: number, lng: number} | null;
+    geolocation: Geolocation | null;
+    vitima: Vitima | null;
+    suspeito: Suspeito | null;
 }
 
 const FormContext = createContext<ComplaintFormContextProps | undefined>(undefined)
@@ -28,6 +48,8 @@ export const FormProvider = ({children}:FormProviderProps) => {
         relato: "",
         referencia: "",
         geolocation: null,
+        vitima: null,
+        suspeito: null
     });
 
     return (
