@@ -5,16 +5,14 @@ import { SingleValue } from "react-select"
 import { useForm } from "../../contexts/ComplaintFormContext"
 const api_key = import.meta.env.VITE_REACT_GOOGLE_MAPS_KEY
 
-interface ComplaintAdressProps {
-    type: typeof GooglePlacesAutocomplete;
-}
 
-export default function ComplaintAdress({type}: ComplaintAdressProps,) {
+
+export default function ComplaintAdress() {
     const { setFormData } = useForm()
 
     const [value, setValue] = useState<SingleValue<Option> | null>(null);
 
-    const getLatAndLng = (place: SingleValue<Option> | null, type: any):void => {
+    const getLatAndLng = (place: SingleValue<Option> | null ):void => {
         if (!place) {
             return;
         }
@@ -32,7 +30,7 @@ export default function ComplaintAdress({type}: ComplaintAdressProps,) {
                 const lat = place.geometry.location.lat();
                 const lng = place.geometry.location.lng();
                 const desc = place.formatted_address
-                const postalCode = place.address_components?.find(c => c.types.includes('postal_code'))?.short_name
+                const postalCode = place.address_components?.find((c) => c.types.includes('postal_code'))?.short_name
 
                 setFormData((prevState) => ({
                     ...prevState,
@@ -47,9 +45,8 @@ export default function ComplaintAdress({type}: ComplaintAdressProps,) {
                 console.log(postalCode)
             }
         })
-        console.log(place, type)
+        console.log(place)
     }
-    
     
     return (
         <>
@@ -59,18 +56,17 @@ export default function ComplaintAdress({type}: ComplaintAdressProps,) {
                 selectProps={{
                     value,
                     onChange: (place) => {
-                        
                         if (!place) {
-                            // Se o endereço for limpo, também limpa o CEP
                             setFormData((prevState) => ({
                                 ...prevState,
-                                cep: undefined, // Limpa o CEP
-                                endereco: "",   // Limpa o endereço
+                                cep: undefined,
+                                local: "", 
                             }));
                         } else {
-                            getLatAndLng(place, type);
+                            getLatAndLng(place);
                         }
-                        setValue(place)},
+                        setValue(place)
+                    },
                     placeholder: "Ex: Avenida Dois Rios, Ibura...",
                     isClearable: true,
                     required: true,
