@@ -1,7 +1,6 @@
 import axios from "axios";
 import AuthenticatedLayout from "../layouts/AuthenticatedLayout";
 import ComplaintAdress from "../components/complaint/ComplaintAdress";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { useForm } from "../contexts/ComplaintFormContext";
 
 export default function ComplaintRegister() {
@@ -35,6 +34,8 @@ export default function ComplaintRegister() {
                     relato: "",
                     referencia: "",
                     geolocation: null,
+                    vitima: null,
+                    suspeito: null
                 });
             } else {
                 console.error('Erro ao enviar os dados');
@@ -55,7 +56,7 @@ export default function ComplaintRegister() {
                             <div className="flex flex-row">
                                 <label className="mb-4 block">Endereço</label><span className="text-rose-600 font-bold">*</span>
                             </div>
-                            <ComplaintAdress type={GooglePlacesAutocomplete} />
+                            <ComplaintAdress />
                         </div>
                         <div className="w-full">
                             <label className="mb-4 block">CEP</label>
@@ -77,7 +78,7 @@ export default function ComplaintRegister() {
                         <textarea
                             onChange={handleChange}
                             required
-                            name="situacaoInformada"
+                            name="relato"
                             placeholder="Digite aqui..."
                             className="w-full text-justify bg-grey-custom border-black border-2 rounded-lg px-7 py-6 pb-20 placeholder:italic"
                         />
@@ -89,11 +90,12 @@ export default function ComplaintRegister() {
                         </div>
                         <select
                             onChange={handleChange}
-                            name="sexo"
+                            name="tipo"
+                            defaultValue=""
                             className="none border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
                             required
                         >
-                            <option value="" disabled selected>Selecione</option>
+                            <option value="" disabled>Selecione</option>
                             <option value="CVLI">CVLI</option>
                             <option value="MVI">MVI</option>
                             <option value="VFDCM">VDFCM</option>
@@ -106,7 +108,7 @@ export default function ComplaintRegister() {
                     <div className="w-full">
                         <label className="mb-4 block">Ponto de referência</label>
                         <input
-                            name="status"
+                            name="referencia"
                             onChange={handleChange}
                             type="text"
                             placeholder="Ex: Próximo ao posto de saúde"
@@ -119,7 +121,7 @@ export default function ComplaintRegister() {
                             <label className="mb-4 block">Nome da vítima</label>
                             <input
                                 onChange={handleChange}
-                                name="nome-vitima"
+                                name="vitima.nome"
                                 type="text"
                                 placeholder="Ex: Maria Bezerra"
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full placeholder:italic"
@@ -129,10 +131,11 @@ export default function ComplaintRegister() {
                             <label className="mb-4 block">Sexo</label>
                             <select
                                 onChange={handleChange}
-                                name="sexo"
+                                name="vitima.sexo"
+                                defaultValue=""
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
                             >
-                                <option value="" disabled selected>Selecione</option>
+                                <option value="" disabled>Selecione</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Feminino">Feminino</option>
                                 <option value="Outro">Outro</option>
@@ -143,7 +146,7 @@ export default function ComplaintRegister() {
                             <label className="mb-4 block">Idade</label>
                             <input
                                 onChange={handleChange}
-                                name="idade"
+                                name="vitima.idade"
                                 type="number"
                                 placeholder="Ex: 32"
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
@@ -156,9 +159,9 @@ export default function ComplaintRegister() {
                             <label className="mb-4 block">Pessoa suspeita</label>
                             <input
                                 onChange={handleChange}
-                                name="nome-vitima"
+                                name="suspeito.nome"
                                 type="text"
-                                placeholder="Ex: Maria Bezerra"
+                                placeholder="Ex: João Silva"
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full placeholder:italic"
                             />
                         </div>
@@ -166,10 +169,11 @@ export default function ComplaintRegister() {
                             <label className="mb-4 block">Sexo</label>
                             <select
                                 onChange={handleChange}
-                                name="sexo"
+                                name="suspeito.sexo"
+                                defaultValue=""
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
                             >
-                                <option value="" disabled selected>Selecione</option>
+                                <option value="" disabled>Selecione</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Feminino">Feminino</option>
                                 <option value="Outro">Outro</option>
@@ -180,7 +184,7 @@ export default function ComplaintRegister() {
                             <label className="mb-4 block">Idade</label>
                             <input
                                 onChange={handleChange}
-                                name="idade"
+                                name="suspeito.idade"
                                 type="number"
                                 placeholder="Ex: 32"
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
@@ -192,7 +196,7 @@ export default function ComplaintRegister() {
                         <label className="mb-4 block">Descrição da pessoa suspeita</label>
                         <textarea
                             onChange={handleChange}
-                            name="infoCena"
+                            name="suspeito.descricao"
                             placeholder="Digite aqui..."
                             className="w-full text-justify bg-grey-custom border-black border-2 rounded-lg px-7 py-6 pb-20 placeholder:italic"
                         />
