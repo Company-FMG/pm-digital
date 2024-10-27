@@ -13,6 +13,7 @@ export default {
       colors: {
         'bluemike': '#1A23F1',
         'red': '#FC9697',
+        'grey-custom': '#F5F5F5',
       },
       width: {
         'map-mdW': '29rem',
