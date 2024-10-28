@@ -18,7 +18,7 @@ export default function ComplaintRegister() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:8080/api/denuncias', formData, {
+            const response = await axios.post('http://localhost:8080/denuncias', formData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

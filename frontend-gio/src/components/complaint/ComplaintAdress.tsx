@@ -52,6 +52,7 @@ export default function ComplaintAdress() {
         <>
             <GooglePlacesAutocomplete
                 apiKey={api_key}
+                
                 apiOptions={{ language: 'pt-BR', region: 'BR' }}
                 selectProps={{
                     value,
@@ -70,6 +71,7 @@ export default function ComplaintAdress() {
                     placeholder: "Ex: Avenida Dois Rios, Ibura...",
                     isClearable: true,
                     required: true,
+                    name: "local",
                     className: "border-black bg-grey-custom border-2 rounded-lg px-7 py-3 placeholder:italic",
                     components: {
                         DropdownIndicator: () => null

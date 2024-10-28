@@ -33,9 +33,9 @@ interface FormData {
     cep: string | undefined;
     relato: string;
     referencia: string;
-    geolocation: Geolocation | null;
-    vitima: Vitima | null;
-    suspeito: Suspeito | null;
+    geolocation?: Geolocation | null;
+    vitima?: Vitima | null;
+    suspeito?: Suspeito | null;
 }
 
 const FormContext = createContext<ComplaintFormContextProps | undefined>(undefined)
@@ -48,8 +48,17 @@ export const FormProvider = ({children}:FormProviderProps) => {
         relato: "",
         referencia: "",
         geolocation: null,
-        vitima: null,
-        suspeito: null
+        vitima: {
+            nome: "",
+            sexo: "",
+            idade: 0
+        },
+        suspeito: {
+            nome: "",
+            sexo: "",
+            idade: 0,
+            descricao: ""
+        }
     });
 
     return (
