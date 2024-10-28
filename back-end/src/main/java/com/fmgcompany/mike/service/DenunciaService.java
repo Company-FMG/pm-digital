@@ -42,10 +42,9 @@ public class DenunciaService {
             throw new RuntimeException("Denúncia não encontrada");
         } else {
             Denuncia denuncia = denunciaOptional.get();
-            denuncia.setTipo_violencia(denunciaAtualizada.getTipo_violencia());
+            denuncia.setTipo(denunciaAtualizada.getTipo());
             denuncia.setRelato(denunciaAtualizada.getRelato());
             denuncia.setLocal(denunciaAtualizada.getLocal());
-            denuncia.setN_local(denunciaAtualizada.getN_local());
             denuncia.setCep(denunciaAtualizada.getCep());
             denuncia.setStatus(denunciaAtualizada.getStatus());
 
