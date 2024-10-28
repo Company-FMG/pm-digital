@@ -36,4 +36,8 @@ public class Denuncia {
 
     @ManyToOne
     private Despachante despachante;
+
+    @OneToOne
+    @JoinColumn(name = "geolocation_id", referencedColumnName = "id")
+    private Geolocation geolocation;
 }
