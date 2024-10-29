@@ -1,5 +1,6 @@
 package com.fmgcompany.mike.controller;
 
+import com.fmgcompany.mike.dto.DenunciaDTO;
 import com.fmgcompany.mike.model.Denuncia;
 import com.fmgcompany.mike.model.Status;
 import com.fmgcompany.mike.model.Suspeito;
@@ -27,7 +28,7 @@ public class DenunciaController {
     private SuspeitoService suspeitoService;
 
     @GetMapping
-    public List<Denuncia> listaDenuncias() {
+    public List<DenunciaDTO> listaDenuncias() {
         return denunciaService.listaDenuncias();
     }
 
@@ -46,10 +47,10 @@ public class DenunciaController {
         return denunciaService.criaDenuncia(denuncia);
     }
 
-    @PutMapping("/{id}")
-    public Object atualizaDenuncia(@PathVariable UUID id, @RequestBody Denuncia denunciaAtualizada) {
-        return this.denunciaService.atualizaDenuncia(id, denunciaAtualizada);
-    }
+//    @PutMapping("/{id}")
+//    public Object atualizaDenuncia(@PathVariable UUID id, @RequestBody Denuncia denunciaAtualizada) {
+//        return this.denunciaService.atualizaDenuncia(id, denunciaAtualizada);
+//    }
 
     @PutMapping("/{id}/{idVitima}")
     public ResponseEntity<Vitima> atribuirVitima(@PathVariable UUID id, @PathVariable UUID idVitima){

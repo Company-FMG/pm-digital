@@ -17,6 +17,8 @@ public class Geolocation {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    private String local;
+    private String cep;
     private double lat;
     private double lng;
 

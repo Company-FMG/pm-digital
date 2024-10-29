@@ -19,8 +19,6 @@ public class Denuncia {
     private UUID id;
     private String tipo;
     private String relato;
-    private String local;
-    private String cep;
     private String referencia;
 
     @Enumerated(EnumType.STRING)
