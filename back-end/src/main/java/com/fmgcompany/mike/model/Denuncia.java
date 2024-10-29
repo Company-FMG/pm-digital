@@ -17,11 +17,11 @@ public class Denuncia {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String tipo_violencia;
+    private String tipo;
     private String relato;
     private String local;
-    private int n_local;
     private String cep;
+    private String referencia;
 
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -36,4 +36,8 @@ public class Denuncia {
 
     @ManyToOne
     private Despachante despachante;
+
+    @OneToOne
+    @JoinColumn(name = "geolocation_id", referencedColumnName = "id")
+    private Geolocation geolocation;
 }

@@ -39,28 +39,30 @@ export default function Home() {
 
     return (
         <AuthenticatedLayout>
-            <div className="grid grid-cols-2 justify-items-center px-40 gap-y-20">
-                <div className="overflow-auto border-4 rounded-lg border-gray-200 px-10 py-8 space-y-8">
-                    <div className="flex justify-between items-center">
-                        <h3 className="font-poppins font-bold text-bluemike text-xl">Novas Denúncias</h3>
-                        <button onClick={() => navigate('/newcomplaint')} className="bg-bluemike text-white h-10 w-10 text-5xl rounded-full flex items-center pb-3 justify-center">+</button>
-                    </div>
-                    {complaints.filter(complaint => complaint.status === "EM_ABERTO").map((complaint, index) => (
-                        <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo_violencia} endereco={complaint.local} />
-                    ))}
-                </div>
-                <div className="overflow-auto border-4 rounded-lg border-gray-200 px-10 py-8 space-y-8">
-                    <h3 className="font-poppins font-bold text-bluemike text-xl">Ocorrências em andamento</h3>
-                    {complaints.filter(complaint => complaint.status === "EM_ANDAMENTO").map((complaint, index) => (
-                        <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo_violencia} endereco={complaint.local} />
-                    ))}
-                </div>
-                <div className="col-span-2 overflow-auto border-4 rounded-lg border-gray-200 px-10 py-8 space-y-8">
-                    <h3 className="font-poppins font-bold text-bluemike text-xl">Ocorrências finalizadas</h3>
-                    <div className="grid grid-cols-2 space-x-24">
-                        {complaints.filter(complaint => complaint.status === "FINALIZADA").map((complaint, index) => (
+            <div className="flex justify-center">
+                <div className="grid lg:grid-cols-2 grid-cols-1 justify-items-center xl:max-w-6xl gap-20 lg:max-w-4xl md:max-w-lg max-w-xs">
+                    <div className="overflow-auto border-4 rounded-lg border-gray-200 px-10 py-8 space-y-8 w-full">
+                        <div className="flex justify-between items-center">
+                            <h3 className="font-poppins font-bold text-bluemike text-xl">Novas Denúncias</h3>
+                            <button onClick={() => navigate('/newcomplaint')} className="bg-bluemike text-white h-10 w-10 text-5xl rounded-full flex items-center pb-3 justify-center">+</button>
+                        </div>
+                        {complaints.filter(complaint => complaint.status === "EM_ABERTO").map((complaint, index) => (
                             <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo_violencia} endereco={complaint.local} />
                         ))}
+                    </div>
+                    <div className="overflow-auto border-4 rounded-lg border-gray-200 px-10 py-8 space-y-8 w-full">
+                        <h3 className="font-poppins font-bold text-bluemike text-xl">Ocorrências em andamento</h3>
+                        {complaints.filter(complaint => complaint.status === "EM_ANDAMENTO").map((complaint, index) => (
+                            <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo_violencia} endereco={complaint.local} />
+                        ))}
+                    </div>
+                    <div className="lg:col-span-2 col-span-1 overflow-auto border-4 rounded-lg border-gray-200 px-10 py-8 space-y-8 w-full">
+                        <h3 className="font-poppins font-bold text-bluemike text-xl">Ocorrências finalizadas</h3>
+                        <div className="grid lg:grid-cols-2 space-x-24">
+                            {complaints.filter(complaint => complaint.status === "FINALIZADA").map((complaint, index) => (
+                                <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo_violencia} endereco={complaint.local} />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
