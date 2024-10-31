@@ -1,9 +1,9 @@
 package com.fmgcompany.mike.service;
 
 import com.fmgcompany.mike.dto.DenunciaDTO;
-import com.fmgcompany.mike.model.Denuncia;
-import com.fmgcompany.mike.model.Status;
-import com.fmgcompany.mike.repository.DenunciaRepository;
+import com.fmgcompany.mike.mapper.DenunciaMapper;
+import com.fmgcompany.mike.model.*;
+import com.fmgcompany.mike.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,74 +16,84 @@ import java.util.stream.Collectors;
 public class DenunciaService {
     @Autowired
     private DenunciaRepository denunciaRepository;
+    @Autowired
+    private VitimaRepository vitimaRepository;
+    @Autowired
+    private SuspeitoRepository suspeitoRepository;
+    @Autowired
+    private GeolocationRepository geolocationRepository;
+    @Autowired
+    private DespachanteRepository despachanteRepository;
+    @Autowired
+    private DenunciaMapper denunciaMapper;
 
     //get
     public List<DenunciaDTO> listaDenuncias(){
         return this.denunciaRepository.findAll()
-                .stream().map(this::convertToDto)
+                .stream()
+                .map(denunciaMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
-    private DenunciaDTO convertToDto(Denuncia denuncia) {
-        DenunciaDTO denunciaDTO = new DenunciaDTO();
-
-        denunciaDTO.setIdDenuncia(denuncia.getId());
-        denunciaDTO.setTipo(denuncia.getTipo());
-        denunciaDTO.setRelato(denuncia.getRelato());
-        denunciaDTO.setReferencia(denuncia.getReferencia());
-
-        denunciaDTO.setIdVitima(denuncia.getVitima().getId());
-        denunciaDTO.setNomeVitima(denuncia.getVitima().getNome());
-        denunciaDTO.setSexoVitima(denuncia.getVitima().getSexo());
-        denunciaDTO.setIdadeVitima(denuncia.getVitima().getIdade());
-
-        denunciaDTO.setIdSuspeito(denuncia.getSuspeito().getId());
-        denunciaDTO.setNomeSuspeito(denuncia.getSuspeito().getNome());
-        denunciaDTO.setSexoSuspeito(denuncia.getSuspeito().getSexo());
-        denunciaDTO.setIdadeSuspeito(denuncia.getSuspeito().getIdade());
-        denunciaDTO.setDescricaoSuspeito(denuncia.getSuspeito().getDescricao());
-
-        denunciaDTO.setIdGeolocation(denuncia.getGeolocation().getId());
-        denunciaDTO.setLocal(denuncia.getGeolocation().getLocal());
-        denunciaDTO.setCep(denuncia.getGeolocation().getCep());
-        denunciaDTO.setLat(denuncia.getGeolocation().getLat());
-        denunciaDTO.setLng(denuncia.getGeolocation().getLng());
-
-        return denunciaDTO;
-    }
-
     //get
-    public Optional<Denuncia> buscaDenunciaPeloId(UUID id){
-        return  this.denunciaRepository.findById(id);
+    public Optional<DenunciaDTO> buscaDenunciaPeloId(UUID id){
+        return this.denunciaRepository.findById(id)
+                .map(denunciaMapper::toDTO);
     }
 
-    public List<Denuncia> filtroStatus(Status status){
-        return this.denunciaRepository.findByStatus(status);
+    public List<DenunciaDTO> filtroStatus(Status status){
+        return this.denunciaRepository.findByStatus(status)
+                .stream()
+                .map(denunciaMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     //set
-    public Denuncia criaDenuncia(Denuncia denuncia){
-        return this.denunciaRepository.save(denuncia);
+    public DenunciaDTO criaDenuncia(DenunciaDTO denunciaDTO){
+        Denuncia denuncia = denunciaMapper.toEntity(denunciaDTO);
+        Denuncia savedDenuncia = this.denunciaRepository.save(denuncia);
+        return denunciaMapper.toDTO(savedDenuncia);
     }
 
-    //put
-//    public Denuncia atualizaDenuncia(UUID id, Denuncia denunciaAtualizada){
-//        Optional<Denuncia> denunciaOptional = this.denunciaRepository.findById(id);
+//    //put
+//    public DenunciaDTO atualizaDenuncia(UUID id, DenunciaDTO denunciaDTO) {
+//        return this.denunciaRepository.findById(id)
+//                .map(denunciaExistente -> {
+//                    // Atualizar campos simples
+//                    denunciaExistente.setTipo(denunciaDTO.getTipo());
+//                    denunciaExistente.setRelato(denunciaDTO.getRelato());
+//                    denunciaExistente.setReferencia(denunciaDTO.getReferencia());
+//                    denunciaExistente.setStatus(denunciaDTO.getStatus());
 //
-//        if(denunciaOptional.isEmpty()){
-//            throw new RuntimeException("Denúncia não encontrada");
-//        } else {
-//            Denuncia denuncia = denunciaOptional.get();
-//            denuncia.setTipo(denunciaAtualizada.getTipo());
-//            denuncia.setRelato(denunciaAtualizada.getRelato());
-//            denuncia.setLocal(denunciaAtualizada.getLocal());
-//            denuncia.setCep(denunciaAtualizada.getCep());
-//            denuncia.setStatus(denunciaAtualizada.getStatus());
+//                    if (denunciaDTO.getIdVitima() != null) {
+//                        Vitima vitima = vitimaRepository.findById(denunciaDTO.getIdVitima())
+//                                .orElseThrow(() -> new RuntimeException("Vítima não encontrada"));
+//                        denunciaExistente.setVitima(vitima);
+//                    }
 //
-//            return this.denunciaRepository.save(denuncia);
-//        }
+//                    if (denunciaDTO.getIdSuspeito() != null) {
+//                        Suspeito suspeito = suspeitoRepository.findById(denunciaDTO.getIdSuspeito())
+//                                .orElseThrow(() -> new RuntimeException("Suspeito não encontrado"));
+//                        denunciaExistente.setSuspeito(suspeito);
+//                    }
+//
+//                    if (denunciaDTO.getIdDespachante() != null) {
+//                        Despachante despachante = despachanteRepository.findById(denunciaDTO.getIdDespachante())
+//                                .orElseThrow(() -> new RuntimeException("Despachante não encontrado"));
+//                        denunciaExistente.setDespachante(despachante);
+//                    }
+//
+//                    if (denunciaDTO.getIdGeolocation() != null) {
+//                        Geolocation geolocation = geolocationRepository.findById(denunciaDTO.getIdGeolocation())
+//                                .orElseThrow(() -> new RuntimeException("Geolocalização não encontrada"));
+//                        denunciaExistente.setGeolocation(geolocation);
+//                    }
+//
+//                    Denuncia denunciaAtualizada = this.denunciaRepository.save(denunciaExistente);
+//                    return denunciaMapper.toDTO(denunciaAtualizada);
+//                })
+//                .orElseThrow(() -> new RuntimeException("Denúncia não encontrada"));
 //    }
-
 
     //delete
     public void removeDenuncia(UUID id){
@@ -95,6 +105,5 @@ public class DenunciaService {
             this.denunciaRepository.deleteById(id);
         }
     }
-
-
 }
+
