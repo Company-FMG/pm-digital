@@ -1,0 +1,6 @@
+projectKey=seguranca-sonarqube
+serverUrl=http://localhost:9000
+serverVersion=10.7.0.96327
+dashboardUrl=http://localhost:9000/dashboard?id=seguranca-sonarqube
+ceTaskId=9c383246-7cc8-402f-a91f-9bf2f68e3585
+ceTaskUrl=http://localhost:9000/api/ce/task?id=9c383246-7cc8-402f-a91f-9bf2f68e3585
