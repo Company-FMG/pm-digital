@@ -31,7 +31,7 @@ dist-ssr
 out/
 
 # Java-specific files and directories
-/target/
+target/
 /*.jar
 /*.war
 /*.ear
