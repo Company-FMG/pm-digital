@@ -1,18 +1,17 @@
 package com.fmgcompany.mike.controller;
 
+import com.fmgcompany.mike.config.TokenService;
 import com.fmgcompany.mike.dto.DenunciaDTO;
-import com.fmgcompany.mike.model.Denuncia;
-import com.fmgcompany.mike.model.Status;
-import com.fmgcompany.mike.model.Suspeito;
-import com.fmgcompany.mike.model.Vitima;
+import com.fmgcompany.mike.model.*;
+import com.fmgcompany.mike.repository.DespachanteRepository;
 import com.fmgcompany.mike.service.DenunciaService;
 import com.fmgcompany.mike.service.SuspeitoService;
 import com.fmgcompany.mike.service.VitimaService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -26,6 +25,10 @@ public class DenunciaController {
     private VitimaService vitimaService;
     @Autowired
     private SuspeitoService suspeitoService;
+    @Autowired
+    private DespachanteRepository despachanteRepository;
+    @Autowired
+    private TokenService tokenService;
 
     @GetMapping
     public List<DenunciaDTO> listaDenuncias() {
@@ -43,8 +46,15 @@ public class DenunciaController {
     }
 
     @PostMapping
-    public Object criaDenuncia(@RequestBody Denuncia denuncia) {
-        return denunciaService.criaDenuncia(denuncia);
+    public Object criaDenuncia(@RequestBody Denuncia denuncia, @RequestHeader("Authorization") String token) {
+        String matricula = tokenService.extractMatricula(token.substring(7));
+        Despachante despachante = despachanteRepository.findByMatricula(matricula)
+                .orElseThrow(() -> new EntityNotFoundException("Despachante não encontrado"));
+
+        denuncia.setDespachante(despachante);
+        denunciaService.criaDenuncia(denuncia);
+
+        return ResponseEntity.ok(denuncia);
     }
 
 //    @PutMapping("/{id}")
