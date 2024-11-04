@@ -24,7 +24,7 @@ export default function ComplaintRegister() {
                 }
             });
 
-            if (response.status === 200) {
+            if (response.status === 201) {
                 console.log('Dados enviados com sucesso!');
                 // Limpar o formulário após o envio bem-sucedido, se necessário
                 setFormData({
@@ -34,8 +34,16 @@ export default function ComplaintRegister() {
                     relato: "",
                     referencia: "",
                     geolocation: null,
-                    vitima: null,
-                    suspeito: null
+                    nomeVitima: "",
+                    sexoVitima: "",
+                    idadeVitima: 0,
+                    nomeSuspeito: "",
+                    sexoSuspeito: "",
+                    idadeSuspeito: 0,
+                    descricaoSuspeito: "",
+                    status: "EM_ABERTO",
+                    lat: 0,
+                    lng: 0
                 });
             } else {
                 console.error('Erro ao enviar os dados');
@@ -121,7 +129,7 @@ export default function ComplaintRegister() {
                             <label className="mb-4 block">Nome da vítima</label>
                             <input
                                 onChange={handleChange}
-                                name="vitima.nome"
+                                name="nomeVitima"
                                 type="text"
                                 placeholder="Ex: Maria Bezerra"
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full placeholder:italic"
@@ -131,7 +139,7 @@ export default function ComplaintRegister() {
                             <label className="mb-4 block">Sexo</label>
                             <select
                                 onChange={handleChange}
-                                name="vitima.sexo"
+                                name="sexoVitima"
                                 defaultValue=""
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
                             >
@@ -146,7 +154,7 @@ export default function ComplaintRegister() {
                             <label className="mb-4 block">Idade</label>
                             <input
                                 onChange={handleChange}
-                                name="vitima.idade"
+                                name="idadeVitima"
                                 type="number"
                                 placeholder="Ex: 32"
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
@@ -159,7 +167,7 @@ export default function ComplaintRegister() {
                             <label className="mb-4 block">Pessoa suspeita</label>
                             <input
                                 onChange={handleChange}
-                                name="suspeito.nome"
+                                name="nomeSuspeito"
                                 type="text"
                                 placeholder="Ex: João Silva"
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full placeholder:italic"
@@ -169,7 +177,7 @@ export default function ComplaintRegister() {
                             <label className="mb-4 block">Sexo</label>
                             <select
                                 onChange={handleChange}
-                                name="suspeito.sexo"
+                                name="sexoSuspeito"
                                 defaultValue=""
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
                             >
@@ -184,7 +192,7 @@ export default function ComplaintRegister() {
                             <label className="mb-4 block">Idade</label>
                             <input
                                 onChange={handleChange}
-                                name="suspeito.idade"
+                                name="idadeSuspeito"
                                 type="number"
                                 placeholder="Ex: 32"
                                 className="border-black bg-grey-custom border-2 rounded-lg px-7 py-3 w-full"
@@ -196,7 +204,7 @@ export default function ComplaintRegister() {
                         <label className="mb-4 block">Descrição da pessoa suspeita</label>
                         <textarea
                             onChange={handleChange}
-                            name="suspeito.descricao"
+                            name="descricaoSuspeito"
                             placeholder="Digite aqui..."
                             className="w-full text-justify bg-grey-custom border-black border-2 rounded-lg px-7 py-6 pb-20 placeholder:italic"
                         />

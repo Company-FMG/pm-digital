@@ -5,8 +5,6 @@ import { SingleValue } from "react-select"
 import { useForm } from "../../contexts/ComplaintFormContext"
 const api_key = import.meta.env.VITE_REACT_GOOGLE_MAPS_KEY
 
-
-
 export default function ComplaintAdress() {
     const { setFormData } = useForm()
 
@@ -34,9 +32,10 @@ export default function ComplaintAdress() {
 
                 setFormData((prevState) => ({
                     ...prevState,
-                    geolocation: { lat, lng },
                     local: desc ?? prevState.local,
                     cep: postalCode?? prevState.cep,
+                    lat: lat,
+                    lng: lng
                 }));
 
                 console.log(lat)
