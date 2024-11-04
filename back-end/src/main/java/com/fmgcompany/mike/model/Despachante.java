@@ -24,6 +24,6 @@ public class Despachante {
     private String email;
     private String senha;
 
-    @OneToMany(mappedBy = "despachante")
-    private List<Denuncia> denuncias;
+//    @OneToMany(mappedBy = "despachante")
+//    private List<Denuncia> denuncias;
 }

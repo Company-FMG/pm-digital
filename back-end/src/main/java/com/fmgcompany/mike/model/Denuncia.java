@@ -24,18 +24,18 @@ public class Denuncia {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vitima_id", referencedColumnName = "id")
     private Vitima vitima;
-
-    @OneToOne
-    @JoinColumn(name = "suspeito_id",referencedColumnName = "id")
-    private Suspeito suspeito;
 
     @ManyToOne
     private Despachante despachante;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "suspeito_id",referencedColumnName = "id")
+    private Suspeito suspeito;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "geolocation_id", referencedColumnName = "id")
     private Geolocation geolocation;
 }
