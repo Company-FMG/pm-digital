@@ -1,6 +1,7 @@
 package com.fmgcompany.mike.controller;
 
 import com.fmgcompany.mike.dto.DenunciaDTO;
+import com.fmgcompany.mike.mapper.DenunciaMapper;
 import com.fmgcompany.mike.model.Denuncia;
 import com.fmgcompany.mike.model.Status;
 import com.fmgcompany.mike.model.Suspeito;
@@ -9,6 +10,7 @@ import com.fmgcompany.mike.service.DenunciaService;
 import com.fmgcompany.mike.service.SuspeitoService;
 import com.fmgcompany.mike.service.VitimaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +28,8 @@ public class DenunciaController {
     private VitimaService vitimaService;
     @Autowired
     private SuspeitoService suspeitoService;
+    @Autowired
+    private DenunciaMapper denunciaMapper;
 
     @GetMapping
     public List<DenunciaDTO> listaDenuncias() {
@@ -33,18 +37,20 @@ public class DenunciaController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Denuncia> buscaDenunciaPeloId(@PathVariable UUID id) {
-        return this.denunciaService.buscaDenunciaPeloId(id);
+    public ResponseEntity<DenunciaDTO> buscaDenunciaPeloId(@PathVariable UUID id) {
+        Optional<DenunciaDTO> denunciaDTO = this.denunciaService.buscaDenunciaPeloId(id);
+        return denunciaDTO.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/filter")
-    public List<Denuncia> filtroStatus(@RequestParam Status status) {
+    public List<DenunciaDTO> filtroStatus(@RequestParam Status status) {
         return this.denunciaService.filtroStatus(status);
     }
 
     @PostMapping
-    public Object criaDenuncia(@RequestBody Denuncia denuncia) {
-        return denunciaService.criaDenuncia(denuncia);
+    public ResponseEntity<DenunciaDTO> criaDenuncia(@RequestBody DenunciaDTO denunciaDTO) {
+        DenunciaDTO createdDenuncia = denunciaService.criaDenuncia(denunciaDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdDenuncia);
     }
 
 //    @PutMapping("/{id}")
@@ -52,47 +58,47 @@ public class DenunciaController {
 //        return this.denunciaService.atualizaDenuncia(id, denunciaAtualizada);
 //    }
 
-    @PutMapping("/{id}/{idVitima}")
-    public ResponseEntity<Vitima> atribuirVitima(@PathVariable UUID id, @PathVariable UUID idVitima){
-        Optional<Vitima> vitima = this.vitimaService.findById(idVitima);
-        Optional<Denuncia> denuncia = this.denunciaService.buscaDenunciaPeloId(id);
-        if(vitima.isPresent()){
-            if(denuncia.isPresent()){
-                Vitima v = vitima.get();
-                Denuncia d = denuncia.get();
-                v.setDenuncia(d);
-                d.setVitima(v);
-                this.denunciaService.criaDenuncia(d);
-                return ResponseEntity.ok(this.vitimaService.save(v));
-            }else{
-                return ResponseEntity.notFound().build();
-
-            }
-        }else {
-            return ResponseEntity.notFound().build();
-        }
-
-    }
-
-    @PutMapping("/{id}/{idSuspeito}")
-    public ResponseEntity<Suspeito> atribuirSuspeito(@PathVariable UUID id, @PathVariable UUID idSuspeito){
-        Optional<Suspeito> suspeito = this.suspeitoService.findById(idSuspeito);
-        Optional<Denuncia> denuncia = this.denunciaService.buscaDenunciaPeloId(id);
-        if(suspeito.isPresent()){
-            if(denuncia.isPresent()){
-                Denuncia d = denuncia.get();
-                Suspeito s = suspeito.get();
-                d.setSuspeito(s);
-                s.setDenuncia(d);
-                this.denunciaService.criaDenuncia(d);
-                return ResponseEntity.ok(this.suspeitoService.save(s));
-            }else{
-                return ResponseEntity.notFound().build();
-            }
-        }else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @PutMapping("/{id}/{idVitima}")
+//    public ResponseEntity<Vitima> atribuirVitima(@PathVariable UUID id, @PathVariable UUID idVitima){
+//        Optional<Vitima> vitima = this.vitimaService.findById(idVitima);
+//        Optional<Denuncia> denuncia = this.denunciaService.buscaDenunciaPeloId(id);
+//        if(vitima.isPresent()){
+//            if(denuncia.isPresent()){
+//                Vitima v = vitima.get();
+//                Denuncia d = denuncia.get();
+//                v.setDenuncia(d);
+//                d.setVitima(v);
+//                this.denunciaService.criaDenuncia(d);
+//                return ResponseEntity.ok(this.vitimaService.save(v));
+//            }else{
+//                return ResponseEntity.notFound().build();
+//
+//            }
+//        }else {
+//            return ResponseEntity.notFound().build();
+//        }
+//
+//    }
+//
+//    @PutMapping("/{id}/{idSuspeito}")
+//    public ResponseEntity<Suspeito> atribuirSuspeito(@PathVariable UUID id, @PathVariable UUID idSuspeito){
+//        Optional<Suspeito> suspeito = this.suspeitoService.findById(idSuspeito);
+//        Optional<Denuncia> denuncia = this.denunciaService.buscaDenunciaPeloId(id);
+//        if(suspeito.isPresent()){
+//            if(denuncia.isPresent()){
+//                Denuncia d = denuncia.get();
+//                Suspeito s = suspeito.get();
+//                d.setSuspeito(s);
+//                s.setDenuncia(d);
+//                this.denunciaService.criaDenuncia(d);
+//                return ResponseEntity.ok(this.suspeitoService.save(s));
+//            }else{
+//                return ResponseEntity.notFound().build();
+//            }
+//        }else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
 
     @DeleteMapping("/{id}")

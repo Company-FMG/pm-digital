@@ -14,18 +14,18 @@ interface Geolocation {
     lng: number;
 }
 
-interface Vitima {
-    nome: string;
-    sexo: string;
-    idade: number;
-}
+// interface Vitima {
+//     nomeVitima: string;
+//     sexoVitima: string;
+//     idadeVitima: number;
+// }
 
-interface Suspeito {
-    nome: string;
-    sexo: string;
-    idade: number;
-    descricao: string;
-}
+// interface Suspeito {
+//     nomeSuspeito: string;
+//     sexoSuspeito: string;
+//     idadeSuspeito: number;
+//     descricaoSuspeito: string;
+// }
 
 interface FormData {
     tipo: string;
@@ -34,8 +34,16 @@ interface FormData {
     relato: string;
     referencia: string;
     geolocation?: Geolocation | null;
-    vitima?: Vitima | null;
-    suspeito?: Suspeito | null;
+    nomeVitima: string | undefined;
+    sexoVitima: string | undefined;
+    idadeVitima: number | undefined;
+    nomeSuspeito: string | undefined;
+    sexoSuspeito: string | undefined;
+    idadeSuspeito: number | undefined;
+    descricaoSuspeito: string | undefined;
+    status: string;
+    lat: number;
+    lng: number;
 }
 
 const FormContext = createContext<ComplaintFormContextProps | undefined>(undefined)
@@ -48,17 +56,16 @@ export const FormProvider = ({children}:FormProviderProps) => {
         relato: "",
         referencia: "",
         geolocation: null,
-        vitima: {
-            nome: "",
-            sexo: "",
-            idade: 0
-        },
-        suspeito: {
-            nome: "",
-            sexo: "",
-            idade: 0,
-            descricao: ""
-        }
+        nomeVitima: "",
+        sexoVitima: "",
+        idadeVitima: 0,
+        nomeSuspeito: "",
+        sexoSuspeito: "",
+        idadeSuspeito: 0,
+        descricaoSuspeito: "",
+        status: "EM_ABERTO",
+        lat: 0,
+        lng: 0
     });
 
     return (

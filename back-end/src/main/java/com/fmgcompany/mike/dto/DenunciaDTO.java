@@ -1,5 +1,6 @@
 package com.fmgcompany.mike.dto;
 
+import com.fmgcompany.mike.model.Status;
 import lombok.Data;
 
 import java.util.UUID;
@@ -11,18 +12,17 @@ public class DenunciaDTO {
     private String relato;
     private String referencia;
 
-    private UUID idVitima;
+    private Status status;
+
     private String nomeVitima;
     private String sexoVitima;
     private int idadeVitima;
 
-    private UUID idSuspeito;
     private String nomeSuspeito;
     private String sexoSuspeito;
     private int idadeSuspeito;
     private String descricaoSuspeito;
 
-    private UUID idGeolocation;
     private String local;
     private String cep;
     private double lat;
