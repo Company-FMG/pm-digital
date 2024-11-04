@@ -9,7 +9,10 @@ const usePolling = (url, interval) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(url);
-        setData(response.data);
+        
+        if (JSON.stringify(response.data) !== JSON.stringify(data)) {
+          setData(response.data);
+        }
       } catch (err) {
         setError(err);
       }
@@ -19,7 +22,7 @@ const usePolling = (url, interval) => {
     const id = setInterval(fetchData, interval);
 
     return () => clearInterval(id);
-  }, [url, interval]);
+  }, [url, interval, data]);
 
   return { data, error };
 };

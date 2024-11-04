@@ -11,8 +11,9 @@ export default function AlertaOcorrenciaMike() {
   const { setShowMap } = useMap();
   const [latestDenuncia, setLatestDenuncia] = useState(null);
 
+
   const { data: denuncias } = usePolling(
-    "https://mike-back-pi4.onrender.com/api/denuncias",
+    "http://localhost:8080/denuncias",
     5000
   );
 
@@ -21,6 +22,7 @@ export default function AlertaOcorrenciaMike() {
       const mostRecentDenuncia = denuncias[denuncias.length - 1];
       if (!latestDenuncia || mostRecentDenuncia.id !== latestDenuncia.id) {
         setLatestDenuncia(mostRecentDenuncia);
+
         setTimeout(() => {
           handleShow("alertaOcorrencia");
         }, 4000);
@@ -37,8 +39,9 @@ export default function AlertaOcorrenciaMike() {
       <div>
         <h1 className="text-xl font-bold">ALERTA DE OCORRÊNCIA</h1>
       </div>
-      <div>
-        <p>{latestDenuncia ? latestDenuncia.endereco : ""}</p>
+      <div className="flex gap-4">
+        <p className="font-bold">{latestDenuncia ? latestDenuncia.tipo : ""}</p>
+        <p>{latestDenuncia ? latestDenuncia.local : ""}</p>
       </div>
          
 
