@@ -4,6 +4,7 @@ import policialbg from "../assets/policialbg.png";
 import PMDigitalcomSlogan from "../assets/PM Digital com Slogan.svg";
 import PublicSafety from "../assets/Public Safety(1).png";
 import Secure from "../assets/Secure(1).png"; 
+import axios from "axios";
 
 interface ImageProps {
   src: string;
@@ -21,12 +22,27 @@ export default function Login() {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Lógica de autenticação simulada
-    if (matricula === 'user' && senha === 'password') {
-      localStorage.setItem('authToken', 'fakeToken');
-      navigate('/home');
-    } else {
-      alert('Matrícula ou senha inválida');
+
+    try {
+      const response = await axios.post('http://localhost:8080/despachantes/login', {matricula, senha}, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.status === 200) {
+          console.log('Dados recebidos com sucesso!: ', response.data);
+
+          localStorage.setItem('authToken', response.data.jwt);
+          localStorage.setItem('nome', response.data.nome);
+          navigate('/home');
+      } else if(response.status === 401) {
+          alert('Usuário ou senha inválidos');
+      } else {
+          console.error('Erro ao receber os dados: ', response.status);
+      }
+    } catch (error) {
+        console.error('Erro:', error);
     }
   };
 
