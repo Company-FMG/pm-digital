@@ -71,7 +71,7 @@ export default function ComplaintAdress() {
                     isClearable: true,
                     required: true,
                     name: "local",
-                    className: "border-black bg-grey-custom border-2 rounded-lg px-7 py-3 placeholder:italic",
+                    className: "border-black bg-grey-custom border-2 rounded-lg px-7 py-2 placeholder:italic",
                     components: {
                         DropdownIndicator: () => null
                     },
@@ -100,7 +100,7 @@ export default function ComplaintAdress() {
                         placeholder: (provided => ({
                             ...provided,
                             color: '#9ca3af',
-                            fontStyle: 'italic'
+                            fontStyle: 'italic',
                         }))
                     }
                 }}
