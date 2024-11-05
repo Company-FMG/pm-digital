@@ -23,7 +23,7 @@ public class TokenService {
 
             String token = JWT.create()
                     .withIssuer("login-auth-api")
-                    .withSubject(user.getEmail())
+                    .withSubject(user.getMatricula())
                     .withExpiresAt(this.generateExpirationDate())
                     .sign(algorithm);
             return token;
@@ -41,22 +41,7 @@ public class TokenService {
                     .verify(token)
                     .getSubject();
         } catch (JWTVerificationException exception) {
-            return null;
-        }
-    }
-
-    public String extractMatricula(String token) {
-        try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
-            DecodedJWT decodedJWT = JWT.require(algorithm)
-                    .withIssuer("login-auth-api")
-                    .build()
-                    .verify(token);
-
-            // Extrai o valor do campo "matricula" do token
-            return decodedJWT.getClaim("matricula").asString();
-        } catch (JWTVerificationException exception) {
-            throw new RuntimeException("Erro ao verificar o token", exception);
+            return "Erro:" + exception;
         }
     }
 

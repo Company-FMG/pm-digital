@@ -4,6 +4,7 @@ import com.fmgcompany.mike.dto.DenunciaDTO;
 import com.fmgcompany.mike.mapper.DenunciaMapper;
 import com.fmgcompany.mike.model.*;
 import com.fmgcompany.mike.repository.*;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,9 +50,14 @@ public class DenunciaService {
     }
 
     //set
-    public DenunciaDTO criaDenuncia(DenunciaDTO denunciaDTO){
+    public DenunciaDTO criaDenuncia(DenunciaDTO denunciaDTO, String matricula){
         Denuncia denuncia = denunciaMapper.toEntity(denunciaDTO);
+
+        Despachante despachante = despachanteRepository.findByMatricula(matricula).orElseThrow(() -> new RuntimeException("Despachante não encontrado"));
+        denuncia.setDespachante(despachante);
+        
         Denuncia savedDenuncia = this.denunciaRepository.save(denuncia);
+
         return denunciaMapper.toDTO(savedDenuncia);
     }
 

@@ -51,15 +51,12 @@ public class DenunciaController {
     }
 
     @PostMapping
-    public Object criaDenuncia(@RequestBody Denuncia denuncia, @RequestHeader("Authorization") String token) {
-        String matricula = tokenService.extractMatricula(token.substring(7));
-        Despachante despachante = despachanteRepository.findByMatricula(matricula)
-                .orElseThrow(() -> new EntityNotFoundException("Despachante não encontrado"));
+    public ResponseEntity<DenunciaDTO> criaDenuncia(@RequestBody DenunciaDTO denunciaDTO, @RequestHeader("Authorization") String token) {
+        String matricula = tokenService.validateToken(token.substring(7));
+        System.out.println(matricula);
 
-        denuncia.setDespachante(despachante);
-        denunciaService.criaDenuncia(denuncia);
-
-        return ResponseEntity.ok(denuncia);
+        DenunciaDTO createdDenuncia = denunciaService.criaDenuncia(denunciaDTO, matricula);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdDenuncia);
     }
 
 //    @PutMapping("/{id}")
