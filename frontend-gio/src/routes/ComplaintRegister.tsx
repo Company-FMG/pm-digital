@@ -2,9 +2,11 @@ import axios from "axios";
 import AuthenticatedLayout from "../layouts/AuthenticatedLayout";
 import ComplaintAdress from "../components/complaint/ComplaintAdress";
 import { useForm } from "../contexts/ComplaintFormContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ComplaintRegister() {
     const { formData, setFormData } = useForm();
+    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -46,6 +48,7 @@ export default function ComplaintRegister() {
                     lat: 0,
                     lng: 0
                 });
+                navigate("/home");
             } else {
                 console.error('Erro ao enviar os dados');
             }
