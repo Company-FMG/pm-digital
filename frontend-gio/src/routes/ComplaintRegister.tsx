@@ -20,7 +20,8 @@ export default function ComplaintRegister() {
         try {
             const response = await axios.post('http://localhost:8080/denuncias', formData, {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`
                 }
             });
 
