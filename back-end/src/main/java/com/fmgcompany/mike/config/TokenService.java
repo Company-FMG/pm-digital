@@ -6,6 +6,7 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fmgcompany.mike.model.Despachante;
+import com.fmgcompany.mike.model.Policial;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,22 @@ import java.time.ZoneOffset;
 public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
-    public String generateToken(Despachante user){
+    public String generateDespachanteToken(Despachante user){
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+
+            String token = JWT.create()
+                    .withIssuer("login-auth-api")
+                    .withSubject(user.getMatricula())
+                    .withExpiresAt(this.generateExpirationDate())
+                    .sign(algorithm);
+            return token;
+        } catch (JWTCreationException exception){
+            throw new RuntimeException("Error while authenticating");
+        }
+    }
+
+    public String generatePolicialToken(Policial user){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
 

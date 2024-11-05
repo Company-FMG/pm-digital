@@ -26,7 +26,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String path = request.getServletPath();
-        if ("/auth/login".equals(path) || "/auth/register".equals(path)) {
+        if ("/despachantes/login".equals(path) || "/despachantes/register".equals(path) || "/policiais/login".equals(path) || "/policiais/register".equals(path)) {
             filterChain.doFilter(request, response);
             return;
         }
