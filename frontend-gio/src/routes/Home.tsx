@@ -20,7 +20,12 @@ export default function Home() {
 
     const fetchComplaints = async () => {
         try {
-            const response = await axios.get<Complaint[]>('http://localhost:8080/denuncias');
+            const response = await axios.get<Complaint[]>('http://localhost:8080/denuncias', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                }
+            });
 
             if (response.status === 200) {
                 console.log('Dados recebidos com sucesso!: ', response.data);
