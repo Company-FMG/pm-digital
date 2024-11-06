@@ -12,7 +12,7 @@ export default function NavbarMike(){
 						<img alt="" className="w-4 sm:w-6 md:w-12 lg:w-12 rounded-full ring-4 ring-white ring-offset-4 ring-offset-bluemike" src="https://source.unsplash.com/40x40/?portrait?4" />
 				</a>
 				<div className="font-poppins text-xs sm:text-base md:text-sm lg:text-lg text-white">
-					<p>Rafael Martins</p>
+					<p>{localStorage.getItem('nome')}</p>
 					<p>COPOM</p>
 				</div>
 				</div>
