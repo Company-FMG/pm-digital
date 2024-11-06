@@ -26,7 +26,7 @@ function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
     <>
       <NavbarMike />
 
-      <main className='lg:pt-14 pt-10'>
+      <main className='lg:py-10 py-8'>
         {children}
       </main>
     </>

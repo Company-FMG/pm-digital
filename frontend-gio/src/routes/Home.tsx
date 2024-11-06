@@ -6,10 +6,9 @@ import AuthenticatedLayout from "../layouts/AuthenticatedLayout"
 
 interface Complaint {
     id: string;
-    tipo_violencia: string;
+    tipo: string;
     relato: string;
     local: string;
-    n_local: string;
     cep: string;
     status: string;
 }
@@ -45,27 +44,31 @@ export default function Home() {
     return (
         <AuthenticatedLayout>
             <div className="flex justify-center">
-                <div className="grid lg:grid-cols-2 grid-cols-1 justify-items-center xl:max-w-6xl gap-20 lg:max-w-4xl md:max-w-lg max-w-xs">
-                    <div className="overflow-auto border-4 rounded-lg border-gray-200 px-10 py-8 space-y-8 w-full">
+                <div className="grid lg:grid-cols-2 grid-cols-1 justify-items-center xl:max-w-4xl gap-8 lg:max-w-3xl md:max-w-lg max-w-xs">
+                    <div className="overflow-auto border-4 rounded-lg border-gray-200 px-8 py-6 space-y-8 w-full">
                         <div className="flex justify-between items-center">
-                            <h3 className="font-poppins font-bold text-bluemike text-xl">Novas Denúncias</h3>
-                            <button onClick={() => navigate('/newcomplaint')} className="bg-bluemike text-white h-10 w-10 text-5xl rounded-full flex items-center pb-3 justify-center">+</button>
+                            <h3 className="font-poppins font-bold text-bluemike text-lg">Novas Denúncias</h3>
+                            <button onClick={() => navigate('/newcomplaint')} className="bg-bluemike text-white font-medium h-8 w-8 text-3xl rounded-full flex items-center pb-2 justify-center">+</button>
                         </div>
+                        <div className="overflow-y-auto flex flex-col gap-4 h-96 pr-2">
                         {complaints.filter(complaint => complaint.status === "EM_ABERTO").map((complaint, index) => (
-                            <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo_violencia} endereco={complaint.local} />
+                            <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo} endereco={complaint.local} relato={complaint.relato} />
                         ))}
+                        </div>
                     </div>
-                    <div className="overflow-auto border-4 rounded-lg border-gray-200 px-10 py-8 space-y-8 w-full">
-                        <h3 className="font-poppins font-bold text-bluemike text-xl">Ocorrências em andamento</h3>
+                    <div className="overflow-auto border-4 rounded-lg border-gray-200 px-8 py-6 space-y-8 w-full">
+                        <h3 className="font-poppins font-bold text-bluemike text-lg">Ocorrências em andamento</h3>
+                        <div className="overflow-y-auto overscroll-auto flex flex-col gap-4 md:h-96 h-32">
                         {complaints.filter(complaint => complaint.status === "EM_ANDAMENTO").map((complaint, index) => (
-                            <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo_violencia} endereco={complaint.local} />
+                            <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo} endereco={complaint.local} relato={complaint.relato} />
                         ))}
+                        </div>
                     </div>
-                    <div className="lg:col-span-2 col-span-1 overflow-auto border-4 rounded-lg border-gray-200 px-10 py-8 space-y-8 w-full">
-                        <h3 className="font-poppins font-bold text-bluemike text-xl">Ocorrências finalizadas</h3>
-                        <div className="grid lg:grid-cols-2 space-x-24">
+                    <div className="lg:col-span-2 col-span-1 overflow-auto border-4 rounded-lg border-gray-200 px-8 py-6 space-y-8 w-full">
+                        <h3 className="font-poppins font-bold text-bluemike text-lg">Ocorrências finalizadas</h3>
+                        <div className="grid lg:grid-cols-2 gap-4 overflow-y-auto h-64 pr-2">
                             {complaints.filter(complaint => complaint.status === "FINALIZADA").map((complaint, index) => (
-                                <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo_violencia} endereco={complaint.local} />
+                                <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo} endereco={complaint.local} relato={complaint.relato} />
                             ))}
                         </div>
                     </div>

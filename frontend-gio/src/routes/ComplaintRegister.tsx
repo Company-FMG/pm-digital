@@ -69,26 +69,26 @@ export default function ComplaintRegister() {
 
     return (
         <AuthenticatedLayout>
-            <div className="mx-4 md:mx-20 lg:mx-40 mb-8 px-4 md:px-10 lg:px-16 py-8 md:py-11 space-y-8 md:space-y-8 border-black border-2 rounded-lg">
+            <div className="mx-4 md:mx-20 lg:mx-40 px-4 md:px-10 lg:px-16 py-8 md:py-11 space-y-8 md:space-y-7 border-black border-2 rounded-lg">
                 <h2 className="font-bold text-xl md:text-4xl lg:text-3xl">Cadastro de Nova Denúncia</h2>
 
-                <form onSubmit={handleSubmit} className="grid gap-4 md:gap-6 text-xl md:text-lg">
-                    <div className="grid md:grid-cols-2 gap-2">
-                        <div className="w-full">
+                <form onSubmit={handleSubmit} className="grid gap-4 md:gap-5 text-xl md:text-lg">
+                    <div className="flex flex-col md:flex-row gap-2">
+                        <div className="flex flex-col md:w-3/4">
                             <div className="flex flex-row">
-                                <label className="mb-2 block">Endereço</label><span className="text-rose-600 font-bold">*</span>
+                                <label className="mb-1 block">Endereço</label><span className="text-rose-600 font-bold">*</span>
                             </div>
                             <ComplaintAdress />
                         </div>
-                        <div className="w-full">
-                            <label className="mb-2 block">CEP</label>
+                        <div className="flex flex-col md:w-1/4">
+                            <label className="mb-1 block">CEP</label>
                             <input
                                 onChange={handleChange}
                                 name="cep"
                                 value={formData.cep || ""}
                                 type="text"
                                 placeholder="Ex: 50000-000"
-                                className={`border-2 rounded-lg bg-grey-custom px-5 py-2 w-full placeholder:italic ${
+                                className={`border-2 rounded-lg bg-grey-custom px-5 py-1 w-full placeholder:italic ${
                                     errors.cep ? "border-rose-600 focus:border-rose-600 outline-none" : "border-black"
                                 }`}                            />
                             {errors.cep && <span className="text-rose-600">{errors.cep}</span>}
@@ -97,27 +97,27 @@ export default function ComplaintRegister() {
 
                     <div className="w-full">
                         <div className="flex flex-row">
-                            <label className="mb-2 block">Relato</label><span className="text-rose-600 font-bold">*</span>
+                            <label className="mb-1 block">Relato</label><span className="text-rose-600 font-bold">*</span>
                         </div>
                         <textarea
                             onChange={handleChange}
                             required
                             name="relato"
                             placeholder="Digite aqui..."
-                            className="w-full text-justify resize-none bg-grey-custom border-black border-2 rounded-lg px-5 py-4 pb-6 placeholder:italic"
+                            className="w-full text-justify resize-none bg-grey-custom border-black border-2 rounded-lg px-5 py-3 pb-5 placeholder:italic"
                         />
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-2">
-                        <div className="w-full">
+                    <div className="flex flex-col md:flex-row gap-2">
+                        <div className="flex flex-col md:w-1/4">
                             <div className="flex flex-row">
-                                <label className="mb-2 block">Tipo de violência</label><span className="text-rose-600 font-bold">*</span>
+                                <label className="mb-1 block">Tipo de violência</label><span className="text-rose-600 font-bold">*</span>
                             </div>
                             <select
                                 onChange={handleChange}
                                 name="tipo"
                                 defaultValue=""
-                                className="none border-black bg-grey-custom border-2 rounded-lg px-5 py-2 w-full"
+                                className="none border-black bg-grey-custom border-2 rounded-lg px-5 py-1 h-full leading-tight"
                                 required
                             >
                                 <option value="" disabled>Selecione</option>
@@ -129,36 +129,36 @@ export default function ComplaintRegister() {
                                 <option value="Outros">Outros</option>
                             </select>
                         </div>
-                        <div className="w-full">
-                            <label className="mb-2 block">Ponto de referência</label>
+                        <div className="flex flex-col md:w-3/4">
+                            <label className="mb-1 block">Ponto de referência</label>
                             <input
                                 name="referencia"
                                 onChange={handleChange}
                                 type="text"
                                 placeholder="Ex: Próximo ao posto de saúde"
-                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-2 w-full placeholder:italic"
+                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-1 w-full placeholder:italic"
                             />
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-2">
-                        <div className="w-full">
-                            <label className="mb-2 block">Nome da vítima</label>
+                    <div className="flex flex-col md:flex-row gap-2">
+                        <div className="flex flex-col md:w-8/12">
+                            <label className="mb-1 block">Nome da vítima</label>
                             <input
                                 onChange={handleChange}
                                 name="nomeVitima"
                                 type="text"
                                 placeholder="Ex: Maria Bezerra"
-                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-2 w-full placeholder:italic"
+                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-1 w-full placeholder:italic"
                             />
                         </div>
-                        <div className="w-full">
-                            <label className="mb-2 block">Sexo</label>
+                        <div className="flex flex-col md:w-3/12">
+                            <label className="mb-1 block">Sexo</label>
                             <select
                                 onChange={handleChange}
                                 name="sexoVitima"
                                 defaultValue=""
-                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-2 w-full"
+                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-1 h-full leading-tight"
                             >
                                 <option value="" disabled>Selecione</option>
                                 <option value="Masculino">Masculino</option>
@@ -167,38 +167,38 @@ export default function ComplaintRegister() {
                                 <option value="Não Informado">Não informado</option>
                             </select>
                         </div>
-                        <div className="w-full">
-                            <label className="mb-2 block">Idade</label>
+                        <div className="flex flex-col md:w-2/12">
+                            <label className="mb-1 block">Idade</label>
                             <input
                                 onChange={handleChange}
                                 name="idadeVitima"
                                 type="number"
                                 placeholder="Ex: 32"
-                                className={`border-2 rounded-lg bg-grey-custom px-5 py-2 w-full placeholder:italic ${
+                                className={`border-2 rounded-lg bg-grey-custom px-5 py-1 w-full placeholder:italic ${
                                     errors.idadeVitima ? "border-rose-600 focus:border-rose-600 outline-none" : "border-black"
                                 }`}                             />
                             {errors.idadeVitima && <span className="text-rose-600">{errors.idadeVitima}</span>}
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-2">
-                        <div className="w-full">
-                            <label className="mb-2 block">Pessoa suspeita</label>
+                    <div className="flex flex-col md:flex-row gap-2">
+                        <div className="flex flex-col md:w-8/12">
+                            <label className="mb-1 block">Pessoa suspeita</label>
                             <input
                                 onChange={handleChange}
                                 name="nomeSuspeito"
                                 type="text"
                                 placeholder="Ex: João Silva"
-                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-2 w-full placeholder:italic"
+                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-1 w-full placeholder:italic"
                             />
                         </div>
-                        <div className="w-full">
-                            <label className="mb-2 block">Sexo</label>
+                        <div className="flex flex-col md:w-3/12">
+                            <label className="mb-1 block">Sexo</label>
                             <select
                                 onChange={handleChange}
                                 name="sexoSuspeito"
                                 defaultValue=""
-                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-2 w-full"
+                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-1 h-full leading-tight"
                             >
                                 <option value="" disabled>Selecione</option>
                                 <option value="Masculino">Masculino</option>
@@ -207,14 +207,14 @@ export default function ComplaintRegister() {
                                 <option value="Não Informado">Não informado</option>
                             </select>
                         </div>
-                        <div className="w-full">
-                            <label className="mb-2 block">Idade</label>
+                        <div className="flex flex-col md:w-2/12">
+                            <label className="mb-1 block">Idade</label>
                             <input
                                 onChange={handleChange}
                                 name="idadeSuspeito"
                                 type="number"
                                 placeholder="Ex: 32"
-                                className={`border-2 rounded-lg bg-grey-custom px-5 py-2 w-full placeholder:italic ${
+                                className={`border-2 rounded-lg bg-grey-custom px-5 py-1 w-full placeholder:italic ${
                                     errors.idadeSuspeito ? "border-rose-600 focus:border-rose-600 outline-none" : "border-black"
                                 }`}                               />
                             {errors.idadeSuspeito && <span className="text-rose-600">{errors.idadeSuspeito}</span>}
@@ -222,18 +222,18 @@ export default function ComplaintRegister() {
                     </div>
 
                     <div>
-                        <label className="mb-2 block">Descrição da pessoa suspeita</label>
+                        <label className="mb-1 block">Descrição da pessoa suspeita</label>
                         <textarea
                             onChange={handleChange}
                             name="descricaoSuspeito"
                             placeholder="Digite aqui..."
-                            className="w-full text-justify resize-none bg-grey-custom border-black border-2 rounded-lg px-5 py-4 pb-6 placeholder:italic"
+                            className="w-full text-justify resize-none bg-grey-custom border-black border-2 rounded-lg px-5 py-3 pb-5 placeholder:italic"
                         />
                     </div>
 
                     <button
                         type="submit"
-                        className="font-bold text-white bg-bluemike h-14 rounded-lg px-10">
+                        className="font-bold text-white bg-bluemike h-12 rounded-lg">
                         Cadastrar denúncia
                     </button>
                 </form>

@@ -31,7 +31,6 @@ export default function ComplaintMap({local, lat, lng}: ComplaintMapProps) {
             mapContainerStyle={{ width: '100%', height: '100%', }}
             zoom={15}
             center={center}
-            options={{ mapId: "3dbe8233f2b40a5c" }}
           >
             <MarkerF position={center}></MarkerF>
           </GoogleMap>

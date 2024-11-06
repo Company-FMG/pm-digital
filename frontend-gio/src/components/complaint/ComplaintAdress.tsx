@@ -73,7 +73,7 @@ export default function ComplaintAdress() {
                     isClearable: true,
                     required: true,
                     name: "local",
-                    className: "border-black bg-grey-custom border-2 rounded-lg px-7 py-2 placeholder:italic",
+                    className: "border-black bg-grey-custom border-2 rounded-lg px-5 py-1 placeholder:italic",
                     components: {
                         DropdownIndicator: () => null
                     },
@@ -97,13 +97,19 @@ export default function ComplaintAdress() {
                             ...provided,
                             paddingBottom: '0',
                             paddingTop: '0',
+                            padding: '0',
                             margin: 'none'
                         })),
                         placeholder: (provided => ({
                             ...provided,
                             color: '#9ca3af',
                             fontStyle: 'italic',
-                        }))
+                        })),
+                        indicatorsContainer: (provided => ({ 
+                            ...provided,
+                            display:'none',
+                        })),
+                  
                     }
                 }}
                 autocompletionRequest={{
