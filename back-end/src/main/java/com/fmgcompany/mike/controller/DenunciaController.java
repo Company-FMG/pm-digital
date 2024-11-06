@@ -60,15 +60,13 @@ public class DenunciaController {
 
         DenunciaDTO createdDenuncia = denunciaService.criaDenuncia(denunciaDTO, matricula);
 
-        // Lógica para associar uma viatura à denúncia
-        Optional<Viatura> viaturaOptional = viaturaService.buscarViaturaDisponivel(); // Método que busca uma viatura disponível
+        Optional<Viatura> viaturaOptional = viaturaService.buscarViaturaDisponivel(); 
         if (viaturaOptional.isPresent()) {
             Viatura viatura = viaturaOptional.get();
-            Denuncia denuncia = denunciaMapper.toEntity(createdDenuncia); // Converte DenunciaDTO para Denuncia
+            Denuncia denuncia = denunciaMapper.toEntity(createdDenuncia);
             viatura.setDenuncia(denuncia); // Associa a denúncia à viatura
             viaturaService.criarViatura(viatura); // Atualiza a viatura com a nova associação
         } else {
-            // Lógica caso não haja viaturas disponíveis
             System.out.println("Nenhuma viatura disponível no momento.");
         }
 

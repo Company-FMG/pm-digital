@@ -29,4 +29,11 @@ public class ViaturaService {
     public void deletarPorId(UUID id){
         this.viaturaRepository.deleteById(id);
     }
+
+    //método puxado em Post de DenunciaController
+    public Optional<Viatura> buscarViaturaDisponivel() {
+        List<Viatura> viaturas = viaturaRepository.findAll();
+        return viaturas.stream().filter(v -> v.getDenuncia() == null).findFirst();
+    }
+    
 }
