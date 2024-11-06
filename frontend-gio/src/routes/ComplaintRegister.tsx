@@ -1,4 +1,3 @@
-import axios from "axios";
 import AuthenticatedLayout from "../layouts/AuthenticatedLayout";
 import ComplaintAdress from "../components/complaint/ComplaintAdress";
 import { useForm } from "../contexts/ComplaintFormContext";
@@ -54,44 +53,9 @@ export default function ComplaintRegister() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-
-
         try {
             complaintSchema.safeParse(formData);
-            
-            const response = await axios.post('http://localhost:8080/denuncias', formData, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-                }
-            });
-
-            if (response.status === 201) {
-                console.log('Dados enviados com sucesso!');
-                // Limpar o formulário após o envio bem-sucedido, se necessário
-                setFormData({
-                    tipo: "",
-                    local: "",
-                    cep: undefined,
-                    relato: "",
-                    referencia: "",
-                    geolocation: null,
-                    nomeVitima: "",
-                    sexoVitima: "",
-                    idadeVitima: 0,
-                    nomeSuspeito: "",
-                    sexoSuspeito: "",
-                    idadeSuspeito: 0,
-                    descricaoSuspeito: "",
-                    status: "EM_ABERTO",
-                    lat: 0,
-                    lng: 0
-                });
-                navigate("/home");
-            } else {
-                console.error('Erro ao enviar os dados');
-            }
+            navigate("/denuncia");
         } catch (err: unknown) {
             if (err instanceof z.ZodError) {
                 const formErrors: { [key: string]: string } = {};

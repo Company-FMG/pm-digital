@@ -1,10 +1,14 @@
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 const api_key = import.meta.env.VITE_REACT_GOOGLE_MAPS_KEY
 
-const center = { lat: -8.054895, lng: -34.887762 }
+interface ComplaintMapProps{
+  local: string;
+  lat: number;
+  lng: number;
+}
 
-export default function ComplaintMap() {
-  const endereco = 'Rua General Viriato de Medeiros';
+export default function ComplaintMap({local, lat, lng}: ComplaintMapProps) {
+  const center = {lat, lng};
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: api_key,
     libraries: ['places']
@@ -14,11 +18,13 @@ export default function ComplaintMap() {
     return <h1>Erro</h1>
   }
 
+  console.log(center);
+
   return (
     <>
       <div className="">
         <h1 className="text-sm md:text-xl lg:text-2xl font-bold">
-          Localização: {endereco}
+          Localização: {local}
         </h1>
         <div className="flex mt-4 w-full h-map-mdH rounded-lg border-4 border-bluemike">
           <GoogleMap
@@ -27,7 +33,7 @@ export default function ComplaintMap() {
             center={center}
             options={{ mapId: "3dbe8233f2b40a5c" }}
           >
-            <Marker position={center}></Marker>
+            <MarkerF position={center}></MarkerF>
           </GoogleMap>
         </div>
       </div>

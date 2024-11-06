@@ -34,8 +34,10 @@ export default function ComplaintAdress() {
                     ...prevState,
                     local: desc ?? prevState.local,
                     cep: postalCode?? prevState.cep,
-                    lat: lat,
-                    lng: lng
+                    geolocation: {
+                        lat: lat,
+                        lng: lng
+                    }
                 }));
 
                 console.log(lat)
