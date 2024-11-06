@@ -39,10 +39,10 @@ export default function Login() {
       } else if(response.status === 401) {
           alert('Usuário ou senha inválidos');
       } else {
-          console.error('Erro ao receber os dados: ', response.status);
+          alert('Erro ao receber os dados: ' + response.status);
       }
     } catch (error) {
-        console.error('Erro:', error);
+        alert('Erro:' + error);
     }
   };
 
