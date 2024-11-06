@@ -26,4 +26,8 @@ public class Viatura {
     @OneToOne
     private Denuncia denuncia;
 
+    public void setDenuncia(Denuncia denuncia) {
+        this.denuncia = denuncia;
+    }
+
 }

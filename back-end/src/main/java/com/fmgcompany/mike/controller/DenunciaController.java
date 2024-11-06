@@ -8,6 +8,7 @@ import com.fmgcompany.mike.repository.DespachanteRepository;
 import com.fmgcompany.mike.service.DenunciaService;
 import com.fmgcompany.mike.service.SuspeitoService;
 import com.fmgcompany.mike.service.VitimaService;
+import com.fmgcompany.mike.service.ViaturaService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,8 @@ public class DenunciaController {
     private DespachanteRepository despachanteRepository;
     @Autowired
     private TokenService tokenService;
+    @Autowired
+    private ViaturaService viaturaService;
 
     @GetMapping
     public List<DenunciaDTO> listaDenuncias() {
@@ -56,55 +59,22 @@ public class DenunciaController {
         System.out.println(matricula);
 
         DenunciaDTO createdDenuncia = denunciaService.criaDenuncia(denunciaDTO, matricula);
+
+        // Lógica para associar uma viatura à denúncia
+        Optional<Viatura> viaturaOptional = viaturaService.buscarViaturaDisponivel(); // Método que busca uma viatura disponível
+        if (viaturaOptional.isPresent()) {
+            Viatura viatura = viaturaOptional.get();
+            Denuncia denuncia = denunciaMapper.toEntity(createdDenuncia); // Converte DenunciaDTO para Denuncia
+            viatura.setDenuncia(denuncia); // Associa a denúncia à viatura
+            viaturaService.criarViatura(viatura); // Atualiza a viatura com a nova associação
+        } else {
+            // Lógica caso não haja viaturas disponíveis
+            System.out.println("Nenhuma viatura disponível no momento.");
+        }
+
         return ResponseEntity.status(HttpStatus.CREATED).body(createdDenuncia);
     }
 
-//    @PutMapping("/{id}")
-//    public Object atualizaDenuncia(@PathVariable UUID id, @RequestBody Denuncia denunciaAtualizada) {
-//        return this.denunciaService.atualizaDenuncia(id, denunciaAtualizada);
-//    }
-
-//    @PutMapping("/{id}/{idVitima}")
-//    public ResponseEntity<Vitima> atribuirVitima(@PathVariable UUID id, @PathVariable UUID idVitima){
-//        Optional<Vitima> vitima = this.vitimaService.findById(idVitima);
-//        Optional<Denuncia> denuncia = this.denunciaService.buscaDenunciaPeloId(id);
-//        if(vitima.isPresent()){
-//            if(denuncia.isPresent()){
-//                Vitima v = vitima.get();
-//                Denuncia d = denuncia.get();
-//                v.setDenuncia(d);
-//                d.setVitima(v);
-//                this.denunciaService.criaDenuncia(d);
-//                return ResponseEntity.ok(this.vitimaService.save(v));
-//            }else{
-//                return ResponseEntity.notFound().build();
-//
-//            }
-//        }else {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//    }
-//
-//    @PutMapping("/{id}/{idSuspeito}")
-//    public ResponseEntity<Suspeito> atribuirSuspeito(@PathVariable UUID id, @PathVariable UUID idSuspeito){
-//        Optional<Suspeito> suspeito = this.suspeitoService.findById(idSuspeito);
-//        Optional<Denuncia> denuncia = this.denunciaService.buscaDenunciaPeloId(id);
-//        if(suspeito.isPresent()){
-//            if(denuncia.isPresent()){
-//                Denuncia d = denuncia.get();
-//                Suspeito s = suspeito.get();
-//                d.setSuspeito(s);
-//                s.setDenuncia(d);
-//                this.denunciaService.criaDenuncia(d);
-//                return ResponseEntity.ok(this.suspeitoService.save(s));
-//            }else{
-//                return ResponseEntity.notFound().build();
-//            }
-//        }else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
 
 
     @DeleteMapping("/{id}")
