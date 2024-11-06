@@ -10,16 +10,16 @@ const complaintSchema = z.object({
     local: z.string(),
     cep: z
         .string()
-        .regex(/^\d{5}-\d{3}$/, "CEP inválido, formato esperado: 00000-000")
+        .regex(/^\d{5}-\d{3}$/, "Formato esperado: 00000-000")
         .optional(),
     relato: z.string().min(1, "O relato é obrigatório"),
     referencia: z.string().optional(),
     nomeVitima: z.string().optional(),
     sexoVitima: z.string().optional(),
-    idadeVitima: z.number().min(0, "Idade inválida"),
+    idadeVitima: z.number().min(0, "Idade inválida").max(120, "Idade inválida").int("Idade inválida"),
     nomeSuspeito: z.string().optional(),
     sexoSuspeito: z.string().optional(),
-    idadeSuspeito: z.number().min(0, "Idade inválida"),
+    idadeSuspeito: z.number().min(0, "Idade inválida").max(120, "Idade inválida").int("Idade inválida"),
     descricaoSuspeito: z.string().optional(),
     status: z.string(),
     lat: z.number(),
@@ -42,12 +42,17 @@ export default function ComplaintRegister() {
 
         const fieldSchema = complaintSchema.shape[name as keyof typeof complaintSchema.shape];
         if (fieldSchema) {
+            if (value === "") {
+                setErrors(prevErrors => ({ ...prevErrors, [name]: "" }));
+            
+            } else {
             const result = fieldSchema.safeParse(parsedValue);
             if (result.success) {
                 setErrors(prevErrors => ({ ...prevErrors, [name]: "" })); // Limpar o erro se o valor for válido
             } else {
                 setErrors(prevErrors => ({ ...prevErrors, [name]: result.error.errors[0].message })); // Definir erro se o valor for inválido
             }
+        }
         }
     };
 
@@ -81,7 +86,7 @@ export default function ComplaintRegister() {
                             <ComplaintAdress />
                         </div>
                         <div className="flex flex-col md:w-1/4">
-                            <label className="mb-1 block">CEP</label>
+                            <label className={`mb-1 block ${errors.cep ? "text-rose-600" : "text-black"}`}>CEP</label>
                             <input
                                 onChange={handleChange}
                                 name="cep"
@@ -91,7 +96,7 @@ export default function ComplaintRegister() {
                                 className={`border-2 rounded-lg bg-grey-custom px-5 py-1 w-full placeholder:italic ${
                                     errors.cep ? "border-rose-600 focus:border-rose-600 outline-none" : "border-black"
                                 }`}                            />
-                            {errors.cep && <span className="text-rose-600">{errors.cep}</span>}
+                            {errors.cep && <span className="text-rose-600 text-sm">{errors.cep}</span>}
                         </div>
                     </div>
 
@@ -142,7 +147,7 @@ export default function ComplaintRegister() {
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-2">
-                        <div className="flex flex-col md:w-8/12">
+                        <div className="flex flex-col md:w-7/12">
                             <label className="mb-1 block">Nome da vítima</label>
                             <input
                                 onChange={handleChange}
@@ -158,7 +163,7 @@ export default function ComplaintRegister() {
                                 onChange={handleChange}
                                 name="sexoVitima"
                                 defaultValue=""
-                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-1 h-full leading-tight"
+                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-1 leading-tight h-full"
                             >
                                 <option value="" disabled>Selecione</option>
                                 <option value="Masculino">Masculino</option>
@@ -168,7 +173,7 @@ export default function ComplaintRegister() {
                             </select>
                         </div>
                         <div className="flex flex-col md:w-2/12">
-                            <label className="mb-1 block">Idade</label>
+                            <label className={`mb-1 block ${errors.idadeVitima ? "text-rose-600" : "text-black"}`}>Idade</label>
                             <input
                                 onChange={handleChange}
                                 name="idadeVitima"
@@ -177,12 +182,12 @@ export default function ComplaintRegister() {
                                 className={`border-2 rounded-lg bg-grey-custom px-5 py-1 w-full placeholder:italic ${
                                     errors.idadeVitima ? "border-rose-600 focus:border-rose-600 outline-none" : "border-black"
                                 }`}                             />
-                            {errors.idadeVitima && <span className="text-rose-600">{errors.idadeVitima}</span>}
+                            {errors.idadeVitima && <span className="text-rose-600 text-xs">{errors.idadeVitima}</span>}
                         </div>
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-2">
-                        <div className="flex flex-col md:w-8/12">
+                        <div className="flex flex-col md:w-7/12">
                             <label className="mb-1 block">Pessoa suspeita</label>
                             <input
                                 onChange={handleChange}
@@ -208,7 +213,7 @@ export default function ComplaintRegister() {
                             </select>
                         </div>
                         <div className="flex flex-col md:w-2/12">
-                            <label className="mb-1 block">Idade</label>
+                            <label className={`mb-1 block ${errors.idadeSuspeito ? "text-rose-600" : "text-black"} `}>Idade</label>
                             <input
                                 onChange={handleChange}
                                 name="idadeSuspeito"
@@ -217,7 +222,7 @@ export default function ComplaintRegister() {
                                 className={`border-2 rounded-lg bg-grey-custom px-5 py-1 w-full placeholder:italic ${
                                     errors.idadeSuspeito ? "border-rose-600 focus:border-rose-600 outline-none" : "border-black"
                                 }`}                               />
-                            {errors.idadeSuspeito && <span className="text-rose-600">{errors.idadeSuspeito}</span>}
+                            {errors.idadeSuspeito && <span className="text-rose-600 text-sm">{errors.idadeSuspeito}</span>}
                         </div>
                     </div>
 
