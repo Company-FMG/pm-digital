@@ -38,4 +38,8 @@ public class Denuncia {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "geolocation_id", referencedColumnName = "id")
     private Geolocation geolocation;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "viatura_id", referencedColumnName = "id")
+    private Viatura viatura;
 }

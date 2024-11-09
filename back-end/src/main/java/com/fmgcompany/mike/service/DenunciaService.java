@@ -61,45 +61,49 @@ public class DenunciaService {
         return denunciaMapper.toDTO(savedDenuncia);
     }
 
-//    //put
-//    public DenunciaDTO atualizaDenuncia(UUID id, DenunciaDTO denunciaDTO) {
-//        return this.denunciaRepository.findById(id)
-//                .map(denunciaExistente -> {
-//                    // Atualizar campos simples
-//                    denunciaExistente.setTipo(denunciaDTO.getTipo());
-//                    denunciaExistente.setRelato(denunciaDTO.getRelato());
-//                    denunciaExistente.setReferencia(denunciaDTO.getReferencia());
-//                    denunciaExistente.setStatus(denunciaDTO.getStatus());
-//
-//                    if (denunciaDTO.getIdVitima() != null) {
-//                        Vitima vitima = vitimaRepository.findById(denunciaDTO.getIdVitima())
-//                                .orElseThrow(() -> new RuntimeException("Vítima não encontrada"));
-//                        denunciaExistente.setVitima(vitima);
-//                    }
-//
-//                    if (denunciaDTO.getIdSuspeito() != null) {
-//                        Suspeito suspeito = suspeitoRepository.findById(denunciaDTO.getIdSuspeito())
-//                                .orElseThrow(() -> new RuntimeException("Suspeito não encontrado"));
-//                        denunciaExistente.setSuspeito(suspeito);
-//                    }
-//
-//                    if (denunciaDTO.getIdDespachante() != null) {
-//                        Despachante despachante = despachanteRepository.findById(denunciaDTO.getIdDespachante())
-//                                .orElseThrow(() -> new RuntimeException("Despachante não encontrado"));
-//                        denunciaExistente.setDespachante(despachante);
-//                    }
-//
-//                    if (denunciaDTO.getIdGeolocation() != null) {
-//                        Geolocation geolocation = geolocationRepository.findById(denunciaDTO.getIdGeolocation())
-//                                .orElseThrow(() -> new RuntimeException("Geolocalização não encontrada"));
-//                        denunciaExistente.setGeolocation(geolocation);
-//                    }
-//
-//                    Denuncia denunciaAtualizada = this.denunciaRepository.save(denunciaExistente);
-//                    return denunciaMapper.toDTO(denunciaAtualizada);
-//                })
-//                .orElseThrow(() -> new RuntimeException("Denúncia não encontrada"));
-//    }
+    public Denuncia atualizar(Denuncia denuncia) {
+        return denunciaRepository.save(denuncia);
+    }
+
+    public DenunciaDTO atualizarDTO(UUID id, DenunciaDTO denunciaDTO) {
+        return this.denunciaRepository.findById(id)
+                .map(denunciaExistente -> {
+                    // Atualizar campos simples da denúncia
+                    denunciaExistente.setTipo(denunciaDTO.getTipo());
+                    denunciaExistente.setRelato(denunciaDTO.getRelato());
+                    denunciaExistente.setReferencia(denunciaDTO.getReferencia());
+                    denunciaExistente.setStatus(denunciaDTO.getStatus());
+
+                    // Atualizar a vítima, se o ID estiver presente
+                    if (denunciaDTO.getIdVitima() != null) {
+                        Vitima vitima = vitimaRepository.findById(denunciaDTO.getIdVitima())
+                                .orElseThrow(() -> new RuntimeException("Vítima não encontrada"));
+                        denunciaExistente.setVitima(vitima);
+                    }
+
+                    // Atualizar o suspeito, se o ID estiver presente
+                    if (denunciaDTO.getIdSuspeito() != null) {
+                        Suspeito suspeito = suspeitoRepository.findById(denunciaDTO.getIdSuspeito())
+                                .orElseThrow(() -> new RuntimeException("Suspeito não encontrado"));
+                        denunciaExistente.setSuspeito(suspeito);
+                    }
+
+                    // Atualizar a geolocalização, se o ID estiver presente
+                    if (denunciaDTO.getIdGeolocation() != null) {
+                        Geolocation geolocation = geolocationRepository.findById(denunciaDTO.getIdGeolocation())
+                                .orElseThrow(() -> new RuntimeException("Geolocalização não encontrada"));
+                        denunciaExistente.setGeolocation(geolocation);
+                    }
+
+                    // Salva a denúncia atualizada no banco de dados
+                    Denuncia denunciaAtualizada = this.denunciaRepository.save(denunciaExistente);
+
+                    // Retorna o DTO atualizado
+                    return denunciaMapper.toDTO(denunciaAtualizada);
+                })
+                .orElseThrow(() -> new RuntimeException("Denúncia não encontrada"));
+    }
+
 
     //delete
     public void removeDenuncia(UUID id){

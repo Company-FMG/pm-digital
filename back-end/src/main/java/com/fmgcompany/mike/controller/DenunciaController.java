@@ -60,20 +60,37 @@ public class DenunciaController {
 
         DenunciaDTO createdDenuncia = denunciaService.criaDenuncia(denunciaDTO, matricula);
 
-        Optional<Viatura> viaturaOptional = viaturaService.buscarViaturaDisponivel(); 
-        if (viaturaOptional.isPresent()) {
-            Viatura viatura = viaturaOptional.get();
-            Denuncia denuncia = denunciaMapper.toEntity(createdDenuncia);
-            viatura.setDenuncia(denuncia); // Associa a denúncia à viatura
-            viaturaService.criarViatura(viatura); // Atualiza a viatura com a nova associação
-        } else {
-            System.out.println("Nenhuma viatura disponível no momento.");
-        }
-
         return ResponseEntity.status(HttpStatus.CREATED).body(createdDenuncia);
     }
 
+    @PutMapping("/{idDenuncia}/{idViatura}")
+    public ResponseEntity<DenunciaDTO> atribuiViatura(@PathVariable UUID idDenuncia, @PathVariable UUID idViatura) {
+        Optional<DenunciaDTO> denunciaDTOOptional = denunciaService.buscaDenunciaPeloId(idDenuncia);
 
+        if (denunciaDTOOptional.isPresent()) {
+            DenunciaDTO denunciaDTO = denunciaDTOOptional.get();
+            Denuncia denuncia = denunciaMapper.toEntity(denunciaDTO);
+
+            Optional<Viatura> viaturaOptional = viaturaService.buscarPorId(idViatura); // Busca uma viatura específica pelo ID
+            if (viaturaOptional.isPresent() && viaturaService.isDisponivel(viaturaOptional.get().getId())) { // Verifica se a viatura está disponível
+                Viatura viatura = viaturaOptional.get();
+
+                viatura.setDenuncia(denuncia); // Associa a denúncia à viatura
+                denuncia.setViatura(viatura); // Associa a viatura à denúncia
+
+                denunciaService.atualizar(denuncia); // Salva a denúncia com a nova associação
+                viaturaService.atualizar(viatura); // Salva a viatura atualizada
+
+                DenunciaDTO updatedDenunciaDTO = denunciaMapper.toDTO(denuncia); // Atualiza o DTO com a viatura associada
+
+                return ResponseEntity.ok(updatedDenunciaDTO);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 
     @DeleteMapping("/{id}")
     public void removeDenuncia(@PathVariable UUID id) {

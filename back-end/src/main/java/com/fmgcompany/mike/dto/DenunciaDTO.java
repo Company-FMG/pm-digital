@@ -14,15 +14,18 @@ public class DenunciaDTO {
 
     private Status status;
 
+    private UUID idVitima;
     private String nomeVitima;
     private String sexoVitima;
     private int idadeVitima;
 
+    private UUID idSuspeito;
     private String nomeSuspeito;
     private String sexoSuspeito;
     private int idadeSuspeito;
     private String descricaoSuspeito;
 
+    private UUID idGeolocation;
     private String local;
     private String cep;
     private double lat;

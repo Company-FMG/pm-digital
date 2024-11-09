@@ -26,14 +26,19 @@ public class ViaturaService {
         return viaturaRepository.save(viatura);
     }
 
+    public Viatura atualizar(Viatura viatura){
+        return viaturaRepository.save(viatura);
+    }
+
     public void deletarPorId(UUID id){
         this.viaturaRepository.deleteById(id);
     }
 
     //método puxado em Post de DenunciaController
-    public Optional<Viatura> buscarViaturaDisponivel() {
-        List<Viatura> viaturas = viaturaRepository.findAll();
-        return viaturas.stream().filter(v -> v.getDenuncia() == null).findFirst();
+    public boolean isDisponivel(UUID id) {
+        return viaturaRepository.findById(id)
+                .map(viatura -> viatura.getDenuncia() == null)
+                .orElse(false);
     }
     
 }
