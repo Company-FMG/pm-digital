@@ -1,0 +1,11 @@
+com\fmgcompany\mike\model\Despachante.class
+com\fmgcompany\mike\model\Denuncia.class
+com\fmgcompany\mike\model\Geolocation.class
+com\fmgcompany\mike\model\Suspeito.class
+com\fmgcompany\mike\repository\GeolocationRepository.class
+com\fmgcompany\mike\model\Status.class
+com\fmgcompany\mike\model\Viatura.class
+com\fmgcompany\mike\model\Vitima.class
+com\fmgcompany\mike\model\Policial.class
+com\fmgcompany\mike\service\GeolocationService.class
+com\fmgcompany\mike\controller\GeolocationController.class
