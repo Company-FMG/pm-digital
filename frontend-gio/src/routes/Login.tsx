@@ -96,6 +96,9 @@ export default function Login() {
                 className="mt-10 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg">
                 Entrar
               </button>
+              <div className="text-center mt-8">
+                <a href="/register" className="text-xl italic underline">Primeiro acesso? Começe aqui</a>
+              </div>
             </form>
           </div>
         </section>
