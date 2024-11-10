@@ -8,12 +8,13 @@ import { useEffect } from "react";
 
 
 export default function Complaint() {
+  const api_url = import.meta.env.VITE_REACT_API_URL;
   const { formData, setFormData } = useForm();
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {        
-        const response = await axios.post('http://localhost:8080/denuncias', formData, {
+        const response = await axios.post(`${api_url}/denuncias`, formData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('authToken')}`
