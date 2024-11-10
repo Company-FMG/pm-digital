@@ -16,6 +16,7 @@ const Image: React.FC<ImageProps> = ({ src, alt, className }) => (
 );
 
 export default function Login() {
+  const api_url = import.meta.env.VITE_REACT_API_URL;
   const [matricula, setMatricula] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/despachantes/login', {matricula, senha}, {
+      const response = await axios.post(`${api_url}/despachantes/login`, {matricula, senha}, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -96,6 +97,9 @@ export default function Login() {
                 className="mt-10 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg">
                 Entrar
               </button>
+              <div className="text-center mt-8">
+                <a href="/register" className="text-xl italic underline">Primeiro acesso? Começe aqui</a>
+              </div>
             </form>
           </div>
         </section>

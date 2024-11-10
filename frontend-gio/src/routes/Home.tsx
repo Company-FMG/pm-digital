@@ -14,12 +14,13 @@ interface Complaint {
 }
 
 export default function Home() {
+    const api_url = import.meta.env.VITE_REACT_API_URL;
     const navigate = useNavigate();
     const [complaints, setComplaints] = useState<Complaint[]>([]);
 
     const fetchComplaints = async () => {
         try {
-            const response = await axios.get<Complaint[]>('http://localhost:8080/denuncias', {
+            const response = await axios.get<Complaint[]>(`${api_url}/denuncias`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('authToken')}`
