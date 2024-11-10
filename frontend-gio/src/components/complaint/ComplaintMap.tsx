@@ -1,5 +1,5 @@
 import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
-const api_key = import.meta.env.VITE_REACT_GOOGLE_MAPS_KEY
+const google_maps_key = import.meta.env.VITE_REACT_GOOGLE_MAPS_KEY
 
 interface ComplaintMapProps{
   local: string;
@@ -10,7 +10,7 @@ interface ComplaintMapProps{
 export default function ComplaintMap({local, lat, lng}: ComplaintMapProps) {
   const center = {lat, lng};
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: api_key,
+    googleMapsApiKey: google_maps_key,
     libraries: ['places']
   })
 
