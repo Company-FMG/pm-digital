@@ -1,4 +1,4 @@
-import carroimg from "../assets/carro.svg";
+//import carroimg from "../assets/carro.svg";
 import pinimg from "../assets/pin.svg";
 import efetivoimg from "../assets/efetivoimg.svg";
 import { useState } from "react";
