@@ -22,13 +22,13 @@ export default function ComplaintMap({local, lat, lng}: ComplaintMapProps) {
 
   return (
     <>
-      <div className="">
-        <h1 className="text-sm md:text-xl lg:text-2xl font-bold">
-          Localização: {local}
+      <div className="flex flex-col">
+        <h1 className="text-xl md:text-xl lg:text-2xl font-bold line-clamp-2 text-justify">
+          Localização:<span className="font-normal"> {local}</span>
         </h1>
-        <div className="flex mt-4 w-full h-map-mdH rounded-lg border-4 border-bluemike">
+        <div className="mt-4 w-full h-72 md:h-map-mdH rounded-xl border-8 border-gray-300 bg-gray-300">
           <GoogleMap
-            mapContainerStyle={{ width: '100%', height: '100%', }}
+            mapContainerStyle={{ width: '100%', height: '100%', borderRadius: '6px'}}
             zoom={15}
             center={center}
           >

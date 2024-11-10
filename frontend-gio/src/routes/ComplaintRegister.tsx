@@ -163,7 +163,7 @@ export default function ComplaintRegister() {
                                 onChange={handleChange}
                                 name="sexoVitima"
                                 defaultValue=""
-                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-1 leading-tight h-full"
+                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-1 leading-tight h-full max-h-10"
                             >
                                 <option value="" disabled>Selecione</option>
                                 <option value="Masculino">Masculino</option>
@@ -182,7 +182,7 @@ export default function ComplaintRegister() {
                                 className={`border-2 rounded-lg bg-grey-custom px-5 py-1 w-full placeholder:italic ${
                                     errors.idadeVitima ? "border-rose-600 focus:border-rose-600 outline-none" : "border-black"
                                 }`}                             />
-                            {errors.idadeVitima && <span className="text-rose-600 text-xs">{errors.idadeVitima}</span>}
+                            {errors.idadeVitima && <span className="text-rose-600 text-xs relative">{errors.idadeVitima}</span>}
                         </div>
                     </div>
 
@@ -203,7 +203,7 @@ export default function ComplaintRegister() {
                                 onChange={handleChange}
                                 name="sexoSuspeito"
                                 defaultValue=""
-                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-1 h-full leading-tight"
+                                className="border-black bg-grey-custom border-2 rounded-lg px-5 py-1 h-full leading-tight max-h-10"
                             >
                                 <option value="" disabled>Selecione</option>
                                 <option value="Masculino">Masculino</option>

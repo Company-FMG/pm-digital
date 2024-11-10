@@ -29,9 +29,9 @@ function ComplaintCard({ status, tipo, endereco, relato }: ComplaintCardProps) {
                     <div className={getColor()}></div>
                     <h2 className="font-bold xl:text-2xl lg:text-xl md:text-lg text-base">{tipo}</h2>
                 </div>
-                <p className="xl:text-lg lg:text-base md:text-sm text-xs line-clamp-2 mt-2">{endereco}</p>
+                <p className="xl:text-lg lg:text-base md:text-sm text-xs line-clamp-1 mt-2">{endereco}</p>
             </div>
-            <div className="xl:text-md lg:text-base md:text-sm text-xs">{relato}</div>
+            <div className="xl:text-md lg:text-base md:text-sm text-xs line-clamp-2">{relato}</div>
         </div>
     );
 }
