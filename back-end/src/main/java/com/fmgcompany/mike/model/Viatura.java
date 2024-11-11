@@ -21,8 +21,10 @@ public class Viatura {
     private String placa;
 
     @OneToMany
+    @JoinColumn(name = "policial_id",referencedColumnName = "id")
     private List<Policial> policiais;
 
     @OneToOne
+    @JoinColumn(name = "denuncia_id",referencedColumnName = "id")
     private Denuncia denuncia;
 }
