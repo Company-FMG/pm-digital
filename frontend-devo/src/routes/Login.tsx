@@ -1,16 +1,45 @@
-import * as React from "react";
-import MikeLogin from "../assets/MikeLogin.svg";
+import { useState } from "react";
 import PublicSafety from "../assets/Public Safety.svg";
-import pmDigitalLogo from '../assets/PM Digital Logo.svg';
 import Secure from "../assets/Secure.svg";
-import MikeLogoSlogan from "../assets/MikeLogoSlogan.svg";
-import { IonButton, IonCol, IonContent, IonHeader, IonImg, IonInput, IonPage, IonRow, IonTitle, IonToolbar } from "@ionic/react";
-import { useHistory } from "react-router";
+import { IonContent, IonInput, IonInputPasswordToggle, IonPage } from "@ionic/react";
+import { useHistory } from "react-router-dom";
 import PmDigitalComSlogan from '../assets/PM Digital com Slogan.svg';
+import axios from "axios";
 
 
 export default function Login() {
+  const apiUrl = import.meta.env.VITE_API_URL!;
+  const [matricula, setMatricula] = useState('');
+  const [senha, setSenha] = useState('');
   const history = useHistory();
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(`${apiUrl}/policiais/login`, {matricula, senha}, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.status === 200) {
+          console.log('Dados recebidos com sucesso!: ', response.data);
+
+          localStorage.setItem('authToken', response.data.jwt);
+          localStorage.setItem('nome', response.data.nome);
+          history.push('/home');
+      } else if(response.status === 401) {
+          alert('Usuário ou senha inválidos');
+      } else {
+          alert('Erro ao receber os dados: ' + response.status);
+      }
+    } catch (error: any) {
+      if(error.response.status === 403) {
+        alert('Usuário ou senha inválidos');
+      }
+    }
+  };
 
   return (
     <IonPage>
@@ -23,44 +52,47 @@ export default function Login() {
               className="self-center w-full mb-16"
             />
 
-            <div className="flex gap-2 mt-8 sm:mt-10 text-lg sm:text-xl text-white items-center">
-              <img
-                loading="lazy"
-                srcSet={PublicSafety}
-                className="shrink-0 w-8 sm:w-9 aspect-square"
-              />
-              <IonInput
-                color="light"
-                type="text"
-                className="italic white border-none p-2"
-                placeholder="Matrícula"
-              />
-            </div>
+            <form onSubmit={handleLogin}>
+              <div className="flex gap-2 mt-8 sm:mt-10 text-lg sm:text-xl text-white items-center">
+                <img
+                  loading="lazy"
+                  srcSet={PublicSafety}
+                  className="shrink-0 w-8 sm:w-9 aspect-square"
+                />
+                <IonInput
+                  color="light"
+                  type="text"
+                  className="italic white border-none p-2"
+                  placeholder="Matrícula"
+                  value={matricula}
+                  onIonChange={(e) => setMatricula(e.target.value?.toString() || '')}
+                />
+              </div>
 
-            <div className="flex gap-2 mt-10 sm:mt-12 text-lg sm:text-xl text-white items-center">
-              <img
-                loading="lazy"
-                srcSet={Secure}
-                className="shrink-0 w-8 sm:w-9 aspect-square"
-              />
-              <IonInput
-                color="light"
-                type="password"
-                className="italic white border-none p-2"
-                placeholder="Senha"
-              />
-            </div>
+              <div className="flex gap-2 mt-10 sm:mt-12 text-lg sm:text-xl text-white items-center">
+                <img
+                  loading="lazy"
+                  srcSet={Secure}
+                  className="shrink-0 w-8 sm:w-9 aspect-square"
+                />
+                <IonInput
+                  color="light"
+                  type="password"
+                  className="italic white border-none p-2"
+                  placeholder="Senha"
+                  value={senha}
+                  onIonChange={(e) => setSenha(e.target.value?.toString() || '')}
+                ><IonInputPasswordToggle slot="end"></IonInputPasswordToggle></IonInput>
+              </div>
+              
+              <button
+                type="submit"
+                className="text-center text-base sm:text-lg lg:text-xl py-3 px-6 w-full bg-white rounded-md text-bluemike font-inter font-bold"
+              >
+                Entrar
+              </button>
+            </form>
 
-            <button className="self-end mt-4 text-sm sm:text-base italic text-white underline">
-              Esqueci minha senha
-            </button>
-            
-            <button
-              onClick={() => history.push("/home")}
-              className="text-center text-base sm:text-lg lg:text-xl py-3 px-6 w-full bg-white rounded-md text-bluemike font-inter font-bold"
-            >
-              Entrar
-            </button>
           </div>
         </div>
       </IonContent>
