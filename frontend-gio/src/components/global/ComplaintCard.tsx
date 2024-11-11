@@ -1,11 +1,24 @@
+import { useNavigate } from "react-router-dom";
+
 interface ComplaintCardProps {
+    id: string;
     status: string;
     tipo: string;
     endereco: string;
     relato: string;
 }
 
-function ComplaintCard({ status, tipo, endereco, relato }: ComplaintCardProps) {
+function ComplaintCard({ id, status, tipo, endereco, relato }: ComplaintCardProps) {
+    const navigate = useNavigate();
+
+    const handleComplaintClick = () => {
+        navigate('/viaturas', { 
+            state: { 
+                idDenuncia: id
+            } 
+        })
+    }
+
     const getColor = () => {
         switch (status) {
             case 'EM_ABERTO':
@@ -23,7 +36,7 @@ function ComplaintCard({ status, tipo, endereco, relato }: ComplaintCardProps) {
     }
 
     return (
-        <div className="w-full max-w-xs bg-gray-100 rounded-xl px-4 py-4 space-y-4 lg:max-w-md">
+        <button onClick={handleComplaintClick} className="w-full max-w-xs bg-gray-100 rounded-xl px-4 py-4 space-y-4 lg:max-w-md text-left">
             <div>
                 <div className="flex gap-3 items-center">
                     <div className={getColor()}></div>
@@ -32,7 +45,7 @@ function ComplaintCard({ status, tipo, endereco, relato }: ComplaintCardProps) {
                 <p className="xl:text-lg lg:text-base md:text-sm text-xs line-clamp-1 mt-2">{endereco}</p>
             </div>
             <div className="xl:text-md lg:text-base md:text-sm text-xs line-clamp-2">{relato}</div>
-        </div>
+        </button>
     );
 }
 

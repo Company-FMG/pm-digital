@@ -47,12 +47,13 @@ export default function ComplaintViaturaCirculacao() {
         <h1 className="font-bold text-5xl">Viaturas em Circulação</h1>
         <div className="pt-6">
           {/* <p className="font-bold text-2xl pb-6">Mais próxima</p> */}
-          {viaturas.map((viatura)=>(
+          {viaturas.map((viatura, index)=>(
             <Viatura
+              key={index}
               idViatura={viatura.id}
               placa={viatura.placa}
-              responsavel={viatura.policiais.filter(policial => policial.comandante == true)}
-              efetivo={viatura.policiais.map((policial)=>{return `${policial.nome}, `})}
+              responsavel={viatura.policiais.find(policial => policial.comandante === true)?.nome || "Sem comandante"}
+              efetivos={viatura.policiais.map((policial)=>{return `${policial.nome}, `})}
               areaAtuacao={"Região Metropolitana"}
             />
           ))}

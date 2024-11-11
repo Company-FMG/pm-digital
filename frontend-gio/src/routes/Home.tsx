@@ -5,7 +5,7 @@ import ComplaintCard from "../components/global/ComplaintCard"
 import AuthenticatedLayout from "../layouts/AuthenticatedLayout"
 
 interface Complaint {
-    id: string;
+    idDenuncia: string;
     tipo: string;
     relato: string;
     local: string;
@@ -53,7 +53,7 @@ export default function Home() {
                         </div>
                         <div className="overflow-y-auto flex flex-col gap-4 h-96 pr-2">
                         {complaints.filter(complaint => complaint.status === "EM_ABERTO").map((complaint, index) => (
-                            <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo} endereco={complaint.local} relato={complaint.relato} />
+                            <ComplaintCard key={index} id={complaint.idDenuncia} status={complaint.status} tipo={complaint.tipo} endereco={complaint.local} relato={complaint.relato} />
                         ))}
                         </div>
                     </div>
@@ -61,7 +61,7 @@ export default function Home() {
                         <h3 className="font-poppins font-bold text-bluemike text-lg">Ocorrências em andamento</h3>
                         <div className="overflow-y-auto overscroll-auto flex flex-col gap-4 md:h-96 h-32">
                         {complaints.filter(complaint => complaint.status === "EM_ANDAMENTO").map((complaint, index) => (
-                            <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo} endereco={complaint.local} relato={complaint.relato} />
+                            <ComplaintCard key={index} id={complaint.idDenuncia} status={complaint.status} tipo={complaint.tipo} endereco={complaint.local} relato={complaint.relato} />
                         ))}
                         </div>
                     </div>
@@ -69,7 +69,7 @@ export default function Home() {
                         <h3 className="font-poppins font-bold text-bluemike text-lg">Ocorrências finalizadas</h3>
                         <div className="grid lg:grid-cols-2 gap-4 overflow-y-auto h-64 pr-2">
                             {complaints.filter(complaint => complaint.status === "FINALIZADA").map((complaint, index) => (
-                                <ComplaintCard key={index} status={complaint.status} tipo={complaint.tipo} endereco={complaint.local} relato={complaint.relato} />
+                                <ComplaintCard key={index} id={complaint.idDenuncia} status={complaint.status} tipo={complaint.tipo} endereco={complaint.local} relato={complaint.relato} />
                             ))}
                         </div>
                     </div>
