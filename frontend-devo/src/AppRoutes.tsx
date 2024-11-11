@@ -39,6 +39,7 @@ import './theme/variables.css';
 import Login from './routes/Login';
 import Relatorio from './routes/Relatorio';
 import Perfil from './routes/Perfil';
+import Register from './routes/Register';
 
 setupIonicReact();
 
@@ -47,18 +48,11 @@ export default function AppRoutes() {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route exact path='/home'>
-            <Home />
-          </Route>
-          <Route exact path='/relatorio'>
-            <Relatorio/>
-          </Route>
-          <Route exact path='/perfil'>
-            <Perfil/>
-          </Route>
+          <Route exact path="/"><Login /></Route>
+          <Route exact path='/home'><Home /></Route>
+          <Route exact path='/relatorio'><Relatorio/></Route>
+          <Route exact path='/perfil'><Perfil/></Route>
+          <Route exact path='/register'><Register/></Route>
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

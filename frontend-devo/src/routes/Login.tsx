@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PublicSafety from "../assets/Public Safety.svg";
 import Secure from "../assets/Secure.svg";
-import { IonContent, IonInput, IonInputPasswordToggle, IonPage } from "@ionic/react";
+import { IonContent, IonIcon, IonInput, IonInputPasswordToggle, IonPage } from "@ionic/react";
 import { useHistory } from "react-router-dom";
 import PmDigitalComSlogan from '../assets/PM Digital com Slogan.svg';
 import axios from "axios";
@@ -52,38 +52,30 @@ export default function Login() {
               className="self-center w-full mb-16"
             />
 
-            <form onSubmit={handleLogin}>
-              <div className="flex gap-2 mt-8 sm:mt-10 text-lg sm:text-xl text-white items-center">
-                <img
-                  loading="lazy"
-                  srcSet={PublicSafety}
-                  className="shrink-0 w-8 sm:w-9 aspect-square"
-                />
-                <IonInput
-                  color="light"
-                  type="text"
-                  className="italic white border-none p-2"
-                  placeholder="Matrícula"
-                  value={matricula}
-                  onIonChange={(e) => setMatricula(e.target.value?.toString() || '')}
-                />
-              </div>
+            <form onSubmit={handleLogin} className="space-y-10">
+              <IonInput
+                color={"light"}
+                type="text"
+                className="italic white text-white"
+                placeholder="Matrícula"
+                inputMode="numeric"
+                required={true}
+                value={matricula}
+                onIonChange={(e) => setMatricula(e.target.value?.toString() || '')}
+              ><IonIcon slot="start" icon={PublicSafety} size="large"></IonIcon></IonInput>
 
-              <div className="flex gap-2 mt-10 sm:mt-12 text-lg sm:text-xl text-white items-center">
-                <img
-                  loading="lazy"
-                  srcSet={Secure}
-                  className="shrink-0 w-8 sm:w-9 aspect-square"
-                />
-                <IonInput
-                  color="light"
-                  type="password"
-                  className="italic white border-none p-2"
-                  placeholder="Senha"
-                  value={senha}
-                  onIonChange={(e) => setSenha(e.target.value?.toString() || '')}
-                ><IonInputPasswordToggle slot="end"></IonInputPasswordToggle></IonInput>
-              </div>
+              <IonInput
+                color="light"
+                type="password"
+                className="italic white text-white"
+                placeholder="Senha"
+                required={true}
+                value={senha}
+                onIonChange={(e) => setSenha(e.target.value?.toString() || '')}
+              >
+                <IonIcon slot="start" icon={Secure} size="large"></IonIcon>
+                <IonInputPasswordToggle slot="end" color={"light"}></IonInputPasswordToggle>
+              </IonInput>
               
               <button
                 type="submit"
@@ -91,6 +83,10 @@ export default function Login() {
               >
                 Entrar
               </button>
+
+              <div className="text-center">
+                <a href="/register" className="italic underline text-white">Primeiro acesso? Começe aqui</a>
+              </div>
             </form>
 
           </div>
