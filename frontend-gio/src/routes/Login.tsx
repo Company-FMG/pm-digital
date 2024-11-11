@@ -48,7 +48,7 @@ export default function Login() {
   };
 
   return (
-    <main className="bg-blue-700 flex flex-col justify-center">
+    <main className="bg-bluemike flex flex-col justify-center">
       <div className="flex mx-auto gap-0 sm:gap-8 lg:mx-0 px-12 lg:px-0 items-center lg:flex-row h-screen">
         <section className="justify-center">
           <Image
@@ -57,7 +57,7 @@ export default function Login() {
             className="hidden lg:block object-cover lg:w-[36rem] xl:w-[48rem] 2xl:w-[65rem] h-screen brightness-75"
           />
         </section>
-        <section className="flex flex-col mx-auto items-end text-end justify-center bg-blue-700 text-white">
+        <section className="flex flex-col mx-auto items-end text-end justify-center text-white">
           <div className="w-full max-w-md 2xl:max-w-lg px-4 lg:px-16 2xl:px-12 mx-auto my-auto">
             <Image
               src={PMDigitalcomSlogan}
