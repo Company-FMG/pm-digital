@@ -60,14 +60,14 @@ export default function Complaint() {
                 <div className="mx-auto space-y-6 px-8 sm:px-16 lg:px-36 xl:px-56 2xl:px-96 3xl:px-[32rem]">
                     <div className="flex flex-row gap-4 items-center">
                         <div className="bg-red w-8 h-8 sm:w-8 sm:h-8 md:w-12 md:h-12 lg:w-12 lg:h-12 rounded-full"></div>
-                        <h1 className="font-bold text-3xl md:text-4xl">{formData.tipo}</h1>
+                        <h1 className="font-bold text-3xl md:text-3xl">{formData.tipo}</h1>
                     </div>
 
                     <div className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-16">
                             <ComplaintMap local={formData.local} lat={formData.geolocation.lat} lng={formData.geolocation.lng} />
                             <div className="flex-col w-full font-bold">
-                                <h2 className="text-xl md:text-xl lg:text-2xl">Informações da cena</h2>
+                                <h2 className="text-xl md:text-xl 2xl:text-2xl">Informações da cena</h2>
                                 <div className="flex flex-col mt-4 md:mt-11 md:text-lg space-y-5 text-justify">
                                     <p className="line-clamp-3">
                                         Relato: <span className="font-normal">{formData.relato}</span>
