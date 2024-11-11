@@ -15,8 +15,8 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:5173", "http://localhost:8100", "https://gio-pm-digital.vercel.app")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
-                        .allowedHeaders("*")
-                        .allowCredentials(true);
+                        .allowedHeaders("Content-Type", "Authorization");
+                        //.allowCredentials(true);
             }
         };
     }
