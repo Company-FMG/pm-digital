@@ -1,6 +1,7 @@
 package com.fmgcompany.mike.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,6 +27,7 @@ public class Denuncia {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vitima_id", referencedColumnName = "id")
+    @JsonManagedReference
     private Vitima vitima;
 
     @ManyToOne
@@ -33,13 +35,16 @@ public class Denuncia {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "suspeito_id",referencedColumnName = "id")
+    @JsonManagedReference
     private Suspeito suspeito;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "geolocation_id", referencedColumnName = "id")
+    @JsonManagedReference
     private Geolocation geolocation;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "viatura_id", referencedColumnName = "id")
+    @JsonBackReference
     private Viatura viatura;
 }

@@ -2,6 +2,8 @@ package com.fmgcompany.mike.model;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,5 +26,6 @@ public class Suspeito{
 
     @OneToOne(mappedBy = "suspeito")
     @JoinColumn(name="denuncia_id")
+    @JsonBackReference
     private Denuncia denuncia;
 }

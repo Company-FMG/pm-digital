@@ -1,5 +1,7 @@
 package com.fmgcompany.mike.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,5 +28,6 @@ public class Viatura {
 
     @OneToOne
     @JoinColumn(name = "denuncia_id",referencedColumnName = "id")
+    @JsonManagedReference
     private Denuncia denuncia;
 }
