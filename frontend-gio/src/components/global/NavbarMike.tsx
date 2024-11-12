@@ -58,7 +58,7 @@ export default function NavbarMike() {
 									Configurações
 								</button>
 								<button
-									onClick={() => navigate('/sair')}
+									onClick={() => navigate('/')}
 									className="w-full py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 text-sm font-medium mt-2 flex justify-center items-center gap-2"
 								>
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
