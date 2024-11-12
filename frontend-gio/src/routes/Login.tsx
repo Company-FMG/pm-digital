@@ -48,8 +48,8 @@ export default function Login() {
   };
 
   return (
-    <main className="bg-bluemike flex flex-col justify-center">
-      <div className="flex mx-auto gap-0 sm:gap-8 lg:mx-0 px-12 lg:px-0 items-center lg:flex-row h-screen">
+    <main className="bg-bluemike flex flex-col justify-center min-h-screen overflow-hidden">
+      <div className="flex mx-auto gap-0 sm:gap-8 lg:mx-0 px-4 lg:px-0 items-center lg:flex-row h-screen">
         <section className="justify-center">
           <Image
             src={policialbg}
@@ -58,13 +58,13 @@ export default function Login() {
           />
         </section>
         <section className="flex flex-col mx-auto items-end text-end justify-center text-white">
-          <div className="w-full max-w-md 2xl:max-w-lg px-4 lg:px-16 2xl:px-12 mx-auto my-auto">
+          <div className="w-full max-w-md 2xl:max-w-lg px-4 lg:px-16 2xl:px-12 mx-auto my-auto pb-10">
             <Image
               src={PMDigitalcomSlogan}
               alt="Logo"
-              className="w-auto"
+               className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 2xl:w-96 max-w-full mx-auto pt-10 pb-16"
             />
-            <form className="pt-20" onSubmit={handleLogin}>
+            <form className="" onSubmit={handleLogin}>
 
               <div className="mb-5 flex items-center gap-3">
                 <img src={PublicSafety} alt="Matrícula" className="w-7 h-7" />
