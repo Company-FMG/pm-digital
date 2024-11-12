@@ -25,10 +25,10 @@ export default function Viatura({
 
   const setViatura = async () => {
     try {
-      const response = await axios.put(`${api_url}/denuncias/${idDenuncia}/${idViatura}`, {
+      const response = await axios.put(`${api_url}/denuncias/${idDenuncia}/${idViatura}`, {}, {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
         }
       });
 
