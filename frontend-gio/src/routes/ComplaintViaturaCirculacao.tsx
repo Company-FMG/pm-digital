@@ -8,10 +8,14 @@ interface Policial{
   nome:string;
   comandante:boolean;
 }
+interface Denuncia{
+  id: string;
+}
 interface Viatura {
   id: string;
   placa: string;
   policiais: Policial[];
+  denuncia: Denuncia;
 }
 
 export default function ComplaintViaturaCirculacao() {
@@ -47,7 +51,7 @@ export default function ComplaintViaturaCirculacao() {
         <h1 className="font-bold text-5xl">Viaturas em Circulação</h1>
         <div className="pt-6">
           {/* <p className="font-bold text-2xl pb-6">Mais próxima</p> */}
-          {viaturas.map((viatura, index)=>(
+          {viaturas.filter(viatura => !viatura.denuncia).map((viatura, index)=>(
             <Viatura
               key={index}
               idViatura={viatura.id}

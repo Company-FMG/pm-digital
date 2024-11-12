@@ -2,7 +2,7 @@
 import pinimg from "../assets/pin.svg";
 import efetivoimg from "../assets/efetivoimg.svg";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 export default function Viatura({
@@ -22,6 +22,7 @@ export default function Viatura({
   const location = useLocation();
   const idDenuncia = location.state?.idDenuncia;
   const [showMore, setShowMore] = useState(false);
+  const navigate = useNavigate();
 
   const setViatura = async () => {
     try {
@@ -34,6 +35,7 @@ export default function Viatura({
 
       if (response.status === 200) {
         console.log('Dados enviados com sucesso!');
+        navigate('/home');
       } else {
         console.error('Erro ao receber os dados');
       }
