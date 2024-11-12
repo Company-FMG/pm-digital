@@ -5,6 +5,7 @@ import Register from "./routes/Register";
 import ComplaintViaturaCirculacao from "./routes/ComplaintViaturaCirculacao";
 import ComplaintRegister from "./routes/ComplaintRegister";
 import Complaint from "./routes/Complaint";
+import Perfil from "./routes/Perfil";
 
 export default function AppRoutes() {
     return(
@@ -12,6 +13,7 @@ export default function AppRoutes() {
             <Route path="/" element={<Login/>}/>
             <Route path="register" element={<Register/>}/>
             <Route path="home" element={<Home/>} />
+            <Route path="perfil" element ={<Perfil/> } />
             <Route path="viaturas" element={<ComplaintViaturaCirculacao/>}/>
             <Route path="newcomplaint" element={<ComplaintRegister/>}/>
             <Route path="denuncia" element={<Complaint/>}/>
