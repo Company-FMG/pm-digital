@@ -40,6 +40,7 @@ import Login from './routes/Login';
 import Relatorio from './routes/Relatorio';
 import Perfil from './routes/Perfil';
 import Register from './routes/Register';
+import ViaturasDisponiveis from './routes/ViaturasDisponiveis';
 
 setupIonicReact();
 
@@ -53,6 +54,7 @@ export default function AppRoutes() {
           <Route exact path='/relatorio'><Relatorio/></Route>
           <Route exact path='/perfil'><Perfil/></Route>
           <Route exact path='/register'><Register/></Route>
+          <Route exact path='/viaturas-disponiveis'><ViaturasDisponiveis/></Route>
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
