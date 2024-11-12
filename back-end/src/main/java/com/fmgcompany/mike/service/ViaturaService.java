@@ -1,7 +1,9 @@
 package com.fmgcompany.mike.service;
 
+import com.fmgcompany.mike.model.Denuncia;
 import com.fmgcompany.mike.model.Viatura;
 import com.fmgcompany.mike.repository.ViaturaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,19 @@ public class ViaturaService {
 
     public Optional<Viatura> buscarPorId(UUID id){
         return this.viaturaRepository.findById(id);
+    }
+
+    @Transactional
+    public Denuncia denunciaViatura(String placa){
+        Optional<Viatura> viaturaOptional = this.viaturaRepository.findByPlaca(placa);
+
+        if(viaturaOptional.isPresent()){
+            Viatura viatura = viaturaOptional.get();
+
+            return viatura.getDenuncia();
+        } else {
+            return null;
+        }
     }
 
     public Viatura criarViatura(Viatura viatura){

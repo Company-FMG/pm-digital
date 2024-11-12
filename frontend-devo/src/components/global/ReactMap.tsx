@@ -7,9 +7,10 @@ import { IonButton } from "@ionic/react";
 import { useMap } from "../../contexts/MapContext";
 import "../../index.css";
 import usePolling from "../../hooks/usePolling";
-
+ 
 export default function ReactMap() {
-  const { data: denuncias } = usePolling("http://localhost:8080/denuncias", 5000);
+  const apiUrl = import.meta.env.VITE_API_URL!;
+  const { data: denuncias } = usePolling(`${apiUrl}/viaturas/${localStorage.getItem("placaViatura")}/denuncia`, 50000000);
   const { showMap } = useMap();
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY!,

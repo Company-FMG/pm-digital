@@ -1,5 +1,7 @@
 package com.fmgcompany.mike.controller;
 
+import com.fmgcompany.mike.dto.DenunciaDTO;
+import com.fmgcompany.mike.model.Denuncia;
 import com.fmgcompany.mike.model.Policial;
 import com.fmgcompany.mike.model.Viatura;
 import com.fmgcompany.mike.service.PolicialService;
@@ -7,6 +9,7 @@ import com.fmgcompany.mike.service.ViaturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -31,6 +34,24 @@ public class ViaturaController {
     @GetMapping("/{id}")
     public Optional<Viatura> buscarViatura(@PathVariable UUID id){
         return this.viaturaService.buscarPorId(id);
+    }
+
+    @GetMapping("/{placa}/denuncia")
+    public ResponseEntity buscarDenunciaViatura(@PathVariable String placa){
+        try {
+            Denuncia denuncia = this.viaturaService.denunciaViatura(placa);
+
+            if (denuncia != null) {
+                return ResponseEntity.ok(denuncia);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Denúncia não encontrada para a viatura com placa: " + placa);
+            }
+        } catch (Exception e) {
+            // Log de erro, se necessário
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro ao buscar denúncia para a viatura.");
+        }
     }
 
     @PostMapping

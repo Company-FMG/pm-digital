@@ -8,9 +8,16 @@ const usePolling = (url, interval) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(url);
+        const response = await axios.get(url, {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        });
         
-        if (JSON.stringify(response.data) !== JSON.stringify(data)) {
+        console.log("Response Data:", response.data);
+        
+        if (response.status === 200) {
           setData(response.data);
         }
       } catch (err) {
@@ -22,7 +29,7 @@ const usePolling = (url, interval) => {
     const id = setInterval(fetchData, interval);
 
     return () => clearInterval(id);
-  }, [url, interval, data]);
+  }, [url, interval]);
 
   return { data, error };
 };

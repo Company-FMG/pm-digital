@@ -25,7 +25,7 @@ export default function Home() {
           </IonToolbar>
         </IonHeader>
         <IonContent slot="fixed" className="[my-react-map] relative">
-          {/* <ReactMap  /> */}
+          <ReactMap  />
           <Opcoes data-testid="my-opcoes" />
           {/* <AlertaOcorrenciaMike /> */}
           <RegistrarBO />
