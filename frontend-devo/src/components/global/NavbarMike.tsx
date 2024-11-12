@@ -19,7 +19,7 @@ export default function NavbarMike () {
                         <button onClick={() => handleShow("opcoes")} className='flex space-x-2 items-center'>
                             <img alt="" className="w-8 h-8 object-cover md:w-12 md:h-12 rounded-full border border-white" src={pfp} />
                             <div className="font-poppins text-xs sm:text-base md:text-xl lg:text-2xl text-white">
-                                <p>{nome}</p>
+                                <p>{localStorage.getItem("nome")}</p>
                             </div>
                         </button>
                     </div>

@@ -40,8 +40,8 @@ import UltimaOcorrencia from "../components/global/UltimaOcorrencia";
                 </IonFab>
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-0">{cargo} {nome}</h3>
-                <p>{matricula}</p>
+                <h3 className="text-xl font-bold mb-0">{cargo} {localStorage.getItem("nome")}</h3>
+                <p>#{localStorage.getItem("matricula")}</p>
               </div>
               <button onClick={() => history.push('/home') } className="bg-bluemike text-xs font-bold text-white px-8 py-3 rounded-md">
                 VOLTAR PARA PÁGINA INICIAL
