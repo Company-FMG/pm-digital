@@ -52,11 +52,13 @@ public class SecurityFilter extends OncePerRequestFilter {
 
                 var authentication = new UsernamePasswordAuthenticationToken(despachante, null, null);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+                System.out.println("O usuário é Despachante");
             } else {
                 Policial policial = policialRepository.findByMatricula(matricula).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
                 var authentication = new UsernamePasswordAuthenticationToken(policial, null, null);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+                System.out.println("O usuário é Policial");
             }
         }
         filterChain.doFilter(request, response);

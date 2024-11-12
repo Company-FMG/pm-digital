@@ -58,7 +58,7 @@ public class DespachanteController {
             this.despachanteRepository.save(newUser);
 
             String token = this.tokenService.generateDespachanteToken(newUser);
-            return ResponseEntity.ok(new AuthResponseDTO(newUser.getNome(), token));
+            return ResponseEntity.ok(new AuthResponseDTO(newUser.getNome(), newUser.getEmail(), newUser.getMatricula(), token));
         }
         return ResponseEntity.badRequest().build();
     }
@@ -68,7 +68,7 @@ public class DespachanteController {
         Despachante despachante = this.despachanteRepository.findByMatricula(loginRequestDTO.getMatricula()).orElseThrow(() -> new RuntimeException("Despachante não encontrado"));
         if(passwordEncoder.matches(loginRequestDTO.getSenha(), despachante.getSenha())) {
             String token = this.tokenService.generateDespachanteToken(despachante);
-            return ResponseEntity.ok(new AuthResponseDTO(despachante.getNome(), token));
+            return ResponseEntity.ok(new AuthResponseDTO(despachante.getNome(), despachante.getEmail(), despachante.getMatricula(), token));
         }
         return ResponseEntity.badRequest().build();
     }

@@ -25,9 +25,17 @@ public class PolicialService {
         return this.policialRepository.findById(id);
     }
 
+    public Optional<Policial> buscarPorMatricula(String matricula){
+        return this.policialRepository.findByMatricula(matricula);
+    }
+
     public Policial criar(Policial policial) {
         return this.policialRepository.save(policial);
-    } 
+    }
+
+    public Policial atualizar(Policial policial) {
+        return this.policialRepository.save(policial);
+    }
 
     public void deletarPorId(UUID id) {
         this.policialRepository.deleteById(id);

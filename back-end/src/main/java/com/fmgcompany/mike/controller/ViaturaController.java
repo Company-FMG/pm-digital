@@ -52,6 +52,7 @@ public class ViaturaController {
         }
     }
 
+    //desnecessario
     @PutMapping("/{id}/{idPolicial}")
     public ResponseEntity<Viatura> addPolicial(@PathVariable UUID id, @PathVariable UUID idPolicial){
         Optional<Policial> p = this.policialService.buscarPorId(idPolicial);
@@ -74,6 +75,7 @@ public class ViaturaController {
         }
     }
 
+    //desnecessario
     @DeleteMapping("/{id}/{idPolicial}")
     public ResponseEntity<Viatura> removerPolicial(@PathVariable UUID id, @PathVariable UUID idPolicial){
         Optional<Policial> p = this.policialService.buscarPorId(idPolicial);

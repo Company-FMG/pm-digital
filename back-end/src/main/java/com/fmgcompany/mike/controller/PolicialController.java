@@ -8,9 +8,12 @@ import com.fmgcompany.mike.config.TokenService;
 import com.fmgcompany.mike.dto.AuthResponseDTO;
 import com.fmgcompany.mike.dto.LoginRequestDTO;
 import com.fmgcompany.mike.dto.RegisterRequestDTO;
+import com.fmgcompany.mike.model.Viatura;
 import com.fmgcompany.mike.repository.PolicialRepository;
+import com.fmgcompany.mike.service.ViaturaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +32,9 @@ public class PolicialController {
 
     @Autowired
     private final TokenService tokenService;
+
+    @Autowired
+    private ViaturaService viaturaService;
 
     @GetMapping
     public List<Policial> readAll() {
@@ -50,7 +56,7 @@ public class PolicialController {
         Policial policial = this.policialRepository.findByMatricula(loginRequestDTO.getMatricula()).orElseThrow(() -> new RuntimeException("Policial não encontrado"));
         if(passwordEncoder.matches(loginRequestDTO.getSenha(), policial.getSenha())) {
             String token = this.tokenService.generatePolicialToken(policial);
-            return ResponseEntity.ok(new AuthResponseDTO(policial.getNome(), token));
+            return ResponseEntity.ok(new AuthResponseDTO(policial.getNome(), policial.getEmail(), policial.getMatricula(), token));
         }
         return ResponseEntity.badRequest().build();
     }
@@ -68,9 +74,69 @@ public class PolicialController {
             this.policialRepository.save(newUser);
 
             String token = this.tokenService.generatePolicialToken(newUser);
-            return ResponseEntity.ok(new AuthResponseDTO(newUser.getNome(), token));
+            return ResponseEntity.ok(new AuthResponseDTO(newUser.getNome(), newUser.getEmail(), newUser.getMatricula(), token));
         }
         return ResponseEntity.badRequest().build();
+    }
+
+    @PutMapping("/in/{idViatura}")
+    public ResponseEntity participarViatura(@PathVariable UUID idViatura, @RequestHeader("Authorization") String token){
+        String matricula = tokenService.validateToken(token.substring(7));
+
+        Optional<Policial> policialOptional = policialService.buscarPorMatricula(matricula);
+
+        if (policialOptional.isPresent()) {
+            Policial policial = policialOptional.get();
+
+            Optional<Viatura> viaturaOptional = viaturaService.buscarPorId(idViatura);
+
+            if (viaturaOptional.isPresent()) {
+                Viatura viatura = viaturaOptional.get();
+
+                policial.setViatura(viatura);
+                viatura.getPoliciais().add(policial);
+
+                policialService.atualizar(policial);
+                viaturaService.atualizar(viatura);
+
+                return ResponseEntity.ok(viatura);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @PutMapping("/out/{idViatura}")
+    public ResponseEntity sairViatura(@PathVariable UUID idViatura, @RequestHeader("Authorization") String token){
+        String matricula = tokenService.validateToken(token.substring(7));
+
+        Optional<Policial> policialOptional = policialService.buscarPorMatricula(matricula);
+
+        if (policialOptional.isPresent()) {
+            Policial policial = policialOptional.get();
+
+            Optional<Viatura> viaturaOptional = viaturaService.buscarPorId(idViatura);
+
+            if (viaturaOptional.isPresent()) {
+                Viatura viatura = viaturaOptional.get();
+
+                if(viatura.getPoliciais().contains(policial)){
+                    policial.setViatura(null);
+                    viatura.getPoliciais().remove(policial);
+
+                    policialService.atualizar(policial);
+                    viaturaService.atualizar(viatura);
+                }
+
+                return ResponseEntity.ok(viatura);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     @PutMapping("/{id}")
