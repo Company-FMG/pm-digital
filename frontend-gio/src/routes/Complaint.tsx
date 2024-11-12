@@ -69,30 +69,24 @@ export default function Complaint() {
                             <div className="flex-col w-full font-bold">
                                 <h2 className="text-xl md:text-xl 2xl:text-2xl">Informações da cena</h2>
                                 <div className="flex flex-col mt-4 md:mt-11 md:text-lg space-y-5 text-justify">
-                                    <p className="line-clamp-3">
-                                        Relato: <span className="font-normal">{formData.relato}</span>
-                                    </p>
-                                    <p>
-                                        Nome da vítima: <span className="font-normal">{formData.nomeVitima}</span>
-                                    </p>
-                                    <p>
-                                        Sexo: <span className="font-normal">{formData.sexoVitima}</span>
-                                    </p>
-                                    <p>
-                                        Idade: <span className="font-normal">{formData.idadeVitima}</span>
-                                    </p>
-                                    <p>
-                                        Pessoa suspeita: <span className="font-normal">{formData.nomeSuspeito}</span>
-                                    </p>
-                                    <p>
-                                        Sexo: <span className="font-normal">{formData.sexoSuspeito}</span>
-                                    </p>
-                                    <p>
-                                        Idade: <span className="font-normal">{formData.idadeSuspeito}</span>
-                                    </p>
-                                    <p className="line-clamp-3">
-                                        Descrição: <span className="font-normal">{formData.descricaoSuspeito}</span>
-                                    </p>
+                                    <p className="line-clamp-3">Relato: <span className="font-normal">{formData.relato}</span></p>
+                                    <p>Nome da vítima: <span className="font-normal">{formData.nomeVitima}</span></p>
+                                    <p>Sexo: <span className="font-normal">{formData.sexoVitima}</span></p>
+
+                                    {formData.idadeVitima === 0 ? 
+                                    <p>Idade: <span className="font-normal">Não informada</span></p> 
+                                    : 
+                                    <p>Idade: <span className="font-normal">{formData.idadeVitima}</span></p>}
+
+                                    <p>Pessoa suspeita: <span className="font-normal">{formData.nomeSuspeito}</span></p>
+                                    <p>Sexo: <span className="font-normal">{formData.sexoSuspeito}</span></p>
+
+                                    {formData.idadeSuspeito === 0 ? 
+                                    <p>Idade: <span className="font-normal">Não informada</span></p> 
+                                    : 
+                                    <p>Idade: <span className="font-normal">{formData.idadeSuspeito}</span></p>}
+
+                                    <p className="line-clamp-3">Descrição: <span className="font-normal">{formData.descricaoSuspeito}</span></p>
                                 </div>
                             </div>
                         </div>

@@ -18,14 +18,13 @@ export default function NavbarMike() {
 						onMouseLeave={() => setShowProfilePopup(false)}
 						className="p-2 rounded-md">
 						<img
-							alt="User Avatar"
 							className="w-4 sm:w-6 md:w-12 lg:w-12 rounded-full ring-4 ring-white ring-offset-4 ring-offset-bluemike"
 							src="https://source.unsplash.com/40x40/?portrait?"
 						/>
 					</button>
 
 
-					{/* Popup de perfil */}
+					
 					{showProfilePopup && (
 						<div
 							className="absolute top-14 right-0 bg-white shadow-lg rounded-lg w-72 p-6 border border-gray-200 text-center"
@@ -39,14 +38,14 @@ export default function NavbarMike() {
 
 								</div>
 
-								<p className="font-semibold text-lg text-bluemike">Olá {localStorage.getItem('nome') || 'Keven Leoes'}</p>
+								<p className="font-semibold text-lg text-bluemike">Olá {localStorage.getItem('nome')}</p>
 								<p className="text-sm text-gray-500">Atendente do compom M901476</p>
 							</div>
 
 
 							<div className="flex flex-col gap-2 mt-4">
 								<button
-									onClick={() => navigate('/minha-conta')}
+									onClick={() => navigate('/perfil')}
 									className="w-full py-2 text-gray-800 border border-gray-300 rounded-md hover:bg-gray-100 text-sm font-medium"
 								>
 									Minha conta
