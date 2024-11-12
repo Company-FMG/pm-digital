@@ -23,8 +23,10 @@ public class SecurityConfig {
     @Autowired
     private DespachanteDetailsService despachanteDetailsService;
 
-    @Autowired
-    SecurityFilter securityFilter;
+    @Bean
+    public SecurityFilter securityFilter() {
+        return new SecurityFilter();
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -35,7 +37,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/despachantes/login", "/despachantes/register", "/policiais/login", "/policiais/register").permitAll()
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(securityFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

@@ -1,7 +1,10 @@
 package com.fmgcompany.mike.config;
 
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.fmgcompany.mike.model.Despachante;
+import com.fmgcompany.mike.model.Policial;
 import com.fmgcompany.mike.repository.DespachanteRepository;
+import com.fmgcompany.mike.repository.PolicialRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Optional;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
@@ -22,6 +26,8 @@ public class SecurityFilter extends OncePerRequestFilter {
     TokenService tokenService;
     @Autowired
     DespachanteRepository despachanteRepository;
+    @Autowired
+    PolicialRepository policialRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -32,20 +38,33 @@ public class SecurityFilter extends OncePerRequestFilter {
         }
 
         var token = this.recoverToken(request);
+        Optional.ofNullable(token).orElseThrow(() -> new JWTDecodeException("The token is null"));
+
         var matricula = tokenService.validateToken(token);
-        System.out.println(matricula);
+
+        System.out.println("Token recebido: " + token);
+        System.out.println("Matrícula decodificada: " + matricula);
 
         if(matricula != null){
-            Despachante despachante = despachanteRepository.findByMatricula(matricula).orElseThrow(() -> new RuntimeException("Despachante não encontrado"));
-            var authentication = new UsernamePasswordAuthenticationToken(despachante, null, null);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            var optionalDespachante = despachanteRepository.findByMatricula(matricula);
+            if (optionalDespachante.isPresent()) {
+                Despachante despachante = optionalDespachante.get();
+
+                var authentication = new UsernamePasswordAuthenticationToken(despachante, null, null);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            } else {
+                Policial policial = policialRepository.findByMatricula(matricula).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+                var authentication = new UsernamePasswordAuthenticationToken(policial, null, null);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
         }
         filterChain.doFilter(request, response);
     }
 
     private String recoverToken(HttpServletRequest request){
         var authHeader = request.getHeader("Authorization");
-        if(authHeader == null) return null;
+        if(authHeader == null || !authHeader.startsWith("Bearer ")) return null;
         return authHeader.replace("Bearer ", "");
     }
 }
