@@ -75,11 +75,13 @@ public class DenunciaController {
             if (viaturaOptional.isPresent() && viaturaService.isDisponivel(viaturaOptional.get().getId())) { // Verifica se a viatura está disponível
                 Viatura viatura = viaturaOptional.get();
 
-                viatura.setDenuncia(denuncia); // Associa a denúncia à viatura
-                denuncia.setViatura(viatura); // Associa a viatura à denúncia
+                viatura.setDenuncia(denuncia);
 
-                denunciaService.atualizar(denuncia); // Salva a denúncia com a nova associação
-                viaturaService.atualizar(viatura); // Salva a viatura atualizada
+                denuncia.setViatura(viatura);
+                denuncia.setStatus(Status.valueOf("EM_ANDAMENTO"));
+
+                denunciaService.atualizar(denuncia);
+                viaturaService.atualizar(viatura);
 
                 DenunciaDTO updatedDenunciaDTO = denunciaMapper.toDTO(denuncia); // Atualiza o DTO com a viatura associada
 
