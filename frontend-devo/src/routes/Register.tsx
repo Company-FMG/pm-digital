@@ -31,6 +31,7 @@ export default function Register() {
           console.log('Dados recebidos com sucesso!: ', response.data);
 
           localStorage.setItem('authToken', response.data.jwt);
+          localStorage.setItem('matricula', response.data.matricula);
           localStorage.setItem('nome', response.data.nome);
           history.push('/home');
       } else if(response.status === 401) {

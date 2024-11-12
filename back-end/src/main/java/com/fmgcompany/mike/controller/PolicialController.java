@@ -5,8 +5,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.fmgcompany.mike.config.TokenService;
-import com.fmgcompany.mike.dto.AuthResponseDTO;
 import com.fmgcompany.mike.dto.LoginRequestDTO;
+import com.fmgcompany.mike.dto.PolicialDTO;
 import com.fmgcompany.mike.dto.RegisterRequestDTO;
 import com.fmgcompany.mike.model.Viatura;
 import com.fmgcompany.mike.repository.PolicialRepository;
@@ -56,7 +56,9 @@ public class PolicialController {
         Policial policial = this.policialRepository.findByMatricula(loginRequestDTO.getMatricula()).orElseThrow(() -> new RuntimeException("Policial não encontrado"));
         if(passwordEncoder.matches(loginRequestDTO.getSenha(), policial.getSenha())) {
             String token = this.tokenService.generatePolicialToken(policial);
-            return ResponseEntity.ok(new AuthResponseDTO(policial.getNome(), policial.getEmail(), policial.getMatricula(), token));
+
+            String placaViatura = (policial.getViatura() != null) ? policial.getViatura().getPlaca() : null;
+            return ResponseEntity.ok(new PolicialDTO(policial.getNome(), policial.getEmail(), policial.getMatricula(), placaViatura, token));
         }
         return ResponseEntity.badRequest().build();
     }
@@ -74,7 +76,7 @@ public class PolicialController {
             this.policialRepository.save(newUser);
 
             String token = this.tokenService.generatePolicialToken(newUser);
-            return ResponseEntity.ok(new AuthResponseDTO(newUser.getNome(), newUser.getEmail(), newUser.getMatricula(), token));
+            return ResponseEntity.ok(new PolicialDTO(newUser.getNome(), newUser.getEmail(), newUser.getMatricula(), null, token));
         }
         return ResponseEntity.badRequest().build();
     }

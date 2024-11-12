@@ -27,6 +27,7 @@ export default function Login() {
           console.log('Dados recebidos com sucesso!: ', response.data);
 
           localStorage.setItem('authToken', response.data.jwt);
+          localStorage.setItem('matricula', response.data.matricula);
           localStorage.setItem('nome', response.data.nome);
           history.push('/home');
       } else if(response.status === 401) {
@@ -35,7 +36,11 @@ export default function Login() {
           alert('Erro ao receber os dados: ' + response.status);
       }
     } catch (error: any) {
-      if(error.response.status === 403) {
+      console.log(error);
+
+      if(error.code === 'ERR_NETWORK') {
+        alert('Erro ao se conectar com o servidor');
+      } else if(error.response.status === 403) {
         alert('Usuário ou senha inválidos');
       }
     }
