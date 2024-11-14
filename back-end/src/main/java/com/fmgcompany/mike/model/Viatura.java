@@ -1,6 +1,7 @@
 package com.fmgcompany.mike.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,12 +23,22 @@ public class Viatura {
 
     private String placa;
 
-    @OneToMany
-    @JoinColumn(name = "policial_id",referencedColumnName = "id")
+    @OneToMany(mappedBy = "viatura", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Policial> policiais;
 
     @OneToOne
-    @JoinColumn(name = "denuncia_id",referencedColumnName = "id")
+    @JoinColumn(name = "denuncia_id", referencedColumnName = "id")
     @JsonManagedReference
     private Denuncia denuncia;
+
+    @Override
+    public String toString() {
+        return "Viatura{" +
+                "id=" + id +
+                ", placa='" + placa + '\'' +
+                '}';
+    }
 }
+
+

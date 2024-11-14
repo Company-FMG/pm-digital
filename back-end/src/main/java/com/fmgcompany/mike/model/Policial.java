@@ -26,4 +26,12 @@ public class Policial{
     @JsonBackReference
     @JoinColumn(name = "id_viatura")
     private Viatura viatura;
+
+    @Override
+    public String toString() {
+        return "Policial{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
+    }
 }

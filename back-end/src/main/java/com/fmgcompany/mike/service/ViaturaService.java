@@ -16,10 +16,12 @@ public class ViaturaService {
     @Autowired
     private ViaturaRepository viaturaRepository;
 
+    @Transactional
     public List<Viatura> listarTodas(){
         return this.viaturaRepository.findAll();
     }
 
+    @Transactional
     public Optional<Viatura> buscarPorId(UUID id){
         return this.viaturaRepository.findById(id);
     }
@@ -55,5 +57,5 @@ public class ViaturaService {
                 .map(viatura -> viatura.getDenuncia() == null)
                 .orElse(false);
     }
-    
+
 }
