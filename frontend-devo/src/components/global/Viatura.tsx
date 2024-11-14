@@ -37,7 +37,7 @@ export default function Viatura({
                     <div className="flex flex-col w-full">
                         <div className="flex flex-col font-semibold text-left my-5 font-poppins text-sm text-white gap-3">
                             <p>Responsável: <span className="font-normal">{responsavel}</span></p>
-                            <p>Efetivo: <span>{efetivos}</span></p>
+                            <p>Efetivos: <span className="font-normal">{efetivos.join(", ")}</span></p>
                             <p>Área de atuação: <span className="font-normal">{areaAtuacao}</span></p>
                         </div>
                         <a href="/viaturas-disponiveis"><button className="w-full text-bluemike font-poppins bg-white p-4 rounded-lg font-bold">

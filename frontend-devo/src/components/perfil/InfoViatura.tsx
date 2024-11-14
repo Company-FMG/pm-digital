@@ -1,7 +1,19 @@
 import { useState } from "react";
 import carro from "../../assets/carro.svg"
 
-export default function InfoViatura() {
+export default function InfoViatura({
+    idViatura,
+    placa,
+    responsavel,
+    efetivos,
+    areaAtuacao,
+  }: {
+    idViatura: string,
+    placa: string,
+    responsavel: string,
+    efetivos: string[],
+    areaAtuacao: string
+  }) {
 
     const [showMore, setShowMore] = useState(false);
 
@@ -9,9 +21,12 @@ export default function InfoViatura() {
         setShowMore(!showMore);
     }
 
+    const placaViatura = localStorage.getItem("placaViatura");
+    const isViaturaSelecionada = placaViatura && placaViatura !== "null";
+
     return (
         <>
-            {localStorage.getItem("placaViatura") ?
+            {isViaturaSelecionada ? 
                 <button onClick={handleMoreClick} className="flex flex-col bg-bluemike w-full p-6 rounded-sm justify-between">
                     <div className="flex flex-row items-center gap-4">
                         <svg className="fill-white w-12" viewBox="0 0 33 31" xmlns="http://www.w3.org/2000/svg">
@@ -19,15 +34,15 @@ export default function InfoViatura() {
                         </svg>
                         <div className="flex flex-col font-poppins text-left">
                             <p className="text-white">Viatura atual:</p>
-                            <p className="text-white font-bold text-xl tracking-widest uppercase">{localStorage.getItem("placaViatura") || "abcdefg"}</p>
+                            <p className="text-white font-bold text-xl tracking-widest uppercase">{placaViatura}</p>
                         </div>
                     </div>
                     {showMore && (
                         <div className="flex flex-col w-full">
                             <div className="flex flex-col font-semibold text-left my-4 font-poppins text-sm text-white gap-3">
-                                <p>Responsável:<span></span></p>
-                                <p>Efetivo:<span></span></p>
-                                <p>Área de atuação: <span></span></p>
+                                <p>Responsável: <span className="font-normal">{responsavel}</span></p>
+                                <p>Efetivo: <span className="font-normal">{efetivos.join(", ")}</span></p>
+                                <p>Área de atuação: <span className="font-normal">{areaAtuacao}</span></p>
                             </div>
                             <a href="/viaturas-disponiveis"><button className="w-full text-bluemike font-poppins bg-white p-4 rounded-lg font-bold">
                                 Sair da viatura
