@@ -19,11 +19,7 @@ export default function Home() {
   return (
     <>
       <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <NavbarMike />
-          </IonToolbar>
-        </IonHeader>
+        <NavbarMike />
         <IonContent slot="fixed" className="[my-react-map] relative">
           <ReactMap  />
           <Opcoes data-testid="my-opcoes" />
