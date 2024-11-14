@@ -57,15 +57,21 @@ export default function ViaturasDisponiveis() {
             <IonContent>
                 <div className="flex flex-col items-center font-poppins space-y-4 p-4">
                     <p className="text-lg my-4 text-bluemike font-medium">Viaturas disponíveis</p>
-                    {viaturas.filter(viatura => !viatura.denuncia).map((viatura, index) => (
+                    {viaturas.filter(viatura => !viatura.denuncia && !viatura.policiais[2]).map((viatura, index) => (
                         <Viatura
                             key={index}
                             idViatura={viatura.id}
                             placa={viatura.placa}
                             responsavel={
-                                viatura.policiais?.find(policial => policial.comandante === true)?.nome || "Sem comandante"
+                                viatura.policiais && viatura.policiais.length > 0
+                                ? viatura.policiais.find(policial => policial.comandante)?.nome || "Sem comandante"
+                                : "Sem comandante"
                             }
-                            efetivos={viatura.policiais ? viatura.policiais.map((policial) => `${policial.nome}, `) : ["Sem efetivo"]}
+                            efetivos={
+                        viatura.policiais && viatura.policiais.length > 0
+                            ? viatura.policiais.map(policial => policial.nome)
+                            : ["Sem efetivo"]                           
+                            }
                             areaAtuacao={"Região Metropolitana"}
                         />
                     ))}
