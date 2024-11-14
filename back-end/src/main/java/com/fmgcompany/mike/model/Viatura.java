@@ -24,7 +24,6 @@ public class Viatura {
     private String placa;
 
     @OneToMany(mappedBy = "viatura", fetch = FetchType.EAGER)
-    @JsonIgnore
     private List<Policial> policiais;
 
     @OneToOne
