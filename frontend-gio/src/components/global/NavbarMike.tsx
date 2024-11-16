@@ -19,12 +19,14 @@ export default function NavbarMike({ selectedImage }) {
                         onMouseLeave={() => setShowProfilePopup(false)}
                         className="p-2 rounded-md"
                     >
-                        {/* Usa a imagem selecionada ou uma imagem padrão se não houver uma selecionada */}
-                        <img
-                            className="w-4 sm:w-6 md:w-12 lg:w-12 rounded-full ring-4 ring-white ring-offset-4 ring-offset-bluemike"
-                            src={selectedImage || "https://source.unsplash.com/40x40/?portrait?"}
-                            alt="Perfil"
-                        />
+                        {/* Contêiner da imagem de perfil com overflow-hidden para manter a imagem dentro do círculo */}
+                        <div className="w-12 h-12 rounded-full overflow-hidden ring-4 ring-white ring-offset-4 ring-offset-bluemike">
+                            <img
+                                className="w-full h-full object-cover rounded-full" // Definido w-full e h-full para ajustar ao contêiner circular
+                                src={selectedImage || "https://source.unsplash.com/40x40/?portrait?"}
+                                alt="Perfil"
+                            />
+                        </div>
                     </button>
 
                     {showProfilePopup && (
@@ -34,12 +36,12 @@ export default function NavbarMike({ selectedImage }) {
                             onMouseLeave={() => setShowProfilePopup(false)}
                         >
                             <div className="flex flex-col items-center mb-4">
+                                {/* Contêiner para manter a imagem dentro do círculo no popup */}
                                 <div className="relative w-20 h-20 rounded-full overflow-hidden">
-                                    {/* Usa a imagem selecionada no popup de perfil */}
                                     {selectedImage ? (
-                                        <img src={selectedImage} alt="Foto de Perfil" className="w-full h-full object-cover" />
+                                        <img src={selectedImage} alt="Foto de Perfil" className="object-cover w-full h-full rounded-full" />
                                     ) : (
-                                        <div className="w-full h-full bg-gray-300"></div>
+                                        <div className="w-full h-full bg-gray-300 rounded-full"></div>
                                     )}
                                 </div>
 
