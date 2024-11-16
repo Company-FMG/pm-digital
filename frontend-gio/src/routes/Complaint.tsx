@@ -29,7 +29,8 @@ export default function Complaint() {
                     cep: undefined,
                     relato: "",
                     referencia: "",
-                    geolocation: { lat: 0, lng: 0 },
+                    lat: 0,
+                    lng: 0,
                     nomeVitima: "",
                     sexoVitima: "",
                     idadeVitima: 0,
@@ -50,9 +51,9 @@ export default function Complaint() {
     };
 
     useEffect(() => {
-        console.log(formData.geolocation.lat);
-        console.log(formData.geolocation.lng);
-    }, [formData.geolocation.lat, formData.geolocation.lng]);
+        console.log(formData.lat);
+        console.log(formData.lng);
+    }, [formData.lat, formData.lng]);
 
     return (
         <AuthenticatedLayout>
@@ -65,7 +66,7 @@ export default function Complaint() {
 
                     <div className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-16">
-                            <ComplaintMap local={formData.local} lat={formData.geolocation.lat} lng={formData.geolocation.lng} />
+                            <ComplaintMap local={formData.local} lat={formData.lat} lng={formData.lng} />
                             <div className="flex-col w-full font-bold">
                                 <h2 className="text-xl md:text-xl 2xl:text-2xl">Informações da cena</h2>
                                 <div className="flex flex-col mt-4 md:mt-11 md:text-lg space-y-5 text-justify">

@@ -9,10 +9,11 @@ interface FormProviderProps {
     children: React.ReactNode;
 }
 
-interface Geolocation {
+/* interface Geolocation {
     lat: number;
     lng: number;
 }
+ */
 
 // interface Vitima {
 //     nomeVitima: string;
@@ -33,7 +34,8 @@ interface FormData {
     cep: string | undefined;
     relato: string;
     referencia: string;
-    geolocation: Geolocation;
+    lat: number;
+    lng: number;
     nomeVitima: string | undefined;
     sexoVitima: string | undefined;
     idadeVitima: number | undefined;
@@ -53,7 +55,8 @@ export const FormProvider = ({children}:FormProviderProps) => {
         cep: undefined,
         relato: "",
         referencia: "Não definido",
-        geolocation: {lat: 0, lng: 0},
+        lat: 0,
+        lng: 0,
         nomeVitima: "Não definido",
         sexoVitima: "Não definido",
         idadeVitima: 0,
