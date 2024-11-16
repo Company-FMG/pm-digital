@@ -47,7 +47,7 @@ export default function Home() {
     return (
         <AuthenticatedLayout>
             <div className="flex justify-center">
-                <div className="grid lg:grid-cols-2 grid-cols-1 justify-items-center xl:max-w-4xl gap-8 lg:max-w-3xl md:max-w-lg max-w-xs">
+                <div className="grid lg:grid-cols-2 grid-cols-1 justify-items-center xl:max-w-5xl gap-8 lg:max-w-3xl md:max-w-lg max-w-xs">
                     <div className="overflow-auto border-4 rounded-lg border-gray-200 px-8 py-6 space-y-8 w-full">
                         <div className="flex justify-between items-center">
                             <h3 className="font-poppins font-bold text-bluemike text-lg">Novas Denúncias</h3>

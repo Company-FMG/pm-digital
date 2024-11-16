@@ -29,7 +29,7 @@ export default function Perfil() {
 
             <main className="flex flex-col items-center px-8 py-11 w-full bg-white rounded-lg max-md:px-5 max-md:max-w-full pl-20">
                 <div className="relative h-[103px] w-[103px]">
-                    <label className="relative flex items-center justify-center h-full w-full bg-blue-700 rounded-full cursor-pointer overflow-hidden group">
+                    <label className="relative flex items-center justify-center h-full w-full bg-blue-700 border-white border-4 ring-bluemike ring-4 rounded-full cursor-pointer overflow-hidden group">
                         {selectedImage ? (
                             <img src={selectedImage} alt="Foto de Perfil" className="h-full w-full rounded-full object-cover" />
                         ) : (
@@ -54,11 +54,11 @@ export default function Perfil() {
                         </div>
                     </label>
                 </div>
-                <p className="text-3xl font-semibold text-bluemike pt-10">
-                    Olá, {localStorage.getItem("nome")}
+                <p className="text-3xl font-semibold text-bluemike mt-4">
+                    Olá, {localStorage.getItem("nome")}!
                 </p>
-                <p className="mt-4 text-base text-black">
-                    Atendente do compom M901476
+                <p className="mt-2 text-base text-black">
+                    Despachante #M901476
                 </p>
 
                 {/* Botões de Ações */}

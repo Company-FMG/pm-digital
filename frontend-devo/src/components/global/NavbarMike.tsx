@@ -9,18 +9,24 @@ export default function NavbarMike () {
     
     return (
         <>
-            <header className="p-0 bg-bluemike">
-                <div className="container flex justify-between sm:h-16 md:h-20 mx-auto px-4">
-                    <a href="/home" className="flex items-center p-8">
-                        <img className="h-8 sm:h-8 md:h-14" src={pmDigitalLogo} />
+            <header className="p-2 sm:p-4 2xl:p-5 bg-bluemike">
+                <div className="container flex justify-between h-12 sm:h-16 mx-auto px-6 sm:px-12">
+                    <a href="/home" className="flex items-center">
+                        <img className="h-10 md:h-14" src={pmDigitalLogo} />
                     </a>
-                    <div className="flex flex-row gap-4 sm:gap-6 items-center justify-center p-8">
-                        <button onClick={() => handleShow("alertaOcorrencia")} className='text-white'>alerta</button>
+                    <div className="flex flex-row gap-4 sm:gap-6 items-center justify-center">
+                        {/*<button onClick={() => handleShow("alertaOcorrencia")} className='text-white'>alerta</button> */}
                         <button onClick={() => handleShow("opcoes")} className='flex space-x-2 items-center'>
-                            <img alt="" className="w-8 h-8 object-cover md:w-12 md:h-12 rounded-full border border-white" src={pfp} />
-                            <div className="font-poppins text-xs sm:text-base md:text-xl lg:text-2xl text-white">
+                        <div className="h-8 w-8 sm:w-12 sm:h-12 rounded-full overflow-hidden ring-2 sm:ring-4 ring-white ring-offset-4 ring-offset-bluemike">
+                            <img
+                                className="w-full h-full object-cover rounded-full"
+                                src={pfp}
+                                alt="Perfil"
+                            />
+                        </div>
+                        {/*<div className="font-poppins text-sm sm:text-base md:text-xl lg:text-2xl text-white">
                                 <p>{localStorage.getItem("nome")}</p>
-                            </div>
+                            </div>*/}
                         </button>
                     </div>
                 </div>

@@ -105,7 +105,7 @@ export default function Perfil() {
     <IonPage>
       <NavbarMike />
       <IonContent>
-        <div className="space-y-12 px-5">
+        <div className="space-y-10 px-5">
           <div className="pt-10 text-center space-y-5">
             <div className="relative inline-block">
               <img className="w-28 h-28 object-cover max-w-28 md:w-36 lg:w-64 rounded-full ring-2 md:ring-4 ring-white ring-offset-4 ring-offset-bluemike" src={photo.webviewPath} alt="profile" />
@@ -157,7 +157,7 @@ export default function Perfil() {
                   </svg>
                   <p className="text-bluemike font-poppins text-md">Sem viatura no momento</p>
                 </div>
-                <Link to={"/viaturas-disponiveis"} className="bg-bluemike w-full md:w-auto text-center p-4 rounded-md text-white font-poppins">
+                <Link to={"/viaturas-disponiveis"} className="bg-bluemike w-full text-center p-4 rounded-md text-white font-poppins">
                   Entrar em viatura
                 </Link>
               </div>
