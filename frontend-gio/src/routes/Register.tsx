@@ -50,23 +50,24 @@ export default function Register() {
     };
 
     return (
-        <main className="bg-blue-700 flex flex-col justify-center">
+        <main className="bg-bluemike flex flex-col justify-center h-screen overflow-hidden">
         <div className="flex mx-auto gap-0 sm:gap-8 lg:mx-0 px-12 lg:px-0 items-center lg:flex-row h-screen">
-            <section className="justify-center">
+        
+        <section className="justify-center">
+          <Image
+            src={policialbg}
+            alt="Background"
+            className="hidden lg:block object-cover lg:w-[36rem] xl:w-[48rem] 2xl:w-[65rem] h-screen brightness-75"
+          />
+        </section>
+        <section className="flex flex-col mx-auto items-end text-end justify-center text-white">
+          <div className="w-full max-w-md 2xl:max-w-lg px-4 lg:px-16 2xl:px-12 mx-auto my-auto pb-10">
             <Image
-                src={policialbg}
-                alt="Background"
-                className="hidden lg:block object-cover lg:w-[36rem] xl:w-[48rem] 2xl:w-[65rem] h-screen brightness-75"
+              src={PMDigitalcomSlogan}
+              alt="Logo"
+               className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 2xl:w-80 max-w-full mx-auto pt-10"
             />
-            </section>
-            <section className="flex flex-col mx-auto items-end text-end justify-center bg-blue-700 text-white">
-            <div className="w-full max-w-md 2xl:max-w-lg px-4 lg:px-16 2xl:px-12 mx-auto my-auto">
-                <Image
-                src={PMDigitalcomSlogan}
-                alt="Logo"
-                className="w-auto"
-                />
-                <form className="pt-8" onSubmit={handleRegister}>
+                <form className="pt-6" onSubmit={handleRegister}>
 
                 <div className="mb-5 flex items-center gap-3">
                     <img src={iconName} alt="Nome" className="w-7 h-7" />
@@ -114,10 +115,10 @@ export default function Register() {
 
                 <button
                     type="submit"
-                    className="mt-10 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg">
+                    className="mt-2 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg">
                     Cadastrar
                 </button>
-                <div className="text-center mt-8">
+                <div className="text-center mt-2">
                     <a href="/" className="text-xl italic underline">Já possui uma conta? Faça o login</a>
                 </div>
                 </form>
