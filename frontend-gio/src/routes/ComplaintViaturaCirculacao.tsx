@@ -51,8 +51,8 @@ export default function ComplaintViaturaCirculacao() {
 
   return (
     <AuthenticatedLayout>
-      <div className="px-48 py-2">
-        <h1 className="font-bold text-4xl">Viaturas em Circulação</h1>
+      <div className="md:48px lg:px-24 px-12 py-2">
+        <h1 className="font-bold text-4xl text-center">Viaturas em Circulação</h1>
         <div className="pt-6">
           {error ? (
             <p className="text-red-500 font-bold">{error}</p>
