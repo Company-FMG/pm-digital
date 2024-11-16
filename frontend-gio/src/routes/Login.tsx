@@ -94,10 +94,10 @@ export default function Login() {
 
               <button
                 type="submit"
-                className="mt-10 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg">
+                className="mt-8 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg">
                 Entrar
               </button>
-              <div className="text-center mt-8">
+              <div className="text-center mt-4">
                 <a href="/register" className="text-xl italic underline">Primeiro acesso? Começe aqui</a>
               </div>
             </form>

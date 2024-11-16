@@ -50,8 +50,8 @@ export default function Login() {
   return (
     <IonPage>
       <IonContent>
-        <div className="flex flex-col w-full justify-center bg-bluemike h-full px-12 sm:px-10 md:px-20 lg:px-32 xl:px-44">
-          <div className="mx-auto my-auto py-10 space-y-8 max-w-md sm:max-w-lg lg:max-w-2xl">
+        <div className="flex flex-col w-full justify-center bg-bluemike h-full px-12 sm:px-10 md:px-20 lg:px-32 xl:px-44 overflow-hidden">
+          <div className="mx-auto my-auto py-10 space-y-8 max-w-md sm:max-w-lg lg:max-w-2xl ml-100">
             <img
               loading="lazy"
               src={PmDigitalComSlogan}

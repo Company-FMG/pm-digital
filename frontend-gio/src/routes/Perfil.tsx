@@ -1,41 +1,46 @@
-import { useState } from "react";
 import NavbarMike from "../components/global/NavbarMike";
+import { useProfile } from "../contexts/ProfileContext" // Certifique-se de ajustar o caminho conforme sua estrutura de pastas
 
 export default function Perfil() {
-    const [selectedImage, setSelectedImage] = useState(null);
+    const { selectedImage, setSelectedImage } = useProfile();
 
-    // Função de seleção de imagem
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
         if (file) {
-            const imageUrl = URL.createObjectURL(file);
-            setSelectedImage(imageUrl);
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                const imageUrl = reader.result as string;
+                setSelectedImage(imageUrl); // Salva a imagem no contexto e no localStorage
+            };
+
+            reader.readAsDataURL(file); // Converte a imagem para base64
         }
     };
 
-    // Função para excluir a imagem
     const handleRemoveImage = () => {
-        setSelectedImage(null);
+        setSelectedImage(null); // Remove a imagem do estado e do localStorage
     };
 
     return (
         <div>
-            {/* Passa selectedImage como prop para o NavbarMike */}
-            <NavbarMike selectedImage={selectedImage} />
+            {/* Navbar com a imagem selecionada */}
+            <NavbarMike />
 
             <main className="flex flex-col items-center px-8 py-11 w-full bg-white rounded-lg max-md:px-5 max-md:max-w-full pl-20">
                 <div className="relative h-[103px] w-[103px]">
                     <label className="relative flex items-center justify-center h-full w-full bg-blue-700 rounded-full cursor-pointer overflow-hidden group">
                         {selectedImage ? (
                             <img src={selectedImage} alt="Foto de Perfil" className="h-full w-full rounded-full object-cover" />
-                        ) : <p></p>}
+                        ) : (
+                            <p className="text-white">Adicione uma foto</p>
+                        )}
                         <input
                             type="file"
                             accept="image/*"
                             onChange={handleImageChange}
                             className="hidden"
                         />
-
                         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                             <span className="text-white text-sm font-semibold">Editar Foto</span>
                             {selectedImage && (
@@ -49,17 +54,14 @@ export default function Perfil() {
                         </div>
                     </label>
                 </div>
-
                 <p className="text-3xl font-semibold text-bluemike pt-10">
-                    Olá, {localStorage.getItem('nome')}
+                    Olá, {localStorage.getItem("nome")}
                 </p>
                 <p className="mt-4 text-base text-black">
                     Atendente do compom M901476
                 </p>
 
-              
-
-
+                {/* Botões de Ações */}
                 <div className="mt-6 w-full max-w-md space-y-3">
                     <button className="w-full py-3 px-4 text-left bg-gray-100 rounded-lg text-gray-700 font-medium focus:outline-none">
                         Tempo de atividade
