@@ -59,23 +59,24 @@ export default function ComplaintViaturaCirculacao() {
           ) : (
             Array.isArray(viaturas) &&
             viaturas
-              .filter(viatura => !viatura.denuncia)
-              .map((viatura, index) => (
-                <Viatura
-                  key={index}
-                  idViatura={viatura.id}
-                  placa={viatura.placa}
-                  responsavel={
-                    viatura.policiais?.find(policial => policial.comandante)?.nome || "Sem comandante"
-                  }
-                  efetivos={
-                    viatura.policiais
-                      ? viatura.policiais.map((policial) => `${policial.nome}, `).join('')
-                      : ["Sem efetivo"]
-                  }
-                  areaAtuacao={"Região Metropolitana"}
-                />
-              ))
+            .filter(viatura => !viatura.denuncia)
+            .map((viatura, index) => (
+              <Viatura
+                key={index}
+                idViatura={viatura.id}
+                placa={viatura.placa}
+                responsavel={
+                  viatura.policiais?.find(policial => policial.comandante)?.nome || "Sem comandante"
+                }
+                efetivos={
+                  viatura.policiais && viatura.policiais.length > 0
+                      ? viatura.policiais.map(policial => policial.nome)
+                      : ["Sem efetivo"]                           
+                      }
+                areaAtuacao={"Região Metropolitana"}
+              />
+            ))
+          
           )}
         </div>
       </div>

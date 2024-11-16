@@ -71,9 +71,9 @@ export default function Viatura({
             <img src={efetivoimg} alt="" />
           </div>
           <div>
-            {efetivos.map((efetivo, index) => {
+            {efetivos.map((efetivos, index) => {
               return (
-                <p key={index}>{efetivo}</p>
+                <p key={index}>{efetivos}</p>
               )
             })}
           </div>
