@@ -9,23 +9,23 @@ export default function NavbarMike() {
     const [showProfilePopup, setShowProfilePopup] = useState(false);
 
     return (
-        <header className="p-0 bg-bluemike">
-            <div className="container flex justify-between sm:h-16 md:h-20 mx-auto px-4">
+        <header className="p-2 sm:p-4 2xl:p-5 bg-bluemike">
+            <div className="container flex justify-between h-12 sm:h-16 mx-auto px-6 sm:px-12">
                 {/* Logo */}
-                <a href="/home" className="flex items-center p-2">
-                    <img className="h-8 sm:h-8 md:h-16 pl-10" src={logomike} alt="Logo PM Digital" />
+                <a href="/home" className="flex items-center">
+                    <img className="h-10 md:h-14" src={logomike} alt="Logo PM Digital" />
                 </a>
 
                 {/* Imagem de perfil e popup */}
-                <div className="flex flex-row gap-6 items-center justify-center relative pr-14">
+                <div className="flex flex-row gap-6 items-center justify-center relative">
                     <button
                         onClick={() => navigate("/perfil")}
                         onMouseEnter={() => setShowProfilePopup(true)}
                         onMouseLeave={() => setShowProfilePopup(false)}
-                        className="p-2 rounded-md"
+                        className="rounded-md"
                     >
                         {/* Contêiner da imagem de perfil */}
-                        <div className="w-12 h-12 rounded-full overflow-hidden ring-4 ring-white ring-offset-4 ring-offset-bluemike">
+                        <div className="h-8 w-8 sm:w-12 sm:h-12 rounded-full overflow-hidden ring-2 sm:ring-4 ring-white ring-offset-4 ring-offset-bluemike">
                             <img
                                 className="w-full h-full object-cover rounded-full"
                                 src={selectedImage || "https://source.unsplash.com/40x40/?portrait?"}
@@ -41,9 +41,9 @@ export default function NavbarMike() {
                             onMouseEnter={() => setShowProfilePopup(true)}
                             onMouseLeave={() => setShowProfilePopup(false)}
                         >
-                            <div className="flex flex-col items-center mb-4">
+                            <div className="flex flex-col gap-2 items-center">
                                 {/* Imagem no popup */}
-                                <div className="relative w-20 h-20 rounded-full overflow-hidden">
+                                <div className="relative w-20 h-20 rounded-full border-white border-4 ring-4 ring-bluemike overflow-hidden">
                                     {selectedImage ? (
                                         <img
                                             src={selectedImage}
@@ -56,8 +56,10 @@ export default function NavbarMike() {
                                 </div>
 
                                 {/* Nome e informações do usuário */}
-                                <p className="font-semibold text-lg text-bluemike">Olá, {localStorage.getItem("nome")}</p>
-                                <p className="text-sm text-gray-500">Atendente do compom M901476</p>
+                                <div>
+                                <p className="font-semibold text-lg text-bluemike">Olá, {localStorage.getItem("nome")}!</p>
+                                <p className="text-sm text-gray-500">Despachante #M901476</p>
+                                </div>
                             </div>
 
                             {/* Botões de ações */}
