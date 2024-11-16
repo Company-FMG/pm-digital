@@ -65,11 +65,11 @@ export default function Register() {
             <Image
               src={PMDigitalcomSlogan}
               alt="Logo"
-               className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 2xl:w-80 max-w-full mx-auto pt-10"
+               className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 2xl:w-80 max-w-full mx-auto pt-8"
             />
                 <form className="pt-6" onSubmit={handleRegister}>
 
-                <div className="mb-5 flex items-center gap-3">
+                <div className="mb-3 flex items-center gap-3">
                     <img src={iconName} alt="Nome" className="w-7 h-7" />
                     <input
                     type="text"
@@ -118,7 +118,7 @@ export default function Register() {
                     className="mt-2 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg">
                     Cadastrar
                 </button>
-                <div className="text-center mt-2">
+                <div className="text-center mt-3">
                     <a href="/" className="text-xl italic underline">Já possui uma conta? Faça o login</a>
                 </div>
                 </form>
