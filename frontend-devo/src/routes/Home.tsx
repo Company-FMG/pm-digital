@@ -16,12 +16,12 @@ import DetalhesDenuncia from "../components/modals/DetalhesDenuncia";
 import Opcoes from "../components/modals/Opcoes";
 
 export default function Home() {
-  return (
+    return (
     <>
       <IonPage>
         <NavbarMike />
         <IonContent slot="fixed" className="[my-react-map] relative">
-          <ReactMap  />
+          <ReactMap />
           <Opcoes data-testid="my-opcoes" />
           {/* <AlertaOcorrenciaMike /> */}
           <RegistrarBO />

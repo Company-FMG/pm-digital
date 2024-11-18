@@ -48,6 +48,19 @@ public class DenunciaController {
         return denunciaDTO.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+//    @GetMapping("/viatura/{placa}")
+//    public ResponseEntity buscaDenunciaPelaViatura(@PathVariable String placa){
+//        Optional<DenunciaDTO> denunciaDTO = this.denunciaService.denunciaViatura(placa);
+//        denunciaService.listaDenuncias();
+//
+//        if (denuncia != null) {
+//            return ResponseEntity.ok(denuncia);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+//                    .body("Denúncia não encontrada para a viatura com placa: " + placa);
+//        }
+//    }
+
     @GetMapping("/filter")
     public List<DenunciaDTO> filtroStatus(@RequestParam Status status) {
         return this.denunciaService.filtroStatus(status);

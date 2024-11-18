@@ -5,30 +5,26 @@ const usePolling = (url, interval) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(url, {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${localStorage.getItem("authToken")}`,
-          },
-        });
-        
-        console.log("Response Data:", response.data);
-        
-        if (response.status === 200) {
-          setData(response.data);
+  const fetchData = async () => {
+    try{
+      const response = await axios.get(url, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("authToken")}`
         }
-      } catch (err) {
-        setError(err);
+      });
+      
+      if(response.status === 200) {
+        setData(response.data);
+        console.log(response.data);
       }
-    };
+    } catch (err) {
+      setError(err);
+    }
+  }
 
+  useEffect(() => {
     fetchData();
-    const id = setInterval(fetchData, interval);
-
-    return () => clearInterval(id);
   }, [url, interval]);
 
   return { data, error };

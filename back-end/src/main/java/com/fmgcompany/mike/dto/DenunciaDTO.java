@@ -30,4 +30,7 @@ public class DenunciaDTO {
     private String cep;
     private double lat;
     private double lng;
+
+    private UUID idViatura;
+    private String placa;
 }

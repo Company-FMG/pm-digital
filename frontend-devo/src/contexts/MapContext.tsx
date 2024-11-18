@@ -8,7 +8,7 @@ export const useMap = () => {
 };
 
 export const MapProvider = ({ children }:{children:any}) => {
-  const [showMap, setShowMap] = useState(false);
+  const [showMap, setShowMap] = useState(true);
 
   return (
     <MapContext.Provider value={{ showMap, setShowMap }}>
