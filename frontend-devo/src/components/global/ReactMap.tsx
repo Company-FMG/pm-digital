@@ -44,7 +44,7 @@ export default function ReactMap() {
 
   const fetchDenuncia = async () => {
     try {
-      const response = await axios.get<Denuncia>(`${apiUrl}/viaturas/PCB6845/denuncia`, {
+      const response = await axios.get<Denuncia>(`${apiUrl}/viaturas/${localStorage.getItem("placaViatura")}/denuncia`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -55,6 +55,9 @@ export default function ReactMap() {
       console.log(response.data.geolocation);
     } catch (error) {
       console.error("Erro ao carregar a denúncia:", error);
+      if(error.response.status === 404) {
+        alert("Sem denúncias atribuídas à viatura no momento");
+      }
     }
   };
   
