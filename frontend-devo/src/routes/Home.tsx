@@ -14,6 +14,7 @@ import { useModal } from "../contexts/ModalContext";
 import ReactMap from "../components/global/ReactMap";
 import DetalhesDenuncia from "../components/modals/DetalhesDenuncia";
 import Opcoes from "../components/modals/Opcoes";
+import LiveMapTest from "./LiveMapTest";
 
 export default function Home() {
   return (
@@ -21,7 +22,8 @@ export default function Home() {
       <IonPage>
         <NavbarMike />
         <IonContent slot="fixed" className="[my-react-map] relative">
-          <ReactMap  />
+          {/*<ReactMap />*/}
+          <LiveMapTest />
           <Opcoes data-testid="my-opcoes" />
           {/* <AlertaOcorrenciaMike /> */}
           <RegistrarBO />
