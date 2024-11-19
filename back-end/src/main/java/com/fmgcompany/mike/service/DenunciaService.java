@@ -42,6 +42,10 @@ public class DenunciaService {
                 .map(denunciaMapper::toDTO);
     }
 
+//    public Optional<DenunciaDTO> buscaDenunciaPelaViatura(UUID idViatura){
+//        return this.denunciaRepository.findAll().stream().map(denunciaMapper::toDTO).collect(Collectors.toList()).
+//    }
+
     public List<DenunciaDTO> filtroStatus(Status status){
         return this.denunciaRepository.findByStatus(status)
                 .stream()

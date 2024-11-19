@@ -17,7 +17,7 @@ import Opcoes from "../components/modals/Opcoes";
 import LiveMapTest from "./LiveMapTest";
 
 export default function Home() {
-  return (
+    return (
     <>
       <IonPage>
         <NavbarMike />
