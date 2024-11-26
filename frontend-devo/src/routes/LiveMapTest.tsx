@@ -8,13 +8,13 @@ import { useDenuncia } from "../contexts/DenunciaContext";
 interface Geolocation{
   lat: number;
   lng: number;
+  local: string;
 }
 
 interface Denuncia{
   geolocation: Geolocation;
   idDenuncia: string;
   tipo: string;
-  local: string;
   nomeVitima: string;
   sexoVitima: string;
   idadeVitima: number;

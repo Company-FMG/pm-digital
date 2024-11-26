@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 interface Geolocation {
   lat: number;
   lng: number;
+  local: string;
 }
 
  interface Vitima {
@@ -22,7 +23,6 @@ interface Denuncia {
   geolocation: Geolocation;
   idDenuncia: string;
   tipo: string;
-  local: string;
   relato: string;
   vitima?: Vitima;
   suspeito?: Suspeito;
