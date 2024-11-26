@@ -2,21 +2,70 @@ import { GoogleMap, MarkerF, DirectionsRenderer, useLoadScript } from "@react-go
 import { Geolocation } from "@capacitor/geolocation";
 import { useEffect, useState } from "react";
 import { IonButton } from "@ionic/react";
+import axios from "axios";
+import { useDenuncia } from "../contexts/DenunciaContext";
+
+interface Geolocation{
+  lat: number;
+  lng: number;
+}
+
+interface Denuncia{
+  geolocation: Geolocation;
+  idDenuncia: string;
+  tipo: string;
+  local: string;
+  nomeVitima: string;
+  sexoVitima: string;
+  idadeVitima: number;
+  relato: string;
+  nomeSuspeito: string;
+  sexoSuspeito: string;
+  idadeSuspeito: number;
+  descricaoSuspeito: string;
+}
+
+export const libraries = String(['places', 'geometry'])
 
 export default function LiveMapTest() {
+  const { setDenuncia } = useDenuncia();
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY!,
-    libraries: ["places", "geometry"],
+    [libraries]: libraries
   });
 
   const [currentPosition, setCurrentPosition] = useState<{ lat: number; lng: number } | null>(null);
+  const [destination, setDestination] = useState<{ lat: number; lng: number } | null>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [directionsResponse, setDirectionsResponse] = useState<google.maps.DirectionsResult | null>(null);
   const [simulating, setSimulating] = useState(false);
   const [distance, setDistance] = useState<string | null>(null);
   const [duration, setDuration] = useState<string | null>(null);
 
-  const destination = { lat: -8.0578727, lng: -34.8825846 }; // Defina seu destino fixo ou variável
+  const apiUrl = import.meta.env.VITE_API_URL!;
+
+  const fetchDenuncia = async () => {
+    try {
+      const response = await axios.get<Denuncia>(`${apiUrl}/viaturas/${localStorage.getItem("placaViatura")}/denuncia`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
+      });
+      setDenuncia(response.data);
+      setDestination(response.data.geolocation);
+      console.log(response.data.geolocation);
+    } catch (error) {
+      console.error("Erro ao carregar a denúncia:", error);
+      if(error.response.status === 404) {
+        alert("Sem denúncias atribuídas à viatura no momento");
+      }
+    }
+  };
+  
+  useEffect(() => {
+    fetchDenuncia();
+  }, []);
 
   async function calculateRoute(origin: { lat: number; lng: number }, destination: { lat: number; lng: number }) {
     const directionsService = new google.maps.DirectionsService();
@@ -88,7 +137,9 @@ export default function LiveMapTest() {
         const position = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
         const userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
         setCurrentPosition(userLocation);
-        calculateRoute(userLocation, destination);
+        if (destination !== null) { 
+          calculateRoute(userLocation, destination);
+        }
       } catch (error) {
         console.error("Erro ao obter a localização: ", error);
         setCurrentPosition({ lat: -8.0550202, lng: -34.8878231 });
@@ -96,7 +147,8 @@ export default function LiveMapTest() {
     }
 
     getCurrentPosition();
-  }, []);
+  }, [destination]);
+
 
   if (!isLoaded || !currentPosition) {
     return <h1>Carregando mapa...</h1>;
@@ -112,10 +164,11 @@ export default function LiveMapTest() {
         onLoad={(mapInstance) => setMap(mapInstance)}
       >
         {currentPosition && <MarkerF position={currentPosition} />}
+        {destination && <MarkerF position={destination}/>}
         {directionsResponse && (
           <DirectionsRenderer
             directions={directionsResponse}
-            options={{ suppressMarkers: true }} // Para evitar marcadores extras
+            options={{ suppressMarkers: true }}
           />
         )}
       </GoogleMap>

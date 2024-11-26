@@ -1,6 +1,7 @@
 import { useModal } from "../../contexts/ModalContext";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useDenuncia } from "../../contexts/DenunciaContext";
 
 export default function DetalhesDenuncia() {
   const { showDetalhesDenuncia, handleShow } = useModal();
@@ -8,23 +9,15 @@ export default function DetalhesDenuncia() {
   if (!showDetalhesDenuncia) {
     return null;
   }
-  const [denuncias, setDenuncias] = useState([]);
-
+  const { denuncia } = useDenuncia();
   
-  useEffect(() => {
-     axios
-      .get("http://localhost:8080/denuncias")
-      .then((response) => {
-        setDenuncias(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the users!", error);
-      });
-  }, []);
+  if (!denuncia) {
+    return <div>Sem detalhes disponíveis no momento</div>;
+  }
   
   return (
     <div>
-      {denuncias.map((denuncia: any) => (
+
         <div key={denuncia.idDenuncia}>
           <div className="absolute top-2/4 right-2/4 translate-x-2/4 -translate-y-2/4">
             <div className="w-96 max-w-7xl space-y-2 bg-white text-black rounded-md mx-auto my-auto px-8 pt-2 pb-8">
@@ -49,9 +42,9 @@ export default function DetalhesDenuncia() {
                   <h1 className="font-bold text-xl lg:text-xl my-0 line-clamp-1">
                     Ocorrência: <span>{denuncia.idDenuncia}</span>
                   </h1>
-                  <p>Nome da vítima: {denuncia.nomeVitima} </p>
-                  <p>Sexo: {denuncia.sexoVitima}</p>
-                  <p>Idade: {denuncia.idadeVitima}</p>
+                  <p>Nome da vítima: {denuncia.vitima?.nome} </p>
+                  <p>Sexo: {denuncia.vitima?.sexo}</p>
+                  <p>Idade: {denuncia.vitima?.idade}</p>
                   <p>Situação informada: {denuncia.relato}</p>
                   <p>Tipo de caso: {denuncia.tipo}</p>
                 </div>
@@ -61,15 +54,15 @@ export default function DetalhesDenuncia() {
                 <h1 className="font-bold text-xl mt-2 mb-0">
                   Informações da cena
                 </h1>
-                <p>Pessoa suspeita: {denuncia.nomeSuspeito}</p>
-                <p>Sexo: {denuncia.sexoSuspeito}</p>
-                <p>Idade: {denuncia.idadeSuspeito}</p>
-                <p>Descrição: {denuncia.descricaoSuspeito}</p>
+                <p>Pessoa suspeita: {denuncia.suspeito?.nome}</p>
+                <p>Sexo: {denuncia.suspeito?.sexo}</p>
+                <p>Idade: {denuncia.suspeito?.idade}</p>
+                <p>Descrição: {denuncia.suspeito?.descricao}</p>
               </div>
             </div>
           </div>
         </div>
-      ))}
+
     </div>
   );
 }
