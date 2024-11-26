@@ -22,7 +22,6 @@ dist-ssr
 .env.development.local
 .env.test.local
 .env.production.local
-.env.sample
 # IntelliJ IDEA-specific files
 .idea/
 *.iws
