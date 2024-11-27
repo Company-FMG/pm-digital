@@ -31,15 +31,21 @@ interface Denuncia {
 interface DenunciaContextProps {
   denuncia: Denuncia | null;
   setDenuncia: React.Dispatch<React.SetStateAction<Denuncia | null>>;
+  distance: string | null;
+  setDistance: React.Dispatch<React.SetStateAction<string | null>>;
+  duration: string | null;
+  setDuration: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const DenunciaContext = createContext<DenunciaContextProps | undefined>(undefined);
 
 export const DenunciaProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [denuncia, setDenuncia] = useState<Denuncia | null>(null);
+  const [distance, setDistance] = useState<string | null>(null);
+  const [duration, setDuration] = useState<string | null>(null);
 
   return (
-    <DenunciaContext.Provider value={{ denuncia, setDenuncia }}>
+    <DenunciaContext.Provider value={{ denuncia, setDenuncia, distance, setDistance, duration, setDuration }}>
       {children}
     </DenunciaContext.Provider>
   );

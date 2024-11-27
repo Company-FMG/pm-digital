@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import rightarrow from "../../assets/rightarrow.svg";
 import { useModal } from "../../contexts/ModalContext";
 import axios from "axios";
+import { useDenuncia } from "../../contexts/DenunciaContext";
 
 interface Denuncia {
   id: string;
@@ -10,6 +11,7 @@ interface Denuncia {
 
 export default function FooterMike() {
   const [denuncia, setDenuncia] = useState<Denuncia>();
+  const { distance, duration } = useDenuncia();
   const apiUrl = import.meta.env.VITE_API_URL;
   const { handleShow } = useModal();
 
@@ -35,7 +37,11 @@ export default function FooterMike() {
     <>
       <div className="flex flex-col gap-1 p-4 items-center justify-center rounded-t-2xl relative">
         {denuncia?.status === ('EM_ANDAMENTO') &&
-          <div>
+          <div className="space-y-1">
+            <div className="flex flex-row gap-8 justify-center pb-2">
+              <h1 className="text-md">Distância: {distance}</h1>
+              <h1 className="text-md">Duração: {duration}</h1>
+            </div>
             <div className="pb-2">
               <button onClick={() => handleShow("detalhesDenuncia")} className="text-center bg-bluemike text-lg text-[#FFFFFF] p-2 rounded-md h-12 w-72">
                 Dados da Ocorrência

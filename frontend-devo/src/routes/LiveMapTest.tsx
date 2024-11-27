@@ -9,6 +9,8 @@ interface Geolocation{
   lat: number;
   lng: number;
   local: string;
+  distance: string;
+  duration: string;
 }
 
 interface Denuncia{
@@ -28,7 +30,7 @@ interface Denuncia{
 export const libraries = String(['places', 'geometry'])
 
 export default function LiveMapTest() {
-  const { setDenuncia } = useDenuncia();
+  const { setDenuncia, setDistance, setDuration, distance, duration } = useDenuncia();
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY!,
     [libraries]: libraries
@@ -39,8 +41,7 @@ export default function LiveMapTest() {
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [directionsResponse, setDirectionsResponse] = useState<google.maps.DirectionsResult | null>(null);
   const [simulating, setSimulating] = useState(false);
-  const [distance, setDistance] = useState<string | null>(null);
-  const [duration, setDuration] = useState<string | null>(null);
+
 
   const apiUrl = import.meta.env.VITE_API_URL!;
 
@@ -174,7 +175,7 @@ export default function LiveMapTest() {
       </GoogleMap>
       <div className="absolute top-4 left-4">
         <button
-          className={`p-2 ${simulating ? "bg-gray-500" : "bg-blue-500"} text-white rounded`}
+          className={`p-2 ${simulating ? "bg-gray-500" : "bg-bluemike"} text-white rounded`}
           onClick={startSimulation}
           disabled={simulating}
         >
@@ -182,15 +183,11 @@ export default function LiveMapTest() {
         </button>
       </div>
       <div className="absolute bottom-4 right-4">
-        <IonButton onClick={() => map?.panTo(currentPosition!)}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-6" viewBox="0 0 16 16">
+        <button className="bg-bluemike active:bg-blue-800 p-3 rounded-md " onClick={() => map?.panTo(currentPosition!)}>
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 fill-white" viewBox="0 0 16 16">
             <path d="M8.5.5a.5.5 0 0 0-1 0v.518A7 7 0 0 0 1.018 7.5H.5a.5.5 0 0 0 0 1h.518A7 7 0 0 0 7.5 14.982v.518a.5.5 0 0 0 1 0v-.518A7 7 0 0 0 14.982 8.5h.518a.5.5 0 0 0 0-1h-.518A7 7 0 0 0 8.5 1.018zm-6.48 7A6 6 0 0 1 7.5 2.02v.48a.5.5 0 0 0 1 0v-.48a6 6 0 0 1 5.48 5.48h-.48a.5.5 0 0 0 0 1h.48a6 6 0 0 1-5.48 5.48v-.48a.5.5 0 0 0-1 0v.48A6 6 0 0 1 2.02 8.5h.48a.5.5 0 0 0 0-1zM8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
           </svg>
-        </IonButton>
-        <div className="w-auto h-auto bg-white px-4 py-2">
-          <h1 className="text-sm">Distância: {distance}</h1>
-          <h1 className="text-sm">Duração: {duration}</h1>
-        </div>
+        </button>
       </div>
     </div>
   );
