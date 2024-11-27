@@ -30,11 +30,11 @@ export default function Home() {
           <DetalhesDenuncia />
           <SobreMike />
         </IonContent>
-        <IonFooter>
-          <IonToolbar>
+
+       
             <FooterMike />
-          </IonToolbar>
-        </IonFooter>
+   
+
       </IonPage>
     </>
   );

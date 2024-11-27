@@ -35,7 +35,7 @@ export default function FooterMike() {
   }, []);
   return (
     <>
-      <div className="flex flex-col gap-1 p-4 items-center justify-center rounded-t-2xl relative">
+      <div className="flex flex-col gap-1 p-4 items-center justify-center rounded-t-2xl">
         {denuncia?.status === ('EM_ANDAMENTO') &&
           <div className="space-y-1">
             <div className="flex flex-row gap-8 justify-center pb-2">
