@@ -35,10 +35,10 @@ export default function FooterMike() {
   }, []);
   return (
     <>
-      <div className="flex flex-col gap-1 p-4 items-center justify-center rounded-t-2xl">
+      <footer className="flex flex-col gap-1 p-4 items-center justify-center rounded-t-2xl bg-white">
         {denuncia?.status === ('EM_ANDAMENTO') &&
           <div className="space-y-1">
-            <div className="flex flex-row gap-8 justify-center pb-2">
+            <div className="flex flex-row gap-8 justify-center pb-2 text-black">
               <h1 className="text-md">Distância: {distance}</h1>
               <h1 className="text-md">Duração: {duration}</h1>
             </div>
@@ -58,7 +58,7 @@ export default function FooterMike() {
         <div>
           <button onClick={() => handleShow("sobreMike")} className="text-center text-lg text-black mt-2">Sobre o PM Digital</button>
         </div>
-      </div>
+      </footer>
 
     </>
   );

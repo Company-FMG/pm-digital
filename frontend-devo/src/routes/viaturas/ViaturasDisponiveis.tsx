@@ -1,6 +1,6 @@
 import { IonPage, IonHeader, IonToolbar, IonContent } from "@ionic/react";
-import NavbarMike from "../components/global/NavbarMike";
-import Viatura from "../components/global/Viatura";
+import NavbarMike from "../../components/global/NavbarMike";
+import Viatura from "./Viatura";
 import { useState, useEffect } from "react";
 import axios from "axios";
 

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import carro from "../../assets/carro.svg"
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 

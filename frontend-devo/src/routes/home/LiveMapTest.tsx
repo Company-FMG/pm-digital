@@ -3,7 +3,7 @@ import { Geolocation } from "@capacitor/geolocation";
 import { useEffect, useState } from "react";
 import { IonButton } from "@ionic/react";
 import axios from "axios";
-import { useDenuncia } from "../contexts/DenunciaContext";
+import { useDenuncia } from "../../contexts/DenunciaContext";
 
 interface Geolocation{
   lat: number;

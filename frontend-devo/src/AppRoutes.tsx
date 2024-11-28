@@ -5,7 +5,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './routes/Home'
+import Home from './routes/home/Home'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -38,10 +38,10 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Login from './routes/Login';
 import Relatorio from './routes/Relatorio';
-import Perfil from './routes/Perfil';
+import Perfil from './routes/profile/Perfil';
 import Register from './routes/Register';
-import ViaturasDisponiveis from './routes/ViaturasDisponiveis';
-import LiveMapTest from './routes/LiveMapTest';
+import ViaturasDisponiveis from './routes/viaturas/ViaturasDisponiveis';
+import LiveMapTest from './routes/home/LiveMapTest';
 
 setupIonicReact();
 
