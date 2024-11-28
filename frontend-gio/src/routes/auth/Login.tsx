@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import policialbg from "../assets/policialbg.png";
-import PMDigitalcomSlogan from "../assets/PM Digital com Slogan.svg";
-import PublicSafety from "../assets/Public Safety(1).png";
-import Secure from "../assets/Secure(1).png"; 
+import policialbg from "../../assets/policialbg.png";
+import PMDigitalcomSlogan from "../../assets/PM Digital com Slogan.svg";
+import PublicSafety from "../../assets/Public Safety(1).png";
+import Secure from "../../assets/Secure(1).png"; 
 import axios from "axios";
 
 interface ImageProps {

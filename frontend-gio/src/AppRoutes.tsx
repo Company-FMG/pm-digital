@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./routes/Home";
-import Login from "./routes/Login";
-import Register from "./routes/Register";
-import ComplaintViaturaCirculacao from "./routes/ComplaintViaturaCirculacao";
-import ComplaintRegister from "./routes/ComplaintRegister";
-import Complaint from "./routes/Complaint";
-import Perfil from "./routes/Perfil";
+import Home from "./routes/home/Home";
+import Login from "./routes/auth/Login";
+import Register from "./routes/auth/Register";
+import ComplaintViaturaCirculacao from "./routes/complaintViaturas/ComplaintViaturaCirculacao";
+import ComplaintRegister from "./routes/complaintRegister/ComplaintRegister";
+import Complaint from "./routes/complaint/Complaint";
+import Perfil from "./routes/profile/Perfil";
 
 export default function AppRoutes() {
     return(

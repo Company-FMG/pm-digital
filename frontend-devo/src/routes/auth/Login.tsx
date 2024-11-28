@@ -1,9 +1,9 @@
 import { useState } from "react";
-import PublicSafety from "../assets/Public Safety.svg";
-import Secure from "../assets/Secure.svg";
+import PublicSafety from "../../assets/Public Safety.svg";
+import Secure from "../../assets/Secure.svg";
 import { IonContent, IonIcon, IonInput, IonInputPasswordToggle, IonPage } from "@ionic/react";
 import { useHistory } from "react-router-dom";
-import PmDigitalComSlogan from '../assets/PM Digital com Slogan.svg';
+import PmDigitalComSlogan from '../../assets/PM Digital com Slogan.svg';
 import axios from "axios";
 
 

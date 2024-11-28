@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Viatura from "../components/Viatura";
-import AuthenticatedLayout from "../layouts/AuthenticatedLayout";
+import Viatura from "./Viatura";
+import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
 import axios from "axios";
 
 interface Policial {

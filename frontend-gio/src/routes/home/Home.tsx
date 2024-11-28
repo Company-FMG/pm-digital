@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import ComplaintCard from "../components/global/ComplaintCard";
-import AuthenticatedLayout from "../layouts/AuthenticatedLayout";
+import ComplaintCard from "./ComplaintCard";
+import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
 
 interface Complaint {
     idDenuncia: string;
@@ -61,7 +61,7 @@ export default function Home() {
                     </div>
                     <div className="overflow-auto border-4 rounded-lg border-gray-200 px-8 py-6 space-y-8 w-full">
                         <h3 className="font-poppins font-bold text-bluemike text-lg">Ocorrências em andamento</h3>
-                        <div className="overflow-y-auto overscroll-auto flex flex-col gap-4 md:h-96 h-32">
+                        <div className="overflow-y-auto flex flex-col gap-4 h-96 pr-2">
                             {Array.isArray(complaints) && complaints.filter(complaint => complaint.status === "EM_ANDAMENTO").map((complaint, index) => (
                                 <ComplaintCard key={index} id={complaint.idDenuncia} status={complaint.status} tipo={complaint.tipo} endereco={complaint.local} relato={complaint.relato} />
                             ))}

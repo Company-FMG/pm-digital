@@ -36,10 +36,10 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Login from './routes/Login';
+import Login from './routes/auth/Login';
 import Relatorio from './routes/Relatorio';
 import Perfil from './routes/profile/Perfil';
-import Register from './routes/Register';
+import Register from './routes/auth/Register';
 import ViaturasDisponiveis from './routes/viaturas/ViaturasDisponiveis';
 import LiveMapTest from './routes/home/LiveMapTest';
 
