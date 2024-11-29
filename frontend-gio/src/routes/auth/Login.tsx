@@ -58,7 +58,7 @@ export default function Login() {
           />
         </section>
         <section className="flex flex-col mx-auto my-auto items-end text-end justify-center text-white">
-          <div className="flex flex-col gap-4 2xl: gap-8">
+          <div className="flex flex-col gap-4 2xl:gap-8">
             <Image
               src={PMDigitalcomSlogan}
               alt="Logo"
