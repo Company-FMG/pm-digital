@@ -55,10 +55,10 @@ export default function Login() {
             <img
               loading="lazy"
               src={PmDigitalComSlogan}
-              className="self-center w-full mb-16"
+              className="self-center w-full mb-10"
             />
 
-            <form onSubmit={handleLogin} className="space-y-10">
+            <form onSubmit={handleLogin} className="space-y-8">
               <IonInput
                 color={"light"}
                 type="text"
