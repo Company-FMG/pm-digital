@@ -60,53 +60,53 @@ export default function Register() {
             className="hidden lg:block object-cover lg:w-[36rem] xl:w-[48rem] 2xl:w-[65rem] h-screen brightness-75"
           />
         </section>
-        <section className="flex flex-col mx-auto items-end text-end justify-center text-white">
-          <div className="w-full max-w-md 2xl:max-w-lg px-4 lg:px-16 2xl:px-12 mx-auto my-auto pb-10">
+        <section className="flex flex-col mx-auto my-auto items-end text-end justify-center text-white">
+          <div className="flex flex-col gap-4 mx-auto my-auto">
             <Image
               src={PMDigitalcomSlogan}
               alt="Logo"
-               className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 2xl:w-80 max-w-full mx-auto pt-8"
+               className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-64 2xl:w-80 max-w-full mx-auto"
             />
-                <form className="pt-6" onSubmit={handleRegister}>
+                <form className="flex flex-col gap-5" onSubmit={handleRegister}>
 
-                <div className="mb-3 flex items-center gap-3">
+                <div className="flex items-center gap-3">
                     <img src={iconName} alt="Nome" className="w-7 h-7" />
                     <input
                     type="text"
-                    className="mt-2 p-3 w-full border-b bg-transparent text-white italic"
+                    className="p-3 w-full border-b bg-transparent text-white italic"
                     placeholder="Nome"
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}
                     />
                 </div>
 
-                <div className="mb-5 flex items-center gap-3">
-                    <img src={iconEmail} alt="Email" className="w-6 h-6" />
+                <div className="flex items-center gap-3">
+                    <img src={iconEmail} alt="Email" className="w-7 h-7" />
                     <input
                     type="text"
-                    className="mt-2 p-3 w-full border-b bg-transparent text-white italic"
+                    className="p-3 w-full border-b bg-transparent text-white italic"
                     placeholder="E-mail"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
 
-                <div className="mb-5 flex items-center gap-3">
+                <div className="flex items-center gap-3">
                     <img src={PublicSafety} alt="Matrícula" className="w-7 h-7" />
                     <input
                     type="text"
-                    className="mt-2 p-3 w-full border-b bg-transparent text-white italic"
+                    className="p-3 w-full border-b bg-transparent text-white italic"
                     placeholder="Matrícula"
                     value={matricula}
                     onChange={(e) => setMatricula(e.target.value)}
                     />
                 </div>
 
-                <div className="mb-5 flex items-center gap-3">
+                <div className="flex items-center gap-3">
                     <img src={Secure} alt="Senha" className="w-7 h-7" />
                     <input
                     type="password"
-                    className="mt-1 p-3 w-full border-b bg-transparent text-white italic"
+                    className="p-3 w-full border-b bg-transparent text-white italic"
                     placeholder="Senha"
                     value={senha}
                     onChange={(e) => setSenha(e.target.value)}
@@ -115,11 +115,11 @@ export default function Register() {
 
                 <button
                     type="submit"
-                    className="mt-2 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg">
+                    className="mt-2 p-3 w-full bg-white text-blue-700 text-xl font-bold rounded-lg">
                     Cadastrar
                 </button>
-                <div className="text-center mt-3">
-                    <a href="/" className="text-xl italic underline">Já possui uma conta? Faça o login</a>
+                <div className="text-center">
+                    <a href="/" className="text-md italic underline">Já possui uma conta? Faça o login</a>
                 </div>
                 </form>
             </div>
