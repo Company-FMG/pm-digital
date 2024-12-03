@@ -6,6 +6,7 @@ import ComplaintViaturaCirculacao from "./routes/complaintViaturas/ComplaintViat
 import ComplaintRegister from "./routes/complaintRegister/ComplaintRegister";
 import Complaint from "./routes/complaint/Complaint";
 import Perfil from "./routes/profile/Perfil";
+import InfoOcorrencia from "./components/global/InfoOcorrencia";
 
 export default function AppRoutes() {
     return(
@@ -17,6 +18,7 @@ export default function AppRoutes() {
             <Route path="viaturas" element={<ComplaintViaturaCirculacao/>}/>
             <Route path="newcomplaint" element={<ComplaintRegister/>}/>
             <Route path="denuncia" element={<Complaint/>}/>
+            <Route path="infoocorrencia" element={<InfoOcorrencia/>}/>
         </Routes>
     )
 }
