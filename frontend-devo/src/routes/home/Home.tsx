@@ -23,7 +23,7 @@ export default function Home() {
           {/*<ReactMap />*/}
           <LiveMapTest />
           <Opcoes data-testid="my-opcoes" />
-          {/* <AlertaOcorrenciaMike /> */}
+          <AlertaOcorrenciaMike />
           <RegistrarBO />
           <DetalhesDenuncia />
           <SobreMike />

@@ -1,7 +1,6 @@
 import { GoogleMap, MarkerF, DirectionsRenderer, useLoadScript } from "@react-google-maps/api";
 import { Geolocation } from "@capacitor/geolocation";
 import { useEffect, useState } from "react";
-import { IonButton } from "@ionic/react";
 import axios from "axios";
 import { useDenuncia } from "../../contexts/DenunciaContext";
 

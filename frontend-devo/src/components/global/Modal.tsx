@@ -5,6 +5,7 @@ interface ModalProps{
 }
 
 function Modal({ children }: ModalProps){
+    
     return(
         <div className="fixed inset-0 z-[9999] flex items-center justify-center">
             {/* Overlay */}
