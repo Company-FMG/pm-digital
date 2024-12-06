@@ -7,12 +7,12 @@ import {
 } from "@ionic/react";
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { pencilSharp } from 'ionicons/icons';
-import { usePhotoGallery } from '../hooks/usePhotoGallery';
-import NavbarMike from "../components/global/NavbarMike";
+import { usePhotoGallery } from '../../hooks/usePhotoGallery';
+import NavbarMike from "../../components/global/NavbarMike";
 import { useHistory } from "react-router";
-import { useCredentials } from "../contexts/CredentialsContext";
-import UltimaOcorrencia from "../components/global/UltimaOcorrencia";
-import InfoViatura from "../components/perfil/InfoViatura";
+import { useCredentials } from "../../contexts/CredentialsContext";
+import UltimaOcorrencia from "./UltimaOcorrencia";
+import InfoViatura from "./InfoViatura";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -43,7 +43,7 @@ export default function Perfil() {
   const [placaViatura, setPlacaViatura] = useState<string | null>(localStorage.getItem('placaViatura'));
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchViaturas = async () => {
+ const fetchViaturas = async () => {
     setIsLoading(true);
     try {
       const response = await axios.get<Viatura[]>(`${api_url}/viaturas`, {
@@ -64,7 +64,7 @@ export default function Perfil() {
     } finally {
       setIsLoading(false);
     }
-  }
+  };
   useEffect(() => {
     fetchViaturas();
   }, []);
@@ -99,7 +99,9 @@ export default function Perfil() {
   }, [placaViatura]); //
 
 
-  const viaturaAtiva = viaturas.find(viatura => viatura.placa === placaViatura);
+  const viaturaAtiva = Array.isArray(viaturas)
+  ? viaturas.find(viatura => viatura.placa === placaViatura)
+  : undefined;
 
   return (
     <IonPage>

@@ -1,6 +1,6 @@
-import AuthenticatedLayout from "../layouts/AuthenticatedLayout";
-import ComplaintAdress from "../components/complaint/ComplaintAdress";
-import { useForm } from "../contexts/ComplaintFormContext";
+import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
+import ComplaintAdress from "./ComplaintAdress";
+import { useForm } from "../../contexts/ComplaintFormContext";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useState } from "react";

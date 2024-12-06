@@ -2,34 +2,43 @@ import { useHistory } from "react-router-dom";
 import Modal from "../global/Modal";
 import { useModal } from "../../contexts/ModalContext";
 
-export default function SobreMike(){
+export default function SobreMike() {
     const { showSobreMike, handleShow } = useModal();
     const history = useHistory();
 
-    if(!showSobreMike){
+    if (!showSobreMike) {
         return null;
     }
 
-    return(
+    return (
         <Modal>
-            <div className="w-72 h-96 space-y-3">
-                <h2 className="text-2xl font-bold">Sobre o PM Digital</h2>
-                <button className="absolute right-5 top-5 rotate-45 text-2xl" onClick={() => { handleShow("sobreMike"); history.push('/') }}>+</button>
-                <p className="text-xl">
-                    Tecnologia inovadora para<br/>
-                    facilitar denúncias e <br/>
-                    agilizar ações de prevenção<br/>
-                    a violência e situações<br/>
-                    emergentes.<br/>
-                    Desenvolvedores resposáveis:<br/>
-                      - Ana Carolyne Costa<br/>
-                      - Iale Almeida<br/>
-                      - Lorenzo Leão<br/>
-                      - Luís Silvestre<br/>
-                      - Nicholas Bergqvist<br/>
-                      - Rafael Figuerôa
-                </p>
+            <div className="w-full h-full space-y-3">
+                <div className="flex flex-row justify-between items-center">
+                    <h2 className="text-2xl font-bold">Sobre o PM Digital</h2>
+                    <button className="rotate-45 text-3xl" onClick={() => { handleShow("sobreMike"); }}>+</button>
+                </div>
+                <div className="text-lg text-justify flex flex-col gap-2">
+                    <p>
+                    Tecnologia inovadora para
+                    facilitar denúncias e
+                    agilizar ações de prevenção
+                    a violência e situações
+                    emergentes.
+                    </p>
+                    <div className="flex flex-col gap-2">
+                        <p>Desenvolvedores responsáveis</p>
+                        <ol className="flex flex-col gap-1 list-disc ml-5">
+                            <li>Ana Carolyne Costa</li>
+                            <li>Iale Almeida</li>
+                            <li>Lorenzo Leão</li>
+                            <li>Luís Silvestre</li>
+                            <li>Nicholas Bergqvist</li>
+                            <li>Rafael Figuerôa</li>
+                        </ol>
+                    </div>
+
+                </div>
             </div>
         </Modal>
-    );   
+    );
 };

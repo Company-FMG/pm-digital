@@ -1,56 +1,57 @@
-//@ts-nocheck
-import { useState, useEffect } from "react";
-import rightarrow from "../../assets/rightarrow.svg";
-import usePolling from "../../hooks/usePolling";
+import { usePolling } from "../../hooks/usePolling";
 import { useModal } from "../../contexts/ModalContext";
-import { useMap } from "../../contexts/MapContext";
 import Modal from "../global/Modal";
+import { useEffect, useState } from "react";
+import rightarrow from "../../assets/rightarrow.svg";
+
+interface Denuncia {
+  tipo: string;
+  geolocation: Geolocation;
+}
+
+interface Geolocation {
+  local: string;
+}
 
 export default function AlertaOcorrenciaMike() {
+  const apiUrl = import.meta.env.VITE_API_URL!;
   const { showAlertaOcorrencia, handleShow } = useModal();
-  const { setShowMap } = useMap();
-  const [latestDenuncia, setLatestDenuncia] = useState(null);
+  const [viewState, setViewState] = useState(true);
 
-
-  const { data: denuncias } = usePolling(
-    "http://localhost:8080/denuncias",
-    5000
+  // Chama o hook de polling para buscar a denúncia a cada 10 segundos
+  const { data: latestDenuncia, error } = usePolling<Denuncia>(
+    `${apiUrl}/viaturas/${localStorage.getItem("placaViatura")}/denuncia`,
+    10000
   );
 
+  function handleView(){
+    setViewState(!viewState);
+  }
+
   useEffect(() => {
-    if (denuncias && denuncias.length > 0) {
-      const mostRecentDenuncia = denuncias[denuncias.length - 1];
-      if (!latestDenuncia || mostRecentDenuncia.id !== latestDenuncia.id) {
-        setLatestDenuncia(mostRecentDenuncia);
-
-        setTimeout(() => {
-          handleShow("alertaOcorrencia");
-        }, 4000);
-      }
+    if (latestDenuncia && !showAlertaOcorrencia) {
+      handleShow("alertaOcorrencia");
     }
-  }, [denuncias, latestDenuncia, handleShow]);
+  }, [latestDenuncia, showAlertaOcorrencia, handleShow ]);
 
-  if (!showAlertaOcorrencia) {
+  if (!showAlertaOcorrencia || !latestDenuncia) {
     return null;
   }
 
   return (
+    <div className={`${viewState ? "flex" : "hidden" }`}>
     <Modal>
-      <div>
+      <div className="flex flex-col justify-center items-center text-center gap-2">
         <h1 className="text-xl font-bold">ALERTA DE OCORRÊNCIA</h1>
+        <p className="font-bold">{latestDenuncia.tipo}</p>
+        <p>{latestDenuncia.geolocation.local}</p>
       </div>
-      <div className="flex gap-4">
-        <p className="font-bold">{latestDenuncia ? latestDenuncia.tipo : ""}</p>
-        <p>{latestDenuncia ? latestDenuncia.local : ""}</p>
-      </div>
-         
-
+        
       <div>
         <button
-          className="text-center bg-bluemike text-lg text-white rounded-xl h-[50] w-max px-8 py-4 mt-4"
+          className="w-full text-center bg-bluemike text-lg text-white rounded-xl px-8 py-4 mt-4"
           onClick={() => {
-            setShowMap(true);
-            handleShow("alertaOcorrencia");
+            handleView();
           }}
         >
           A CAMINHO
@@ -62,5 +63,6 @@ export default function AlertaOcorrenciaMike() {
         </button>
       </div>
     </Modal>
+    </div>
   );
 }

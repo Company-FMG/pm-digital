@@ -12,11 +12,22 @@ function ComplaintCard({ id, status, tipo, endereco, relato }: ComplaintCardProp
     const navigate = useNavigate();
 
     const handleComplaintClick = () => {
-        navigate('/viaturas', { 
-            state: { 
-                idDenuncia: id
-            } 
-        })
+
+        if (status === 'EM_ABERTO') {
+            navigate('/viaturas', {
+                state: {
+                    idDenuncia: id
+                }
+            })
+        }else{
+            navigate('/infoocorrencia',{
+                state:{
+                    idDenuncia:id,
+                    status:status
+                }
+            })
+        }
+
     }
 
     const getColor = () => {

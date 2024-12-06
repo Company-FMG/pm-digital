@@ -10,6 +10,7 @@ interface ModalContextProps {
   showSobreMike: boolean;
   showOpcoes: boolean;
   endereco: string;
+  manualClose: boolean;
   handleShow: (modal: string) => void;
   handleEndereco: (endereco: string) => void;
 }
@@ -34,11 +35,13 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
   const [showDetalhesDenuncia, setShowDetalhesDenuncia] = useState(false);
   const [showSobreMike, setShowSobreMike] = useState(false);
   const [showOpcoes, setShowOpcoes] = useState(false);
+  const [manualClose, setManualClose] = useState(false);
 
   const handleShow = (modal: string) => {
     if (modal === "alertaOcorrencia") {
-      console.log("alertaOcorrencia");
-      setShowAlertaOcorrencia(!showAlertaOcorrencia);
+      if (!manualClose) {
+        setShowAlertaOcorrencia(!showAlertaOcorrencia);
+      }
     } else if (modal === "registrarBO") {
       console.log("registrarBO");
       setShowRegistrarBO(!showRegistrarBO);
@@ -71,6 +74,11 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
     }
   }, [handleShow]);
 
+  const ativarRota = () => {
+    setManualClose(true); // Marca que o modal foi manualmente fechado
+    setShowAlertaOcorrencia(false); // Fecha o modal
+  };
+
   return (
     <ModalContext.Provider
       value={{
@@ -82,6 +90,7 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
         showDetalhesDenuncia,
         showSobreMike,
         showOpcoes,
+        manualClose,
         handleShow,
         handleEndereco,
       }}

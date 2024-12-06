@@ -1,9 +1,9 @@
-import ComplaintMap from "../components/complaint/ComplaintMap";
-import AuthenticatedLayout from "../layouts/AuthenticatedLayout";
-import { useForm } from "../contexts/ComplaintFormContext";
+import ComplaintMap from "./ComplaintMap";
+import AuthenticatedLayout from "../../layouts/AuthenticatedLayout";
+import { useForm } from "../../contexts/ComplaintFormContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import RightArrow from "../assets/RightArrow.svg";
+import RightArrow from "../../assets/RightArrow.svg";
 import { useEffect } from "react";
 
 export default function Complaint() {

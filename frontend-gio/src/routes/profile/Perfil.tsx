@@ -1,5 +1,5 @@
-import NavbarMike from "../components/global/NavbarMike";
-import { useProfile } from "../contexts/ProfileContext" // Certifique-se de ajustar o caminho conforme sua estrutura de pastas
+import NavbarMike from "../../components/global/NavbarMike";
+import { useProfile } from "../../contexts/ProfileContext" // Certifique-se de ajustar o caminho conforme sua estrutura de pastas
 
 export default function Perfil() {
     const { selectedImage, setSelectedImage } = useProfile();
