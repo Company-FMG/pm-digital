@@ -5,6 +5,7 @@ import PMDigitalcomSlogan from "../../assets/PM Digital com Slogan.svg";
 import PublicSafety from "../../assets/Public Safety(1).png";
 import Secure from "../../assets/Secure(1).png"; 
 import axios from "axios";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface ImageProps {
   src: string;
@@ -20,6 +21,11 @@ export default function Login() {
   const [matricula, setMatricula] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
+
+  const handleCaptchaChange = () => {
+    setButtonDisabled(true);
+  }
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,13 +94,12 @@ export default function Login() {
                 />
               </div>
 
-              <a href="#" className="text-md italic underline">
-                Esqueci minha senha
-              </a>
+              <ReCAPTCHA sitekey={import.meta.env.VITE_REACT_RECAPTCHA_SITE_KEY} onChange={handleCaptchaChange} className="justify-items-center"/>
 
               <button
                 type="submit"
-                className="p-3 w-full bg-white text-blue-700 text-xl font-bold rounded-lg">
+                className="p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg disabled:opacity-70"
+                disabled={!isButtonDisabled}>
                 Entrar
               </button>
               <div className="text-center">
