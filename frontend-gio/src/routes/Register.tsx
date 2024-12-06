@@ -7,6 +7,7 @@ import PMDigitalcomSlogan from "../assets/PM Digital com Slogan.svg";
 import PublicSafety from "../assets/Public Safety(1).png";
 import Secure from "../assets/Secure(1).png"; 
 import axios from "axios";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface ImageProps {
   src: string;
@@ -24,6 +25,11 @@ export default function Register() {
     const [matricula, setMatricula] = useState('');
     const [senha, setSenha] = useState('');
     const navigate = useNavigate();
+    const [isButtonDisabled, setButtonDisabled] = useState(false);
+
+    const handleCaptchaChange = () => {
+        setButtonDisabled(true);
+    }
 
     const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -113,9 +119,12 @@ export default function Register() {
                     />
                 </div>
 
+                <ReCAPTCHA sitekey={import.meta.env.VITE_REACT_RECAPTCHA_SITE_KEY} onChange={handleCaptchaChange} className="justify-items-center my-8"/>
+
                 <button
                     type="submit"
-                    className="mt-2 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg">
+                    className="mt-2 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg disabled:opacity-70"
+                    disabled={!isButtonDisabled}>
                     Cadastrar
                 </button>
                 <div className="text-center mt-3">
