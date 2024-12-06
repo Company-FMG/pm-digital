@@ -14,6 +14,30 @@ export default function Relatorio() {
     const history = useHistory();
     const { handleShow } = useModal();
 
+    const handleSubmit = () => {
+        try {
+            const response = await axios.put(`${api_url}/policiais/in/${idViatura}`, {}, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                }
+            });
+
+            if (response.status === 200) {
+                console.log('Entrou na viatura com sucesso!');
+                history.push("/perfil")
+                localStorage.setItem("placaViatura", placa)
+                window.dispatchEvent(new Event('storage')); 
+            } else {
+                console.error('Erro ao receber os dados');
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+        }
+
+        handleShow("ocorrenciaFinalizada");
+    }
+
     return (
         <IonPage>
             <IonHeader>
@@ -29,7 +53,7 @@ export default function Relatorio() {
                         <button onClick={() => history.push('/')} className="text-center text-xl p-2 rounded-xl h-14 w-32">
                             Voltar
                         </button>
-                        <button onClick={() => handleShow("ocorrenciaFinalizada")} className="text-center bg-bluemike text-xl text-white p-2 rounded-xl h-14 w-32">
+                        <button onClick={handleSubmit} className="text-center bg-bluemike text-xl text-white p-2 rounded-xl h-14 w-32">
                             Confirmar
                         </button> 
                     </div>
