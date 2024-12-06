@@ -33,4 +33,6 @@ public class DenunciaDTO {
 
     private UUID idViatura;
     private String placa;
+
+    private String relatorioFinal;
 }

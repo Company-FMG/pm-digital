@@ -47,4 +47,6 @@ public class Denuncia {
     @JoinColumn(name = "viatura_id", referencedColumnName = "id")
     @JsonBackReference
     private Viatura viatura;
+
+    private String relatorioFinal;
 }

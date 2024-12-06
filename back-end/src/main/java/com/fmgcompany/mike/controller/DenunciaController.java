@@ -107,6 +107,49 @@ public class DenunciaController {
         }
     }
 
+    @PutMapping("/{id}/relatorio")
+    public ResponseEntity<Denuncia> adicionaRelatorio(@PathVariable UUID id, @RequestBody String relatorio) {
+        // Busca a denúncia pelo ID
+        Optional<DenunciaDTO> denunciaDTOOptional = this.denunciaService.buscaDenunciaPeloId(id);
+
+        if (denunciaDTOOptional.isPresent()) {
+            DenunciaDTO denunciaDTO = denunciaDTOOptional.get();
+
+            // Busca a viatura associada
+            UUID idViatura = denunciaDTO.getIdViatura();
+            Optional<Viatura> viaturaOptional = viaturaService.buscarPorId(idViatura);
+
+            if (viaturaOptional.isPresent()) {
+                Viatura viatura = viaturaOptional.get();
+
+                // Verifica disponibilidade da viatura
+                if (!viaturaService.isDisponivel(viatura.getId())) {
+                    return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+                }
+
+                // Atualiza os campos da denúncia
+                viatura.setDenuncia(null); // Libera a viatura
+                denunciaDTO.setIdViatura(null);
+                denunciaDTO.setStatus(Status.FINALIZADA);
+                denunciaDTO.setRelatorioFinal(relatorio);
+
+                // Salva as atualizações no banco
+                denunciaService.atualizarDTO(id, denunciaDTO);
+                viaturaService.atualizar(viatura);
+
+                return ResponseEntity.ok(denunciaMapper.toEntity(denunciaDTO));
+            } else {
+                // Viatura não encontrada
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(null);
+            }
+        } else {
+            // Denúncia não encontrada
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+    }
+
     @DeleteMapping("/{id}")
     public void removeDenuncia(@PathVariable UUID id) {
         this.denunciaService.removeDenuncia(id);

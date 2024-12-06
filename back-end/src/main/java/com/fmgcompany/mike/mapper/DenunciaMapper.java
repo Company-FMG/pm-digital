@@ -15,6 +15,7 @@ public class DenunciaMapper {
         denunciaDTO.setRelato(denuncia.getRelato());
         denunciaDTO.setReferencia(denuncia.getReferencia());
         denunciaDTO.setStatus(denuncia.getStatus());
+        denunciaDTO.setRelatorioFinal(denuncia.getRelatorioFinal());
 
         if (denuncia.getVitima() != null) {
             denunciaDTO.setNomeVitima(denuncia.getVitima().getNome());
@@ -35,6 +36,11 @@ public class DenunciaMapper {
             denunciaDTO.setLat(denuncia.getGeolocation().getLat());
             denunciaDTO.setLng(denuncia.getGeolocation().getLng());
         }
+
+        if (denuncia.getViatura() != null) {
+            denunciaDTO.setIdViatura(denuncia.getViatura().getId());
+            denunciaDTO.setPlaca(denuncia.getViatura().getPlaca());
+        }
         return denunciaDTO;
     }
 
@@ -45,6 +51,7 @@ public class DenunciaMapper {
         denuncia.setRelato(denunciaDTO.getRelato());
         denuncia.setReferencia(denunciaDTO.getReferencia());
         denuncia.setStatus(denunciaDTO.getStatus());
+        denuncia.setRelatorioFinal(denunciaDTO.getRelatorioFinal());
 
         if (denunciaDTO.getNomeVitima() != null) {
             Vitima vitima = new Vitima();
@@ -72,6 +79,11 @@ public class DenunciaMapper {
             denuncia.setGeolocation(geolocation);
         }
 
+        if (denunciaDTO.getIdViatura() != null) {
+            Viatura viatura = new Viatura();
+            viatura.setId(denunciaDTO.getIdViatura());
+            viatura.setPlaca(denunciaDTO.getPlaca());
+        }
         return denuncia;
     }
 }
