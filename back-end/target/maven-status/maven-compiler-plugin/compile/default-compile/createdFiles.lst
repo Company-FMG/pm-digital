@@ -1,6 +1,7 @@
 com\fmgcompany\mike\dto\LoginRequestDTO.class
 com\fmgcompany\mike\model\Denuncia.class
 com\fmgcompany\mike\model\Geolocation.class
+com\fmgcompany\mike\dto\PolicialDTO.class
 com\fmgcompany\mike\model\Policial.class
 com\fmgcompany\mike\service\VitimaService.class
 com\fmgcompany\mike\service\GeolocationService.class
