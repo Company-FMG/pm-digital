@@ -122,11 +122,6 @@ public class DenunciaController {
             if (viaturaOptional.isPresent()) {
                 Viatura viatura = viaturaOptional.get();
 
-                // Verifica disponibilidade da viatura
-                if (!viaturaService.isDisponivel(viatura.getId())) {
-                    return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
-                }
-
                 // Atualiza os campos da denúncia
                 viatura.setDenuncia(null); // Libera a viatura
                 denunciaDTO.setIdViatura(null);
