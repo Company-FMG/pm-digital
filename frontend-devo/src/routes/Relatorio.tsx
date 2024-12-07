@@ -20,7 +20,7 @@ export default function Relatorio() {
     const history = useHistory();
     const apiUrl = import.meta.env.VITE_API_URL!;
     const { handleShow } = useModal();
-    const [idDenuncia, setIdDenuncia] = useState<Denuncia>({idDenuncia: ""});
+    const [idDenuncia, setIdDenuncia] = useState("");
 
     const fetchDenuncia = async () => {
         try {
@@ -30,7 +30,8 @@ export default function Relatorio() {
               Authorization: `Bearer ${localStorage.getItem("authToken")}`,
             },
           });
-          setIdDenuncia(response.data);
+          console.log(response.data.idDenuncia);
+          setIdDenuncia(response.data.idDenuncia);
         } catch (error) {
           console.error("Erro ao carregar a denúncia:", error);
           if(error.response.status === 404) {
