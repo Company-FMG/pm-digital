@@ -7,7 +7,7 @@ import PmDigitalComSlogan from '../../assets/PM Digital com Slogan.svg';
 import axios from "axios";
 import emailIcon from '../../assets/at-outline.svg';
 import nomeIcon from '../../assets/person.svg';
-
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Register() {
   const apiUrl = import.meta.env.VITE_API_URL!;
@@ -16,6 +16,11 @@ export default function Register() {
   const [matricula, setMatricula] = useState('');
   const [senha, setSenha] = useState('');
   const history = useHistory();
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
+
+  const handleCaptchaChange = () => {
+    setButtonDisabled(true);
+  }
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -101,9 +106,12 @@ export default function Register() {
                     <IonIcon slot="start" icon={Secure} size="large"></IonIcon>
                     <IonInputPasswordToggle slot="end" color={"light"}></IonInputPasswordToggle>
                 </IonInput>
+
+              <ReCAPTCHA sitekey={import.meta.env.VITE_REACT_RECAPTCHA_SITE_KEY} onChange={handleCaptchaChange} className="justify-items-center my-8"/>
               
                 <button type="submit" 
-                className="text-center text-base sm:text-lg lg:text-xl py-3 px-6 w-full bg-white rounded-md text-bluemike font-inter font-bold">
+                className="text-center text-base sm:text-lg lg:text-xl py-3 px-6 w-full bg-white rounded-md text-bluemike font-inter font-bold disabled:opacity-70"
+                disabled={!isButtonDisabled}>
                     Cadastrar
                 </button>
 

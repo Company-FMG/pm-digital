@@ -9,14 +9,43 @@ import NavbarMike from "../components/global/NavbarMike";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../contexts/ModalContext";
 import OcorrenciaFinalizada from "../components/modals/OcorrenciaFinalizada";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+interface Denuncia{
+    idDenuncia: string;
+}
 
 export default function Relatorio() {
     const history = useHistory();
+    const apiUrl = import.meta.env.VITE_API_URL!;
     const { handleShow } = useModal();
+    const [idDenuncia, setIdDenuncia] = useState<Denuncia>({idDenuncia: ""});
 
-    const handleSubmit = () => {
+    const fetchDenuncia = async () => {
         try {
-            const response = await axios.put(`${api_url}/policiais/in/${idViatura}`, {}, {
+          const response = await axios.get<Denuncia>(`${apiUrl}/viaturas/${localStorage.getItem("placaViatura")}/denuncia`, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            },
+          });
+          setIdDenuncia(response.data);
+        } catch (error) {
+          console.error("Erro ao carregar a denúncia:", error);
+          if(error.response.status === 404) {
+            alert("Sem denúncias atribuídas à viatura no momento");
+          }
+        }
+      };
+
+      useEffect(() => {
+        fetchDenuncia();
+      }, []);
+
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.put(`${apiUrl}/denuncias/${idDenuncia}/relatorio`, {}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
@@ -24,10 +53,8 @@ export default function Relatorio() {
             });
 
             if (response.status === 200) {
-                console.log('Entrou na viatura com sucesso!');
-                history.push("/perfil")
-                localStorage.setItem("placaViatura", placa)
-                window.dispatchEvent(new Event('storage')); 
+                console.log('Relatório enviado com sucesso!');
+                history.push("/home")
             } else {
                 console.error('Erro ao receber os dados');
             }
