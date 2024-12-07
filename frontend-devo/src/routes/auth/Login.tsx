@@ -99,7 +99,7 @@ export default function Login() {
               </button>
 
               <div className="text-center">
-                <a href="/register" className="italic underline text-white">Primeiro acesso? Começe aqui</a>
+                <a href="/register" className="italic underline text-white">Primeiro acesso? Comece aqui</a>
               </div>
             </form>
 
