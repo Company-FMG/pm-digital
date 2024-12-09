@@ -119,6 +119,7 @@ public class DenunciaService {
                     denunciaExistente.setRelato(denunciaDTO.getRelato());
                     denunciaExistente.setReferencia(denunciaDTO.getReferencia());
                     denunciaExistente.setStatus(denunciaDTO.getStatus());
+                    denunciaExistente.setRelatorioFinal(denunciaDTO.getRelatorioFinal());
 
                     // Atualizar a vítima, se o ID estiver presente
                     if (denunciaDTO.getIdVitima() != null) {

@@ -13,7 +13,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 interface Denuncia{
-    idDenuncia: string;
+    id: string;
 }
 
 export default function Relatorio() {
@@ -21,6 +21,7 @@ export default function Relatorio() {
     const apiUrl = import.meta.env.VITE_API_URL!;
     const { handleShow } = useModal();
     const [idDenuncia, setIdDenuncia] = useState("");
+    const [relatorio, setRelatorio] = useState("");
 
     const fetchDenuncia = async () => {
         try {
@@ -30,23 +31,29 @@ export default function Relatorio() {
               Authorization: `Bearer ${localStorage.getItem("authToken")}`,
             },
           });
-          console.log(response.data.idDenuncia);
-          setIdDenuncia(response.data.idDenuncia);
+          console.log(response.data);
+          setIdDenuncia(response.data.id);
         } catch (error) {
           console.error("Erro ao carregar a denúncia:", error);
           if(error.response.status === 404) {
             alert("Sem denúncias atribuídas à viatura no momento");
           }
         }
-      };
+    };
 
-      useEffect(() => {
-        fetchDenuncia();
-      }, []);
+    useEffect(() => {
+    fetchDenuncia();
+    }, []);
 
-    const handleSubmit = async () => {
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setRelatorio(e.target.value);
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         try {
-            const response = await axios.put(`${apiUrl}/denuncias/${idDenuncia}/relatorio`, {}, {
+            console.log(relatorio)
+            const response = await axios.put(`${apiUrl}/denuncias/${idDenuncia}/relatorio`, relatorio, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
@@ -55,7 +62,7 @@ export default function Relatorio() {
 
             if (response.status === 200) {
                 console.log('Relatório enviado com sucesso!');
-                history.push("/home")
+                handleShow("ocorrenciaFinalizada");
             } else {
                 console.error('Erro ao receber os dados');
             }
@@ -63,7 +70,6 @@ export default function Relatorio() {
             console.error('Erro:', error);
         }
 
-        handleShow("ocorrenciaFinalizada");
     }
 
     return (
@@ -76,15 +82,18 @@ export default function Relatorio() {
             <IonContent className="flex justify-center">
                 <div className="space-y-3 text-center p-4">
                     <h2 className="text-2xl font-bold">Por favor, insira o relatório da ocorrência.</h2>
-                    <textarea name="" id="" className="bg-white rounded-lg border border-black w-full md:w-2/3 lg:w-1/2 h-20"></textarea>
-                    <div className="flex justify-center">
-                        <button onClick={() => history.push('/')} className="text-center text-xl p-2 rounded-xl h-14 w-32">
-                            Voltar
-                        </button>
-                        <button onClick={handleSubmit} className="text-center bg-bluemike text-xl text-white p-2 rounded-xl h-14 w-32">
-                            Confirmar
-                        </button> 
-                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <textarea name="relatorio" onChange={handleChange} className="bg-white rounded-lg border border-black w-full md:w-2/3 lg:w-1/2 h-20"></textarea>
+
+                        <div className="flex justify-center">
+                            <button onClick={() => history.push('/home')} className="text-center text-xl p-2 rounded-xl h-14 w-32">
+                                Voltar
+                            </button>
+                            <button type="submit" className="text-center bg-bluemike text-xl text-white p-2 rounded-xl h-14 w-32">
+                                Confirmar
+                            </button> 
+                        </div>
+                    </form>
                 </div>
                 <OcorrenciaFinalizada/>
             </IonContent>

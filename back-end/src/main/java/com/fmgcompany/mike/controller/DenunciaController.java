@@ -84,19 +84,19 @@ public class DenunciaController {
             DenunciaDTO denunciaDTO = denunciaDTOOptional.get();
             Denuncia denuncia = denunciaMapper.toEntity(denunciaDTO);
 
-            Optional<Viatura> viaturaOptional = viaturaService.buscarPorId(idViatura); // Busca uma viatura específica pelo ID
-            if (viaturaOptional.isPresent() && viaturaService.isDisponivel(viaturaOptional.get().getId())) { // Verifica se a viatura está disponível
+            Optional<Viatura> viaturaOptional = viaturaService.buscarPorId(idViatura);
+            if (viaturaOptional.isPresent() && viaturaService.isDisponivel(viaturaOptional.get().getId())) {
                 Viatura viatura = viaturaOptional.get();
 
+                denuncia = denunciaService.atualizar(idDenuncia, denuncia);
+
                 viatura.setDenuncia(denuncia);
-
                 denuncia.setViatura(viatura);
-                denuncia.setStatus(Status.valueOf("EM_ANDAMENTO"));
+                denuncia.setStatus(Status.EM_ANDAMENTO);
 
-                denunciaService.atualizar(idDenuncia, denuncia);
                 viaturaService.atualizar(idViatura, viatura);
 
-                DenunciaDTO updatedDenunciaDTO = denunciaMapper.toDTO(denuncia); // Atualiza o DTO com a viatura associada
+                DenunciaDTO updatedDenunciaDTO = denunciaMapper.toDTO(denuncia);
 
                 return ResponseEntity.ok(updatedDenunciaDTO);
             } else {
@@ -109,6 +109,7 @@ public class DenunciaController {
 
     @PutMapping("/{id}/relatorio")
     public ResponseEntity<Denuncia> adicionaRelatorio(@PathVariable UUID id, @RequestBody String relatorio) {
+        System.out.println("Relatório recebido: " + relatorio);
         // Busca a denúncia pelo ID
         Optional<DenunciaDTO> denunciaDTOOptional = this.denunciaService.buscaDenunciaPeloId(id);
 

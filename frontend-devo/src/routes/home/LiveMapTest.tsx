@@ -56,9 +56,8 @@ export default function LiveMapTest() {
       setDestination(response.data.geolocation);
       console.log(response.data.geolocation);
     } catch (error) {
-      console.error("Erro ao carregar a denúncia:", error);
       if(error.response.status === 404) {
-        alert("Sem denúncias atribuídas à viatura no momento");
+        console.log("Sem denúncias atribuídas à viatura no momento");
       }
     }
   };

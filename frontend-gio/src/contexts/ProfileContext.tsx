@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import defaultPfp from "../assets/pfp-default.jpg";
 
 interface ProfileContextProps {
     selectedImage: string | null;
@@ -8,15 +9,15 @@ interface ProfileContextProps {
 const ProfileContext = createContext<ProfileContextProps | undefined>(undefined);
 
 export function ProfileProvider({ children }: { children: ReactNode }) {
-    const [selectedImage, setSelectedImageState] = useState<string | null>(null);
+    const [selectedImage, setSelectedImageState] = useState<string | null>(defaultPfp);
 
     // Carregar a imagem do localStorage na inicialização
-    useEffect(() => {
-        const savedImage = localStorage.getItem("selectedImage");
-        if (savedImage) {
-            setSelectedImageState(savedImage); // Carrega a imagem salva
-        }
-    }, []);
+    // useEffect(() => {
+    //     const savedImage = localStorage.getItem("selectedImage");
+    //     if (savedImage) {
+    //         setSelectedImageState(savedImage); // Carrega a imagem salva
+    //     }
+    // }, []);
 
     // Função para salvar a imagem no estado e no localStorage
     const setSelectedImage = (image: string | null) => {
