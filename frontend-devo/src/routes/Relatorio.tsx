@@ -79,11 +79,11 @@ export default function Relatorio() {
                 <NavbarMike />
             </IonToolbar>
             </IonHeader>
-            <IonContent className="flex justify-center">
+            <IonContent className="flex justify-center h-max content-center">
                 <div className="space-y-3 text-center p-4">
-                    <h2 className="text-2xl font-bold">Por favor, insira o relatório da ocorrência.</h2>
+                    <h2 className="text-2xl font-bold my-10">Por favor, insira o relatório da ocorrência.</h2>
                     <form onSubmit={handleSubmit}>
-                        <textarea name="relatorio" onChange={handleChange} className="bg-white rounded-lg border border-black w-full md:w-2/3 lg:w-1/2 h-20"></textarea>
+                        <textarea name="relatorio" onChange={handleChange} className="bg-white rounded-lg border border-black w-full md:w-2/3 lg:w-1/2 h-32 px-4 py-2 mb-6"></textarea>
 
                         <div className="flex justify-center">
                             <button onClick={() => history.push('/home')} className="text-center text-xl p-2 rounded-xl h-14 w-32">

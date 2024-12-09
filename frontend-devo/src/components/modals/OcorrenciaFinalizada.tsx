@@ -13,14 +13,9 @@ export default function OcorrenciaFinalizada(){
 
     return(
         <Modal>
-            <div className="w-80 h-40">
-                <p className="text-xl">Ocorrência finalizada.<br/>Agradecemos por usar<br/>o MIKE.</p>
+            <div className="w-80 h-40 justify-items-center">
+                <p className="text-xl text-center mb-6">Ocorrência finalizada.<br/>Agradecemos por usar<br/> PM Digital.</p>
                 <button className="bg-bluemike text-xl text-white p-2 rounded-xl px-4 py-2 flex " onClick={() => { handleShow("ocorrenciaFinalizada"); history.push('/home') }}>
-                    <img
-                        className="px-2 inline-block fill-white rotate-180"
-                        src={rightarrow}
-                        alt=""
-                    />
                     VOLTAR
                 </button>
             </div>

@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { usePhotoGallery, UserPhoto } from "../hooks/usePhotoGallery";
+import defaultPfp from "../assets/pfp-default.jpg";
 
 //interface do contexto
 interface CredentialsContextProps {
@@ -32,7 +33,7 @@ export const CredentialsProvider = ({ children }: CredentialsProviderProps) => {
     const [senha, setSenha] = useState("");
     const [cargo, setCargo] = useState("Cap.");
     const [idade, setIdade] = useState(40);
-    const [pfp, setPfp] = useState("https://migration-polopoly.otempo.com.br/polopoly_fs/3.219668.1534216140!httpImage/image.jpg_gen/derivatives/hard-news-img-medium-fit_380/image.jpg");
+    const [pfp, setPfp] = useState(defaultPfp);
 
     const handleLogin = (matricula: string, senha: string) => {
         
