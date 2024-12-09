@@ -99,7 +99,7 @@ public class PolicialController {
                 viatura.getPoliciais().add(policial);
 
                 policialService.atualizar(policial);
-                viaturaService.atualizar(viatura);
+                viaturaService.atualizar(idViatura, viatura);
 
                 return ResponseEntity.ok(viatura);
             } else {
@@ -129,7 +129,7 @@ public class PolicialController {
                     viatura.getPoliciais().remove(policial);
 
                     policialService.atualizar(policial);
-                    viaturaService.atualizar(viatura);
+                    viaturaService.atualizar(idViatura, viatura);
                 }
 
                 return ResponseEntity.ok(viatura);

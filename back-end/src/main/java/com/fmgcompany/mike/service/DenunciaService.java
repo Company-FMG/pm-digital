@@ -65,9 +65,51 @@ public class DenunciaService {
         return denunciaMapper.toDTO(savedDenuncia);
     }
 
-    public Denuncia atualizar(Denuncia denuncia) {
-        return denunciaRepository.save(denuncia);
+    public Denuncia atualizar(UUID id, Denuncia denunciaAlterada) {
+        Optional<Denuncia> denunciaOptional = this.denunciaRepository.findById(id);
+
+        if (denunciaOptional.isPresent()) {
+            Denuncia denuncia = denunciaOptional.get();
+
+            // Atualize os campos
+            if (denunciaAlterada.getTipo() != null) {
+                denuncia.setTipo(denunciaAlterada.getTipo());
+            }
+            if (denunciaAlterada.getRelato() != null) {
+                denuncia.setRelato(denunciaAlterada.getRelato());
+            }
+            if (denunciaAlterada.getReferencia() != null) {
+                denuncia.setReferencia(denunciaAlterada.getReferencia());
+            }
+            if (denunciaAlterada.getStatus() != null) {
+                denuncia.setStatus(denunciaAlterada.getStatus());
+            }
+            if (denunciaAlterada.getVitima() != null) {
+                denuncia.setVitima(denunciaAlterada.getVitima());
+            }
+            if (denunciaAlterada.getDespachante() != null) {
+                denuncia.setDespachante(denunciaAlterada.getDespachante());
+            }
+            if (denunciaAlterada.getSuspeito() != null) {
+                denuncia.setSuspeito(denunciaAlterada.getSuspeito());
+            }
+            if (denunciaAlterada.getGeolocation() != null) {
+                denuncia.setGeolocation(denunciaAlterada.getGeolocation());
+            }
+            if (denunciaAlterada.getViatura() != null) {
+                denuncia.setViatura(denunciaAlterada.getViatura());
+            }
+            if (denunciaAlterada.getRelatorioFinal() != null) {
+                denuncia.setRelatorioFinal(denunciaAlterada.getRelatorioFinal());
+            }
+
+            // Salve as alterações no banco de dados
+            return this.denunciaRepository.save(denuncia);
+        } else {
+            throw new EntityNotFoundException("Denúncia com ID " + id + " não encontrada.");
+        }
     }
+
 
     public DenunciaDTO atualizarDTO(UUID id, DenunciaDTO denunciaDTO) {
         return this.denunciaRepository.findById(id)

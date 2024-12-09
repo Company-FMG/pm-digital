@@ -3,6 +3,7 @@ package com.fmgcompany.mike.service;
 import com.fmgcompany.mike.model.Denuncia;
 import com.fmgcompany.mike.model.Viatura;
 import com.fmgcompany.mike.repository.ViaturaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,9 +44,30 @@ public class ViaturaService {
         return viaturaRepository.save(viatura);
     }
 
-    public Viatura atualizar(Viatura viatura){
-        return viaturaRepository.save(viatura);
+    public Viatura atualizar(UUID id, Viatura viaturaAlterada) {
+        Optional<Viatura> viaturaOptional = this.viaturaRepository.findById(id);
+
+        if (viaturaOptional.isPresent()) {
+            Viatura viatura = viaturaOptional.get();
+
+            // Atualize os campos
+            if (viaturaAlterada.getPlaca() != null) {
+                viatura.setPlaca(viaturaAlterada.getPlaca());
+            }
+            if (viaturaAlterada.getPoliciais() != null) {
+                viatura.setPoliciais(viaturaAlterada.getPoliciais());
+            }
+            if (viaturaAlterada.getDenuncia() != null) {
+                viatura.setDenuncia(viaturaAlterada.getDenuncia());
+            }
+
+            // Salve as alterações no banco de dados
+            return this.viaturaRepository.save(viatura);
+        } else {
+            throw new EntityNotFoundException("Viatura com ID " + id + " não encontrada.");
+        }
     }
+
 
     public void deletarPorId(UUID id){
         this.viaturaRepository.deleteById(id);

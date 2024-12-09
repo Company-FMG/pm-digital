@@ -93,8 +93,8 @@ public class DenunciaController {
                 denuncia.setViatura(viatura);
                 denuncia.setStatus(Status.valueOf("EM_ANDAMENTO"));
 
-                denunciaService.atualizar(denuncia);
-                viaturaService.atualizar(viatura);
+                denunciaService.atualizar(idDenuncia, denuncia);
+                viaturaService.atualizar(idViatura, viatura);
 
                 DenunciaDTO updatedDenunciaDTO = denunciaMapper.toDTO(denuncia); // Atualiza o DTO com a viatura associada
 
@@ -130,7 +130,7 @@ public class DenunciaController {
 
                 // Salva as atualizações no banco
                 denunciaService.atualizarDTO(id, denunciaDTO);
-                viaturaService.atualizar(viatura);
+                viaturaService.atualizar(idViatura, viatura);
 
                 return ResponseEntity.ok(denunciaMapper.toEntity(denunciaDTO));
             } else {
