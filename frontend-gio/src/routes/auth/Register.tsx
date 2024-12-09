@@ -57,7 +57,7 @@ export default function Register() {
 
     return (
         <main className="bg-bluemike flex flex-col justify-center h-screen overflow-hidden">
-        <div className="flex mx-auto gap-0 sm:gap-8 lg:mx-0 px-12 lg:px-0 items-center lg:flex-row h-screen">
+        <div className="flex mx-auto sm:gap-8 lg:mx-0 px-12 lg:px-0 items-center lg:flex-row h-screen">
         
         <section className="justify-center">
           <Image
@@ -71,9 +71,9 @@ export default function Register() {
             <Image
               src={PMDigitalcomSlogan}
               alt="Logo"
-               className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-64 2xl:w-80 max-w-full mx-auto"
+               className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-56 2xl:w-80 max-w-full mx-auto"
             />
-                <form className="flex flex-col gap-5" onSubmit={handleRegister}>
+                <form className="flex flex-col gap-3" onSubmit={handleRegister}>
 
                 <div className="flex items-center gap-3">
                     <img src={iconName} alt="Nome" className="w-7 h-7" />
@@ -123,7 +123,7 @@ export default function Register() {
 
                 <button
                     type="submit"
-                    className="mt-2 p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg disabled:opacity-70"
+                    className="p-3 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg disabled:opacity-70"
                     disabled={!isButtonDisabled}>
                     Cadastrar
                 </button>

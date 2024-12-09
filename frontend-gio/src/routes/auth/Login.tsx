@@ -98,7 +98,7 @@ export default function Login() {
 
               <button
                 type="submit"
-                className="p-4 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg disabled:opacity-70"
+                className="p-3 w-full bg-white text-blue-700 text-2xl font-bold rounded-lg disabled:opacity-70"
                 disabled={!isButtonDisabled}>
                 Entrar
               </button>
