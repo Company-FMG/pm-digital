@@ -77,7 +77,7 @@ public class DenunciaController {
     }
 
     @PutMapping("/{idDenuncia}/{idViatura}")
-    public ResponseEntity<Denuncia> atribuiViatura(@PathVariable UUID idDenuncia, @PathVariable UUID idViatura) {
+    public ResponseEntity<DenunciaDTO> atribuiViatura(@PathVariable UUID idDenuncia, @PathVariable UUID idViatura) {
         Optional<DenunciaDTO> denunciaDTOOptional = denunciaService.buscaDenunciaPeloId(idDenuncia);
 
         if (denunciaDTOOptional.isPresent()) {
@@ -96,9 +96,9 @@ public class DenunciaController {
                 denunciaService.atualizar(idDenuncia, denuncia);
                 viaturaService.atualizar(idViatura, viatura);
 
-                //DenunciaDTO updatedDenunciaDTO = denunciaMapper.toDTO(denuncia); // Atualiza o DTO com a viatura associada
+                DenunciaDTO updatedDenunciaDTO = denunciaMapper.toDTO(denuncia); // Atualiza o DTO com a viatura associada
 
-                return ResponseEntity.ok(denuncia);
+                return ResponseEntity.ok(updatedDenunciaDTO);
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
             }
